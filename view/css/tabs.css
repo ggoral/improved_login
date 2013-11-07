@@ -1,0 +1,55 @@
+#tabServicios{
+	height: 400px;
+	width: 850px;
+}
+
+#tabs{
+	background: #ccc;
+	padding: 10px;
+	text-align: center;
+}
+
+#tabs a{
+
+	color: #000;
+	font-size: 14px;
+	padding: 9px 11px 11px 11px;
+	text-decoration: none;
+
+	-webkit-transition: all .5s;
+	-o-transition: all .5s;
+	transition: all .5s;
+
+	-webkit-text-shadow: 0px 2px 3px #555;
+	-moz-text-shadow: 0px 2px 3px #555;
+	-o-text-shadow: 0px 2px 3px #555;
+	text-shadow: 0px 2px 3px #555;
+}
+
+#tabs a:hover{
+	background: #eee;
+}
+
+#tabContent{
+	display: none;
+	text-align: center;
+}
+
+#tabContent img{
+	margin-top: 10px;
+}
+
+a.tabActual:nth-child(1){	
+	color: #fff !important;
+	background-color: red !important;
+}
+
+a.tabActual:nth-child(2){	
+	color: #fff !important;
+	background-color: blue !important;
+}
+
+a.tabActual:nth-child(3){	
+	color: #fff !important;
+	background-color: green !important;
+}
