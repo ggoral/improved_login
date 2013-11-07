@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block head %}
+
+		<link rel="stylesheet" type="text/css" href="../view/css/slider.css">
+		<link rel="stylesheet" type="text/css" href="../view/css/tabs.css">
+		<link rel="stylesheet" type="text/css" href="../view/css/slideshow.css">
+		<link rel="stylesheet" href="../view/css/styleLoginButton.css" />
+		<link rel="stylesheet" href="../view/css/menuLogin.css" />
+		
+		<script src="../view/js/login.js"></script>
+		<script type="text/javascript" src="../view/js/slider.js"></script>
+		<script type="text/javascript" src="../view/js/tabs.js"></script>
+
+
+{% endblock head %}
+
+{% block menu %}
+	{% include  barnav %}
+{% endblock menu %}
+
+{% block content %}
+	<div id="loginError" style="display: {{displayerror}}"> {{error}} </div>		<!--VEEEEERRRR-->
+	<!--CONTENT-->
+	<div id="slider">
+		<div id="containerSlider">
+			<img src="../view/img/lab1.jpg" alt="slider1" width="850" height="450">
+			<img src="../view/img/lab2.jpg" alt="slider2" width="850" height="450">
+			<img src="../view/img/lab3.jpg" alt="slider3" width="850" height="450">
+		</div><!--containerSlier -->
+	</div><!--slider -->
+
+		
+	<div id="servicios">
+		<h2>Servicios</h2>
+		<div class="contenido">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<div id="tabServicios">
+				<div id="tabs">
+					<a href="#">Servicio 1</a>
+					<a href="#">Servicio 2</a>
+					<a href="#">Servicio N</a>
+				</div><!---tabs-->
+				<div class="tabContent">
+					<img src="../view/img/tab1.jpg" alt="tab1">
+				</div><!--tabContent-->
+				<div class="tabContent">
+					<img src="../view/img/tab2.jpg" alt="tab2">
+				</div><!--tabContent-->
+				<div class="tabContent">
+					<img src="../view/img/tab3.jpg" alt="tab3">
+				</div><!--tabContent-->
+			</div><!--tabServicios-->
+		</div><!--contenido-->
+	</div><!--servicios -->
+
+	<div id="trabajo">
+		<h2>Trabajo</h2>
+		<div class="contenido">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div><!--contenido-->
+		<div id="slideShow">
+			<img src="../view/img/slideshow1_thumbail.jpg" width="200" height="120" title="Trabajo1" alt="slideshow1_thumbail">
+			<img src="../view/img/slideshow2_thumbail.jpg" width="200" height="120" title="Trabajo2" alt="slideshow2_thumbail">
+			<img src="../view/img/slideshow3_thumbail.jpg" width="200" height="120" title="Trabajo3" alt="slideshow3_thumbail">
+			<img src="../view/img/slideshow4_thumbail.jpg" width="200" height="120" title="Trabajo4" alt="slideshow4_thumbail">
+			<img src="../view/img/slideshow5_thumbail.jpg" width="200" height="120" title="Trabajo5" alt="slideshow5_thumbail">
+			<img src="../view/img/slideshow6_thumbail.jpg" width="200" height="120" title="Trabajo6" alt="slideshow6_thumbail">
+			
+		</div><!--slideShow-->
+	</div><!--trabajo -->
+	
+	<!--FIN CONTENT-->
+
+
+{% endblock content %}
+

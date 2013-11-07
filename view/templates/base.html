@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<link rel="stylesheet" type="text/css" href="../view/css/estilos.css">
+
+		<link href='http://fonts.googleapis.com/css?family=Fauna+One' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Fauna+One|Happy+Monkey|Autour+One|Flavors' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Londrina+Shadow' rel='stylesheet' type='text/css'>
+	
+		<script type="text/javascript" src="../view/js/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="../view/js/script.js"></script>
+		<script type="text/javascript" src="../view/js/funciones.js"></script>
+		{% block head %}
+		<title>{% block title %} {% endblock %}</title>
+		{% endblock %}
+	</head>
+		
+	<body>
+		
+		<div id="container">
+			<div id="inicio">
+				<nav id="menu">
+					{% block menu %} {% endblock %}
+	 			</nav>
+			</div>
+			<div id="cargandoBlock">	{% block cargando %} 	{% endblock %}	</div>			
+			<div id="content">	{% block content %} 	{% endblock %}	</div>
+		</div>
+	
+		<footer id="footer">
+			{% block footer %}
+				&copy Copyright Grupo Kpos de Proyecto S.A.
+			{% endblock %}
+		</footer>
+	</body>
+</html>
