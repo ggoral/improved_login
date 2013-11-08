@@ -18,4 +18,7 @@ echo "email:",$usuario->getEmail(),"\n";
 $usuario->setId_rol(0);
 echo "id_rol:",$usuario->getId_rol(),"\n";
 
+$usuario->setActivo(0);
+echo "activo:",$usuario->getActivo(),"\n";
+
 ?>

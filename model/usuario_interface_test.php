@@ -1,19 +1,30 @@
 <?php
 require_once "usuario_interface.php";
 
-$usuario = ORM_usuario::buscar_usuario(2);
+
+
+//test select *
+$usuarios = ORM_usuario::obtener_todos_usuario();
+print_r($usuarios);
+
+//test select by user_id
+$usuario = ORM_usuario::buscar_usuario(1);
 print_r($usuario);
+
+//test select by user_id
+$usuario_login = ORM_usuario::buscar_usuario_login("admin","admin");
+echo "Usuario Login:", $usuario_login, "\n";
 
 //test insert por campos
 /*
-//$affected_row = ORM_usuario::agregar_usuario_campos("Gonzalo2","Gonzalo_Pass","goral.gonzalo@gmail.com",1);
+//$affected_row = ORM_usuario::agregar_usuario_campos("Gonzalo2","Gonzalo_Pass","goral.gonzalo@gmail.com",1,1);
 //echo "Cantidad Afectada:",$affected_row,"\n";
 */
 
 //test insert por objeto usuario
 /*
 $usuario_nuevo = new Usuario();
-$usuario_nuevo->init(0,'Gonzalo3','Gonzalo_Pass3','ggoral@github.com',1);
+$usuario_nuevo->init(0,'Gonzalo3','Gonzalo_Pass3','ggoral@github.com',1,1);
 $affected_row = ORM_usuario::agregar_usuario($usuario_nuevo);
 echo "Cantidad Afectada:",$affected_row,"\n";
 */

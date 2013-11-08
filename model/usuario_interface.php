@@ -22,8 +22,15 @@ public static function buscar_usuario($id_usuario)
     $usuario->setId_rol($row['id_rol']);
     */
     // implementacion del metodo init
-    $usuario->init($row['id_usuario'],$row['username'],$row['password'],$row['email'],$row['id_rol']);
+    $usuario->init($row['id_usuario'],$row['username'],$row['password'],$row['email'],$row['id_rol'],$row['activo']);
     return $usuario;
+  }
+
+public static function buscar_usuario_login($username, $password)
+  {
+    $conexion = new Conexion();
+    $query = $conexion->consulta_row("SELECT * FROM usuario WHERE username=? and password=?",array($username,$password));
+    return $query;
   }
 
 public static function obtener_todos_usuario()
@@ -38,17 +45,17 @@ public static function obtener_todos_usuario()
 public static function agregar_usuario($usuario)
   {
     $conexion = new Conexion();
-    $sql_insert = "INSERT INTO usuario (username, password, email, id_rol) VALUES (?,?,?,?)";
-    $campos = array($usuario->getUsername(), $usuario->getPassword(), $usuario->getEmail(), $usuario->getId_rol());
+    $sql_insert = "INSERT INTO usuario (username, password, email, id_rol, activo) VALUES (?,?,?,?)";
+    $campos = array($usuario->getUsername(), $usuario->getPassword(), $usuario->getEmail(), $usuario->getId_rol(), $usuario->getActivo());
     $query = $conexion->consulta_row($sql_insert,$campos);
     return $query;
   }
 
-public static function agregar_usuario_campos($username, $password, $email, $id_rol)
+public static function agregar_usuario_campos($username, $password, $email, $id_rol, $activo)
   {
     $conexion = new Conexion();
-    $sql_insert = "INSERT INTO usuario (username, password, email, id_rol) VALUES (?,?,?,?)";
-    $campos = array($username, $password, $email, $id_rol);
+    $sql_insert = "INSERT INTO usuario (username, password, email, id_rol, activo) VALUES (?,?,?,?,?)";
+    $campos = array($username, $password, $email, $id_rol,$activo);
     $query = $conexion->consulta_row($sql_insert,$campos);
     return $query;
   }
@@ -66,8 +73,8 @@ public static function eliminar_usuario($id_usuario)
 public static function actualizar_usuario($usuario)
   {
     $conexion = new Conexion();
-    $sql_update = "UPDATE usuario SET username=?,password=?,email=?,id_rol=? WHERE id_usuario=?";
-    $campos = array($usuario->getUsername(), $usuario->getPassword(), $usuario->getEmail(), $usuario->getId_rol(), $usuario->getId_usuario());
+    $sql_update = "UPDATE usuario SET username=?,password=?,email=?,id_rol=?,activo=? WHERE id_usuario=?";
+    $campos = array($usuario->getUsername(), $usuario->getPassword(), $usuario->getEmail(), $usuario->getId_rol(), $usuario->getActivo(), $usuario->getId_usuario());
     $query = $conexion->consulta_row($sql_update,$campos);
     return $query;
   }

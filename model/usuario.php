@@ -7,14 +7,16 @@ class Usuario
    private $password;
    private $email;
    private $id_rol;
+   private $activo;
 
-  public function init($id_usuario, $username, $password, $email, $id_rol) 
+  public function init($id_usuario, $username, $password, $email, $id_rol, $activo) 
   {
   $this->id_usuario = $id_usuario;  
   $this->username = $username;
   $this->password = $password;
   $this->email = $email;
   $this->id_rol = $id_rol;
+  $this->activo = $activo;
   }
 
   public function setId_usuario($id_usuario)
@@ -70,6 +72,17 @@ class Usuario
   public function getId_rol()
   {
     return $this->id_rol;
+  }
+
+  public function setActivo($activo)
+  {
+  $this->activo = $activo;
+  return $this;
+  }
+
+  public function getActivo()
+  {
+    return $this->activo;
   }
 
   }
