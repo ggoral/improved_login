@@ -12,9 +12,9 @@ require_once "usuario_interface.php";
 //print_r($usuario);
 
 //test select by user_id
-$usuario_login = ORM_usuario::buscar_usuario_login("admina","admin");
+//$usuario_login = ORM_usuario::buscar_usuario_login("admina","admin");
 //print_r($usuario_login);
-echo "Usuario Login:", $usuario_login, "\n";
+//echo "Usuario Login:", $usuario_login, "\n";
 
 //test insert por campos
 /*
@@ -51,9 +51,11 @@ $affected_row = ORM_usuario::actualizar_usuario($usuario);
 echo "Cantidad Afectada:",$affected_row,"\n";
 */
 
+$affected_row = ORM_usuario::agregar_usuario('ggoral', '12345', '', 2, 1);
+echo "Cantidad Afectada:",$affected_row,"\n";
 
 //imprimir todos los usuarios
-$usuarios = ORM_usuario::obtener_todos_usuario();
-print_r($usuarios);
+//$usuarios = ORM_usuario::obtener_todos_usuario();
+//print_r($usuarios);
 
 ?>
