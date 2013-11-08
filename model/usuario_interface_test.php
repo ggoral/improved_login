@@ -1,6 +1,6 @@
 <?php
 
-require_once "usuario.orm.class.php";
+require_once "usuario_interface.php";
 
 $usuario = ORM_usuario::buscar_usuario(5);
 
