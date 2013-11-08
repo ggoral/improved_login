@@ -35,40 +35,40 @@ public static function obtener_todos_usuario()
     return $query;
   }
 
-public static function agregar_usuario($username, $password, $email, $id_rol)
+public static function agregar_usuario($usuario)
   {
     $conexion = new Conexion();
-    $conexion->crear_conexion();
+    $sql_insert = "INSERT INTO usuario (username, password, email, id_rol) VALUES (?,?,?,?)";
+    $campos = array($usuario->getUsername(), $usuario->getPassword(), $usuario->getEmail(), $usuario->getId_rol());
+    $query = $conexion->consulta_row($sql_insert,$campos);
+    return $query;
+  }
+
+public static function agregar_usuario_campos($username, $password, $email, $id_rol)
+  {
+    $conexion = new Conexion();
     $sql_insert = "INSERT INTO usuario (username, password, email, id_rol) VALUES (?,?,?,?)";
     $campos = array($username, $password, $email, $id_rol);
-    $query = $conexion->consulta_fetch($sql_insert,$campos);
-    $cantidad = $conexion->cantidad($query);
-    $conexion->cerrar_conexion();
-    return $cantidad;
+    $query = $conexion->consulta_row($sql_insert,$campos);
+    return $query;
   }
+
 
 public static function eliminar_usuario($id_usuario)
   {
     $conexion = new Conexion();
-    $conexion->crear_conexion();
     $sql_delete = "delete from usuario where id_usuario=?";
     $campos = array($id_usuario);
     $query = $conexion->consulta_row($sql_delete,$campos);
-    $conexion->cerrar_conexion();
     return $query;
   }
 
 public static function actualizar_usuario($usuario)
   {
     $conexion = new Conexion();
-    $conexion->crear_conexion();
-    $sql_update = "UPDATE usuario SET (username=?,password=?,email=?,id_rol=?) WHERE id_usuario=?";
-
+    $sql_update = "UPDATE usuario SET username=?,password=?,email=?,id_rol=? WHERE id_usuario=?";
     $campos = array($usuario->getUsername(), $usuario->getPassword(), $usuario->getEmail(), $usuario->getId_rol(), $usuario->getId_usuario());
-    print_r(campos);
     $query = $conexion->consulta_row($sql_update,$campos);
- 
-    $conexion->cerrar_conexion();
     return $query;
   }
 

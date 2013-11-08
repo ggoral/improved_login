@@ -59,6 +59,7 @@ class Conexion
         catch(PDOException $e){
           $affected_rows = 'Error: ' . $e->getMessage();
         }
+        $this->cerrar_conexion();
         return $affected_rows;
       }
 
