@@ -16,7 +16,7 @@ This is a [improved_login](https://github.com/ggoral/improved_login) application
 Clone this repository.
 
 ```bash
-$ git clone git@github.com/ggoral/improved_login.git
+$ git clone git@github.com:ggoral/improved_login.git
 ```
 
 Remove the origin:
