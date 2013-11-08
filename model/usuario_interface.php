@@ -1,7 +1,7 @@
 <?php
 
 require_once "conexion.php";
-require_once "usuario.class.php";
+require_once "usuario.php";
 
 class ORM_usuario{
 
@@ -41,7 +41,7 @@ public static function agregar_usuario($username, $password, $email, $id_rol)
     $conexion->crear_conexion();
     $sql_insert = "INSERT INTO usuario (username, password, email, id_rol) VALUES (?,?,?,?)";
     $campos = array($username, $password, $email, $id_rol);
-    $query = $conexion->consulta_fetch($sql_insert,$campos);
+    $query = $conexion->consulta($sql_insert,$campos);
     $cantidad = $conexion->cantidad($query);
     $conexion->cerrar_conexion();
     return $cantidad;
@@ -73,7 +73,6 @@ public static function actualizar_usuario($usuario)
     $conexion->cerrar_conexion();
     return $query;
   }
-
 
 }
 ?>
