@@ -10,9 +10,12 @@ print_r($usuario);
 //$affected_row = ORM_usuario::eliminar_usuario(3);
 //echo "Cantidad Afectada:",$affected_row,"\n";
 
-//$usuario->setUsername("Pepito");
-//$affected_row = ORM_usuario::actualizar_usuario($usuario);
-//echo "Cantidad Afectada:",$affected_row,"\n";
+
+echo $usuario->getUsername(),"\n";
+$usuario->setUsername("Pepito");
+echo $usuario->getUsername(),"\n";
+$affected_row = ORM_usuario::actualizar_usuario($usuario);
+echo "Cantidad Afectada:",$affected_row,"\n";
 
 //imprimir todos los usuarios
 $usuarios = ORM_usuario::obtener_todos_usuario();

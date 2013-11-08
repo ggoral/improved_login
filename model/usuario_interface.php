@@ -41,7 +41,7 @@ public static function agregar_usuario($username, $password, $email, $id_rol)
     $conexion->crear_conexion();
     $sql_insert = "INSERT INTO usuario (username, password, email, id_rol) VALUES (?,?,?,?)";
     $campos = array($username, $password, $email, $id_rol);
-    $query = $conexion->consulta($sql_insert,$campos);
+    $query = $conexion->consulta_fetch($sql_insert,$campos);
     $cantidad = $conexion->cantidad($query);
     $conexion->cerrar_conexion();
     return $cantidad;
@@ -64,12 +64,10 @@ public static function actualizar_usuario($usuario)
     $conexion->crear_conexion();
     $sql_update = "UPDATE usuario SET (username=?,password=?,email=?,id_rol=?) WHERE id_usuario=?";
 
-    $campos = array($usuario->getUsername(), 
-                    $usuario->getPassword(), 
-                    $usuario->getEmail(),
-                    $usuario->$id_rol(),
-                    $usuario->$id_usuario);
-    $query = $conexion->consulta_row($sql_delete,$campos);
+    $campos = array($usuario->getUsername(), $usuario->getPassword(), $usuario->getEmail(), $usuario->getId_rol(), $usuario->getId_usuario());
+    print_r(campos);
+    $query = $conexion->consulta_row($sql_update,$campos);
+ 
     $conexion->cerrar_conexion();
     return $query;
   }
