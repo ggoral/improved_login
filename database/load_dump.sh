@@ -5,7 +5,7 @@ MYSQL_USERNAME="ggoral"
 MYSQL_DATABASE="fba_db"
 
 #uncomment next line
-#mysql -h $MYSQL_HOSTNAME -u $MYSQL_USERNAME -p $MYSQL_DATABASE < $1
+mysql -h $MYSQL_HOSTNAME -u $MYSQL_USERNAME -p $MYSQL_DATABASE < $1
 
 #Add privileges to user mysql
 #GRANT ALL PRIVILEGES ON *.* TO 'MYSQL_USER'@'localhostIDENTIFIED BY 'MYSQL_PASS' WITH GRANT OPTION;

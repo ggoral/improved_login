@@ -32,7 +32,7 @@ $ git remote rm origin
 Edit load_dump.sh to config mysql credentials
 
 ```bash
-$ improved_login/database/load_dump.sh database.version.sql
+$ http://localhost/improved_login/database/load_dump.sh database.version.sql
 ```
 
 ## Run the app
