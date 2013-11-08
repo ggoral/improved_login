@@ -22,12 +22,14 @@ $ git clone git@github.com/ggoral/improved_login.git
 Remove the origin:
 
 ```bash
-$ cd improved_login
+$ cd improved_login/
 $ git remote rm origin
 ```
 
 
 ## Config the app
+
+Edit load_dump.sh to config mysql credentials
 
 ```bash
 $ improved_login/database/load_dump.sh database.version.sql
