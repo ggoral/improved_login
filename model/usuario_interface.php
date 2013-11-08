@@ -29,8 +29,9 @@ public static function buscar_usuario($id_usuario)
 public static function buscar_usuario_login($username, $password)
   {
     $conexion = new Conexion();
-    $query = $conexion->consulta_row("SELECT * FROM usuario WHERE username=? and password=?",array($username,$password));
-    return $query;
+    $query = $conexion->consulta_fetch("SELECT id_usuario FROM usuario WHERE username=? and password=?",array($username,$password));
+    $id_usuario = $query['id_usuario'];
+    return (int)$id_usuario;
   }
 
 public static function obtener_todos_usuario()

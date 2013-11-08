@@ -4,15 +4,16 @@ require_once "usuario_interface.php";
 
 
 //test select *
-$usuarios = ORM_usuario::obtener_todos_usuario();
-print_r($usuarios);
+//$usuarios = ORM_usuario::obtener_todos_usuario();
+//print_r($usuarios);
 
 //test select by user_id
-$usuario = ORM_usuario::buscar_usuario(1);
-print_r($usuario);
+//$usuario = ORM_usuario::buscar_usuario(1);
+//print_r($usuario);
 
 //test select by user_id
-$usuario_login = ORM_usuario::buscar_usuario_login("admin","admin");
+$usuario_login = ORM_usuario::buscar_usuario_login("admina","admin");
+//print_r($usuario_login);
 echo "Usuario Login:", $usuario_login, "\n";
 
 //test insert por campos
