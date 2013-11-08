@@ -1,7 +1,7 @@
 <?php
 
-require_once "conexion.class.php";
-require_once "laboratorio.class.php";
+require_once "conexion.php";
+require_once "laboratorio.php";
 
 class ORM_laboratorio{
 

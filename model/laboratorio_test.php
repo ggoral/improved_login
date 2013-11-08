@@ -1,5 +1,5 @@
 <?php
-require_once "laboratorio.class.php";
+require_once "laboratorio.php";
 
 $laboratorio = new laboratorio();
 
