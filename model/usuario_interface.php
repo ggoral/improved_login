@@ -51,7 +51,7 @@ public static function agregar_usuario($usuario)
     $query = $conexion->consulta_row($sql_insert,$campos);
     return $query;
   }
-
+*/
 public static function agregar_usuario_campos($username, $password, $email, $id_rol, $activo)
   {
     $conexion = new Conexion();
@@ -61,7 +61,7 @@ public static function agregar_usuario_campos($username, $password, $email, $id_
     return $query;
   }
 
-*/
+
 public static function eliminar_usuario($id_usuario)
   {
     $conexion = new Conexion();
@@ -92,11 +92,8 @@ public static function agregar_usuario($username, $password, $email, $id_rol, $a
   {
 		$existe = ORM_usuario::buscar_por_clave($username);
     if (!$existe){
-      $conexion = new Conexion();
-    	$sql_insert = "INSERT INTO usuario (username, password, email, id_rol, activo) VALUES (?,?,?,?,?)";
-    	$campos = array($username, $password, $email, $id_rol,$activo);
-    	$query = $conexion->consulta_row($sql_insert,$campos);
-  	  return $query;
+      $row_affected = ORM_usuario::agregar_usuario_campos($username, $password, $email, $id_rol, $activo);
+  	  return $row_affected;
 	  }
 		return 0;
   }
