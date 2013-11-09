@@ -130,15 +130,15 @@ class Resultado
     return $this->id_reactivo;
   }
 
-  public function setCalibrador($calibrador)
+  public function setId_calibrador($id_calibrador)
   {
-    $this->calibrador = $calibrador;
+    $this->id_calibrador = $id_calibrador;
     return $this;
   }
 
-  public function getCalibrador()
+  public function getId_calibrador()
   {
-    return $this->calibrador;
+    return $this->id_calibrador;
   }
 
   public function setId_analito($id_analito)
