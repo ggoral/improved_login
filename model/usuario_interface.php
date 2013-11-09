@@ -80,7 +80,7 @@ public static function actualizar_usuario($usuario)
     return $query;
   }
   
-private function buscar_por_clave($username)
+private static function buscar_por_clave($username)
   {
     $conexion = new Conexion();
     $query = $conexion->consulta_fetch("SELECT id_usuario FROM usuario WHERE username=?",array($username));
@@ -91,17 +91,14 @@ private function buscar_por_clave($username)
 public static function agregar_usuario($username, $password, $email, $id_rol, $activo)
   {
     $conexion = new Conexion();
-	$existe = new ORM_usuario();
-	$existe = $existe->buscar_por_clave($username);
-	if ($existe == 0){
-		$sql_insert = "INSERT INTO usuario (username, password, email, id_rol, activo) VALUES (?,?,?,?,?)";
-		$campos = array($username, $password, $email, $id_rol,$activo);
-		$query = $conexion->consulta_row($sql_insert,$campos);
-		return $query;
-	}
-	else{
-		return 0;	
-	}
+		$existe = ORM_usuario::buscar_por_clave($username);
+    if (!$existe){
+    	$sql_insert = "INSERT INTO usuario (username, password, email, id_rol, activo) VALUES (?,?,?,?,?)";
+    	$campos = array($username, $password, $email, $id_rol,$activo);
+    	$query = $conexion->consulta_row($sql_insert,$campos);
+  	  return $query;
+	  }
+		return 0;
   }
 
 }

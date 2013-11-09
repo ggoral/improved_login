@@ -51,7 +51,7 @@ $affected_row = ORM_usuario::actualizar_usuario($usuario);
 echo "Cantidad Afectada:",$affected_row,"\n";
 */
 
-$affected_row = ORM_usuario::agregar_usuario('ggoral', '12345', '', 2, 1);
+$affected_row = ORM_usuario::agregar_usuario('ggoral1', '12345', '', 2, 1);
 echo "Cantidad Afectada:",$affected_row,"\n";
 
 //imprimir todos los usuarios
