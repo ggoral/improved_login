@@ -90,9 +90,9 @@ private static function buscar_por_clave($username)
 	
 public static function agregar_usuario($username, $password, $email, $id_rol, $activo)
   {
-    $conexion = new Conexion();
 		$existe = ORM_usuario::buscar_por_clave($username);
     if (!$existe){
+      $conexion = new Conexion();
     	$sql_insert = "INSERT INTO usuario (username, password, email, id_rol, activo) VALUES (?,?,?,?,?)";
     	$campos = array($username, $password, $email, $id_rol,$activo);
     	$query = $conexion->consulta_row($sql_insert,$campos);
