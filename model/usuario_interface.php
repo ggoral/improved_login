@@ -8,10 +8,8 @@ class ORM_usuario{
 public static function buscar_usuario($id_usuario)
   {
     $conexion = new Conexion();
-    $conexion->crear_conexion();
     $query = $conexion->consulta("SELECT * FROM usuario WHERE id_usuario=?",array($id_usuario));
     $row = $query[0];
-    $conexion->cerrar_conexion();
 
     $usuario = new Usuario();
     /*
@@ -37,9 +35,7 @@ public static function buscar_usuario_login($username, $password)
 public static function obtener_todos_usuario()
   {
     $conexion = new Conexion();
-    $conexion->crear_conexion();
     $query = $conexion->consulta("SELECT * FROM usuario");
-    $conexion->cerrar_conexion();
     return $query;
   }
 /*
@@ -61,7 +57,7 @@ public static function agregar_usuario_campos($username, $password, $email, $id_
     return $query;
   }
 
-
+/*
 public static function eliminar_usuario($id_usuario)
   {
     $conexion = new Conexion();
@@ -69,6 +65,12 @@ public static function eliminar_usuario($id_usuario)
     $campos = array($id_usuario);
     $query = $conexion->consulta_row($sql_delete,$campos);
     return $query;
+  }
+*/
+
+public static function eliminar_usuario($id_usuario)
+  {
+    //HACER UN ELIMINAR QUE SEA PONER INACTIVO AL USUARIO 
   }
 
 public static function actualizar_usuario($usuario)

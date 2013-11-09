@@ -31,6 +31,7 @@ class Conexion
         catch(PDOException $e){
           $resultado = 'Error: ' . $e->getMessage();
         }
+        $this->cerrar_conexion();
         return $resultado;
       }
 
@@ -45,6 +46,7 @@ class Conexion
         catch(PDOException $e){
           $resultado = 'Error: ' . $e->getMessage();
         }
+        $this->cerrar_conexion();
         return $resultado;
       }
 
