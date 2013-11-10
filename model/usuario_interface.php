@@ -70,7 +70,10 @@ public static function eliminar_usuario($id_usuario)
 
 public static function eliminar_usuario($id_usuario)
   {
-    //HACER UN ELIMINAR QUE SEA PONER INACTIVO AL USUARIO 
+    $usuario = ORM_usuario::buscar_usuario($id_usuario);
+    $usuario->setActivo(0);
+    $resultado = ORM_usuario::actualizar_usuario($usuario);
+    return $resultado;
   }
 
 public static function actualizar_usuario($usuario)

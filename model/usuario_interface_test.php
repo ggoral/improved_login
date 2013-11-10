@@ -38,6 +38,11 @@ $affected_row = ORM_usuario::eliminar_usuario(7);
 echo "Cantidad Afectada:",$affected_row,"\n";
 */
 
+//test logic delete
+$usuario_eliminar = ORM_usuario::eliminar_usuario(4);
+print_r($usuario_eliminar);
+
+
 //test update
 /*
 echo $usuario->getUsername(),"\n";
@@ -51,11 +56,12 @@ $affected_row = ORM_usuario::actualizar_usuario($usuario);
 echo "Cantidad Afectada:",$affected_row,"\n";
 */
 
-$affected_row = ORM_usuario::agregar_usuario('ggoral1', '12345', '', 2, 1);
-echo "Cantidad Afectada:",$affected_row,"\n";
+//test add user without duplicates
+//$affected_row = ORM_usuario::agregar_usuario('ggoral1', '12345', '', 2, 1);
+//echo "Cantidad Afectada:",$affected_row,"\n";
 
 //imprimir todos los usuarios
-//$usuarios = ORM_usuario::obtener_todos_usuario();
-//print_r($usuarios);
+$usuarios = ORM_usuario::obtener_todos_usuario();
+print_r($usuarios);
 
 ?>
