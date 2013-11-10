@@ -69,6 +69,17 @@ public static function actualizar_interpretacion($interpretacion)
     return $query;
   }
 
+  public static function combinar_interpretacion_analito($descripcion, $id_analito)
+  {   //SE LE PASA ESOS PARAMETROS PORQUE AL MOMENTO DEL ALTA SE PUEDE CONOCER EL ID ANALITO PERO NO EL ID DE LA interpretacion YA QUE NO SE SABE SI EXISTIA O NO PREVIAMENTE DESDE EL CONTROLLER
+  $conexion = new Conexion();
+  $id_interpretacion = new ORM_interpretacion();
+  $id_interpretacion = $id_interpretacion->buscar_por_clave($descripcion);  //EN ESTE MOMENTO YA EXISTE SI O SI PORQUE PREVIO SE INSERTO
+  $sql_insert = "INSERT INTO analito_interpretacion (id_interpretacion,id_analito) VALUES (?,?)";
+  $campos = array($id_interpretacion,$id_analito);
+  $query = $conexion->consulta_row($sql_insert,$campos);
+  return $query;
+  }
+
 
 }
 ?>
