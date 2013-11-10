@@ -70,6 +70,17 @@ public static function actualizar_papel_filtro($valor)
     return $query;
   }
 
+  public static function combinar_papel_filtro_analito($descripcion, $id_analito)
+  {   //SE LE PASA ESOS PARAMETROS PORQUE AL MOMENTO DEL ALTA SE PUEDE CONOCER EL ID ANALITO PERO NO EL ID DE LA papel_filtro YA QUE NO SE SABE SI EXISTIA O NO PREVIAMENTE DESDE EL CONTROLLER
+  $conexion = new Conexion();
+  $id_papel_filtro = new ORM_papel_filtro();
+  $id_papel_filtro = $id_papel_filtro->buscar_por_clave($descripcion);  //EN ESTE MOMENTO YA EXISTE SI O SI PORQUE PREVIO SE INSERTO
+  $sql_insert = "INSERT INTO analito_papel_filtro (id_analito, id_papel_filtro) VALUES (?,?)";
+  $campos = array($id_analito, $id_papel_filtro);
+  $query = $conexion->consulta_row($sql_insert,$campos);
+  return $query;
+  }
+
 
 }
 ?>
