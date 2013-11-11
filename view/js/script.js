@@ -3,6 +3,7 @@ $(document).on("ready", main);
 function main(){
 	$("#menu a").on("click", irA);
 	$(window).scroll(scrollMenu);
+	$("#loginError").mouseover($("#loginError").delay(1000).fadeOut(1000));
 }
 
 function moveAnimate(){

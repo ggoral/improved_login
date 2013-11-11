@@ -1,7 +1,9 @@
-<?php		
+<?php	
+
 session_start();
 // include and register Twig auto-loader
 require_once '../view/lib/Twig/Autoloader.php'; 
+	
 Twig_Autoloader::register();
 
 try {
@@ -17,29 +19,51 @@ try {
 		));
 
 	if (((isset($_POST['user']))and($_POST['user']!=''))and((isset($_POST['password']))and($_POST['password']!=''))){
-		require '../model/usuario.class.php';
-		require '../model/menu.class.php';
-		$usuario = new usuario();
-		$result = $usuario->buscarUsuario($_POST['user'],$_POST['password']);
-		$cant = $usuario->cantFilas($result);
+		require '../model/usuario_interface.php';
+		require '../model/menu_interface.php';
+		require '../model/rol_interface.php';
 
-//		die($cant);
-		
-		if ($cant != 0){
+		$usuario = new ORM_usuario();
+		$result = $usuario->buscar_usuario_login($_POST['user'],$_POST['password']);
+
+
+//		die($result);
+
+		if ($result != 0){
 			//entra porque encontro al usuario
-			$menu = new menu();
-			$rol = $result[0]['id_rol'];
-			$perfil = $usuario->getRol(array($rol));
-			$atributosM = array($perfil);
-			$barnav = $menu->cargarMenu($atributosM);
+			$usuarioLogeado = $usuario->buscar_usuario($result);
+
+			//chequea que este activo
+			if (!($usuarioLogeado->getActivo())) {
+				//esta inactivo
+				header("Location: index.php?error=USUARIO INACTIVO");
+			}
+		
+			//esta activo
+			$menu = new ORM_menu();
+			$rol = new ORM_rol();
+
+			$idRolUsuario = $usuarioLogeado->getId_rol();
+			$filaRol = $rol->buscar_rol($idRolUsuario);
+			$descripcionRol = $filaRol->getDescripcion();
+
+			$menuPerfil = $menu->buscar_menu_perfil($descripcionRol);
+			$destino = $menuPerfil[0]['destino'];//segun su perfil/rol le setea el destino de la vista
+
+			/*
+			//$perfil = $usuario->getRol(array($rol));
+
+			//$atributosM = array($perfil);
+
+			$barnav = $menu->cargarMenu($destino);
 			
 			$_SESSION['usuario'] = $result[0]['username'];
 			$_SESSION['rol'] = $rol;
-			
+			*/
+
 			$template = $twig->loadTemplate('templateInicio.html');
-			
 			$template->display(array(
-				'barnav' => $barnav
+				'barnav' => $destino
 				));
 		}
 		else{	/*USUARIO INEXISTENTE CON ESE NOMBRE Y PASS*/
