@@ -27,24 +27,20 @@ public static function obtener_todos_decision()
 public static function agregar_decision($descripcion)
   {
     $conexion = new Conexion();
-  	$existe = new ORM_decision();
-  	$existe = $existe->buscar_por_clave($descripcion);
-  	if ($existe == 0){
+  	$existe = ORM_decision::buscar_por_clave($descripcion);
+  	if (!$existe){
   		$sql_insert = "INSERT INTO decision (descripcion) VALUES (?)";
   		$campos = array($descripcion);
   		$query = $conexion->consulta_row($sql_insert,$campos);
   		return $query;
-  	}
-  	else{
-  		return 0;
-  	}
+  	  }
+  	return 0;
   }
   
 public static function combinar_decision_analito($descripcion, $id_analito)
   {		//SE LE PASA ESOS PARAMETROS PORQUE AL MOMENTO DEL ALTA SE PUEDE CONOCER EL ID ANALITO PERO NO EL ID DE LA DECISION YA QUE NO SE SABE SI EXISTIA O NO PREVIAMENTE DESDE EL CONTROLLER
 	$conexion = new Conexion();
-	$id_decision = new ORM_decision();
-	$id_decision = $id_decision->buscar_por_clave($descripcion);	//EN ESTE MOMENTO YA EXISTE SI O SI PORQUE PREVIO SE INSERTO
+	$id_decision = ORM_decision::buscar_por_clave($descripcion);	//EN ESTE MOMENTO YA EXISTE SI O SI PORQUE PREVIO SE INSERTO
 	$sql_insert = "INSERT INTO analito_decision (id_decision,id_analito) VALUES (?,?)";
 	$campos = array($id_decision,$id_analito);
 	$query = $conexion->consulta_row($sql_insert,$campos);
@@ -79,7 +75,5 @@ private function buscar_por_clave($descripcion)
     $id_descripcion = $query['id_decision'];
     return (int)$id_descripcion;
   }
-
-
 }
 ?>
