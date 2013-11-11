@@ -1,8 +1,6 @@
 Improved Login
 ==============
 
-# Improved Login App Template
-
 This is a [improved_login](https://github.com/ggoral/improved_login) application template.
 
 ## To Do
