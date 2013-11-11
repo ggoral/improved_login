@@ -1,0 +1,26 @@
+<ul class="menu">
+	<li><a href="#">GESTIONES</a>
+		<ul>
+			<li><a href="#">MATEO GAY </a>
+				<ul>
+					<li><a href="#" onclick="clonarDiv('content');cargarpagina('insideabm.php','formAlta=abm/fAlta_analito.html&tabla=analito&template=abm/abm_analito.html','content','mostrarTabla()')"> ANALITO </a></li>
+					<li><a href="#" onclick="clonarDiv('content');cargarpagina('insideabm.php','tabla=metodo&template=abm/abm_metodo.html','content','mostrarTabla()')"> METODO </a></li>
+					<li><a href="#" onclick="clonarDiv('content');cargarpagina('insideabm.php','tabla=reactivo&template=abm/abm_reactivo.html','content','mostrarTabla()')"> REACTIVO </a></li>
+					<li><a href="#" onclick="clonarDiv('content');cargarpagina('insideabm.php','tabla=papel_filtro&template=abm/abm_papel_filtro.html','content','mostrarTabla()')"> PAPEL DE FILTRO </a></li>
+					<li><a href="#" onclick="clonarDiv('content');cargarpagina('insideabm.php','tabla=valor_corte&template=abm/abm_valor_corte.html','content','mostrarTabla()')"> VALOR DE CORTE </a></li>
+					<li><a href="#" onclick="clonarDiv('content');cargarpagina('insideabm.php','tabla=calibrador&template=abm/abm_calibrador.html','content','mostrarTabla()')"> CALIBRADOR </a></li>		
+				</ul>	
+			</li>
+			<li><a href="#" onclick="clonarDiv('content');cargarpagina('insideabm.php','tabla=laboratorio&template=abm/abm_laboratorio.html','content','mostrarTabla()')"> LABORATORIOS </a></li>
+		</ul>
+	</li>
+	<li><a href="#">RESULTADOS</a>
+		<ul>
+			<li><a href="#" onclick="clonarDiv('content');cargarpagina('insideabm.php','tabla=resultado&template=abm/abm_resultado.html','content','mostrarTabla()')">LISTAR</a></li>
+		</ul>
+	</li>
+	<li><a href="#" class="logo">&nbsp;</a></li>
+
+	<li><a href="#" onclick="rearmarDiv('content')">VOLVER</a></li>
+	<li><a class='logout' href="logOut.php">LOG OUT</a></li>
+</ul>

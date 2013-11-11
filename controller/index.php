@@ -16,19 +16,28 @@ try {
 			//'cache' => 'compilation_cache',
 			'auto_reload' => TRUE
 		));
-	
+
 		$template = $twig->loadTemplate('templateLogin.html');
+		$barnav = 'barnavLogin.html';
+
+		if (isset($_SESSION['usuarioLogeado'])) {
+			//si ya estaba logeado, le muestra inicio
+			$template = $twig->loadTemplate('templateInicio.html');
+			$barnav = $_SESSION['usuarioLogeado']['barnav'];
+		}
+
 		if (isset($_GET['error'])){
 			$error = $_GET['error'];
 			$display = 'block';
 		}
+
 		else{
 			$error = '';
 			$display = 'none';
 		}
 
 		$template->display(array(
-			'barnav' => 'barnavLogin.html',
+			'barnav' => $barnav,
 			'error' => $error,
 			'displayerror' => $display
 			));

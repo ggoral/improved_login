@@ -23,48 +23,42 @@ try {
 		require '../model/menu_interface.php';
 		require '../model/rol_interface.php';
 
-		$usuario = new ORM_usuario();
-		$result = $usuario->buscar_usuario_login($_POST['user'],$_POST['password']);
-
-
-//		die($result);
+		//$usuario = new ORM_usuario();
+		$result = ORM_usuario::buscar_usuario_login($_POST['user'],$_POST['password']);
 
 		if ($result != 0){
 			//entra porque encontro al usuario
-			$usuarioLogeado = $usuario->buscar_usuario($result);
-
-			//chequea que este activo
-			if (!($usuarioLogeado->getActivo())) {
-				//esta inactivo
-				header("Location: index.php?error=USUARIO INACTIVO");
-			}
-		
-			//esta activo
-			$menu = new ORM_menu();
-			$rol = new ORM_rol();
-
-			$idRolUsuario = $usuarioLogeado->getId_rol();
-			$filaRol = $rol->buscar_rol($idRolUsuario);
-			$descripcionRol = $filaRol->getDescripcion();
-
-			$menuPerfil = $menu->buscar_menu_perfil($descripcionRol);
-			$destino = $menuPerfil[0]['destino'];//segun su perfil/rol le setea el destino de la vista
-
-			/*
-			//$perfil = $usuario->getRol(array($rol));
-
-			//$atributosM = array($perfil);
-
-			$barnav = $menu->cargarMenu($destino);
 			
-			$_SESSION['usuario'] = $result[0]['username'];
-			$_SESSION['rol'] = $rol;
-			*/
+			$usuarioLogeado = ORM_usuario::buscar_usuario($result);
+	
+			if (($usuarioLogeado->getActivo())) {
 
-			$template = $twig->loadTemplate('templateInicio.html');
-			$template->display(array(
-				'barnav' => $destino
-				));
+				$idRolUsuario = $usuarioLogeado->getId_rol();
+				$filaRol = ORM_rol::buscar_rol($idRolUsuario);
+				$descripcionRol = $filaRol->getDescripcion();
+
+				$menuPerfil = ORM_menu::buscar_menu_perfil($descripcionRol);
+				$destino = $menuPerfil[0]['destino'];//segun su perfil/rol le setea el destino de la vista
+
+				$_SESSION['usuarioLogeado']['username'] = $usuarioLogeado->getUsername();
+				$_SESSION['usuarioLogeado']['rol'] = $descripcionRol;
+				$_SESSION['usuarioLogeado']['barnav'] = $destino;
+				
+
+				$template = $twig->loadTemplate('templateInicio.html');
+				$template->display(array(
+					'barnav' => $destino
+					));
+
+				}
+
+				else{
+
+					//esta inactivo
+					header("Location: index.php?error=USUARIO INACTIVO");
+					exit();
+			}
+
 		}
 		else{	/*USUARIO INEXISTENTE CON ESE NOMBRE Y PASS*/
 			header("Location: index.php?error=ERROR AL INICIAR SESION");
