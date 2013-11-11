@@ -27,17 +27,13 @@ public static function obtener_todos_tipo_lab()
 public static function agregar_tipo_lab($descripcion)
   {
     $conexion = new Conexion();
-    $existe = new ORM_tipo_lab();
-    $existe = $existe->buscar_por_clave($descripcion);
-    if ($existe == 0){
+    $existe = ORM_tipo_lab::buscar_por_clave($descripcion);
+    if (!$existe){
       $sql_insert = "INSERT INTO tipo_lab (descripcion) VALUES (?)";
-      $campos = array($descripcion);
-      $query = $conexion->consulta_row($sql_insert,$campos);
+      $query = $conexion->consulta_row($sql_insert, array($descripcion));
       return $query;
-    }
-    else{
-      return 0;
-    }
+      }
+    return 0;
   }
 
   private function buscar_por_clave($descripcion)

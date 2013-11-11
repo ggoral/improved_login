@@ -27,17 +27,14 @@ public static function obtener_todos_metodo()
 public static function agregar_metodo($descripcion)
   {
     $conexion = new Conexion();
-    $existe = new ORM_metodo();
-    $existe = $existe->buscar_por_clave($descripcion);
-    if ($existe == 0){
+    $existe = ORM_metodo::buscar_por_clave($descripcion);
+    if (!$existe){
       $sql_insert = "INSERT INTO metodo (descripcion) VALUES (?)";
       $campos = array($descripcion);
       $query = $conexion->consulta_row($sql_insert,$campos);
       return $query;
     }
-    else{
-      return 0;
-    }
+    return 0;
   }
 
   private function buscar_por_clave($descripcion)
@@ -72,14 +69,12 @@ public static function actualizar_metodo($metodo)
 
 public static function combinar_metodo_analito($descripcion, $id_analito)
   {   //SE LE PASA ESOS PARAMETROS PORQUE AL MOMENTO DEL ALTA SE PUEDE CONOCER EL ID ANALITO PERO NO EL ID DE LA metodo YA QUE NO SE SABE SI EXISTIA O NO PREVIAMENTE DESDE EL CONTROLLER
-  $conexion = new Conexion();
-  $id_metodo = new ORM_metodo();
-  $id_metodo = $id_metodo->buscar_por_clave($descripcion);  //EN ESTE MOMENTO YA EXISTE SI O SI PORQUE PREVIO SE INSERTO
-  $sql_insert = "INSERT INTO analito_metodo (id_analito,id_metodo) VALUES (?,?)";
-  $campos = array($id_analito,$id_metodo);
-  $query = $conexion->consulta_row($sql_insert,$campos);
-  return $query;
+    $conexion = new Conexion();
+    $id_metodo = ORM_metodo::buscar_por_clave($descripcion);  //EN ESTE MOMENTO YA EXISTE SI O SI PORQUE PREVIO SE INSERTO
+    $sql_insert = "INSERT INTO analito_metodo (id_analito,id_metodo) VALUES (?,?)";
+    $campos = array($id_analito,$id_metodo);
+    $query = $conexion->consulta_row($sql_insert,$campos);
+    return $query;
   }
-
 }
 ?>

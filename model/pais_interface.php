@@ -27,17 +27,13 @@ public static function obtener_todos_pais()
 public static function agregar_pais($descripcion)
   {
     $conexion = new Conexion();
-    $existe = new ORM_pais();
-    $existe = $existe->buscar_por_clave($descripcion);
-    if ($existe == 0){
+    $existe = ORM_pais()::buscar_por_clave($descripcion);
+    if (!$existe){
       $sql_insert = "INSERT INTO pais (descripcion) VALUES (?)";
-      $campos = array($descripcion);
-      $query = $conexion->consulta_row($sql_insert,$campos);
+      $query = $conexion->consulta_row($sql_insert,array($descripcion));
       return $query;
-    }
-    else{
-      return 0;
-    }
+      }
+    return 0;
   }
 
   private function buscar_por_clave($descripcion)
@@ -68,7 +64,5 @@ public static function actualizar_pais($pais)
     $query = $conexion->consulta_row($sql_update,$campos);
     return $query;
   }
-
-
 }
 ?>

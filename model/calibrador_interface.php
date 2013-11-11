@@ -27,25 +27,22 @@ public static function obtener_todos_calibrador()
 public static function agregar_calibrador($descripcion)
   {
     $conexion = new Conexion();
-    $existe = new ORM_calibrador();
-    $existe = $existe->buscar_por_clave($descripcion);
-    if ($existe == 0){
+    $existe = ORM_calibrador::buscar_por_clave($descripcion);
+    if (!$existe){
       $sql_insert = "INSERT INTO calibrador (descripcion) VALUES (?)";
       $campos = array($descripcion);
       $query = $conexion->consulta_row($sql_insert,$campos);
       return $query;
     }
-    else{
-      return 0;
-    }
+    return 0;
   }
 
-  private function buscar_por_clave($descripcion)
+  private function buscar_por_clave($id_calibrador)
   {
     $conexion = new Conexion();
-    $query = $conexion->consulta_fetch("SELECT id_calibrador FROM calibrador WHERE descripcion=?",array($descripcion));
-    $id_descripcion = $query['id_calibrador'];
-    return (int)$id_descripcion;
+    $query = $conexion->consulta_fetch("SELECT id_calibrador FROM calibrador WHERE descripcion=?",array($id_calibrador));
+    $id_calibrador = $query['id_calibrador'];
+    return (int)$id_calibrador;
   }
 /*
 public static function eliminar_calibrador($id_calibrador)
@@ -73,8 +70,7 @@ public static function actualizar_calibrador($calibrador)
   public static function combinar_calibrador_analito($descripcion, $id_analito)
   {   //SE LE PASA ESOS PARAMETROS PORQUE AL MOMENTO DEL ALTA SE PUEDE CONOCER EL ID ANALITO PERO NO EL ID DE LA calibrador YA QUE NO SE SABE SI EXISTIA O NO PREVIAMENTE DESDE EL CONTROLLER
   $conexion = new Conexion();
-  $id_calibrador = new ORM_calibrador();
-  $id_calibrador = $id_calibrador->buscar_por_clave($descripcion);  //EN ESTE MOMENTO YA EXISTE SI O SI PORQUE PREVIO SE INSERTO
+  $id_calibrador = ORM_calibrador::buscar_por_clave($descripcion);  //EN ESTE MOMENTO YA EXISTE SI O SI PORQUE PREVIO SE INSERTO
   $sql_insert = "INSERT INTO analito_calibrador (id_calibrador,id_analito) VALUES (?,?)";
   $campos = array($id_calibrador,$id_analito);
   $query = $conexion->consulta_row($sql_insert,$campos);

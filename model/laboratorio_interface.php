@@ -26,17 +26,14 @@ public static function obtener_todos_laboratorio()
 public static function agregar_laboratorio($cod_lab, $institucion, $sector, $responsable, $domicilio, $domicilio_corresp, $mail, $tel, $coord_x, $coord_y, $estado, $id_tipo, $id_ciudad)
   {
     $conexion = new Conexion();
-    $existe = new ORM_laboratorio();
-    $existe = $existe->buscar_por_clave($cod_lab);
-    if ($existe == 0){
-        $sql_insert = "INSERT INTO laboratorio (cod_lab, institucion, sector, responsable, domicilio, domicilio_corresp, mail, tel, coord_x, coord_y, estado, id_tipo, id_ciudad) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        $campos = array($cod_lab, $institucion, $sector, $responsable, $domicilio, $domicilio_corresp, $mail, $tel, $coord_x, $coord_y, $estado, $id_tipo, $id_ciudad);
-        $query = $conexion->consulta_row($sql_insert,$campos);
-        return $query;
-    }
-    else{
-        return 0;
-    }
+    $existe = ORM_laboratorio::buscar_por_clave($cod_lab);
+    if (!$existe){
+      $sql_insert = "INSERT INTO laboratorio (cod_lab, institucion, sector, responsable, domicilio, domicilio_corresp, mail, tel, coord_x, coord_y, estado, id_tipo, id_ciudad) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+      $campos = array($cod_lab, $institucion, $sector, $responsable, $domicilio, $domicilio_corresp, $mail, $tel, $coord_x, $coord_y, $estado, $id_tipo, $id_ciudad);
+      $query = $conexion->consulta_row($sql_insert,$campos);
+      return $query;
+      }
+    return 0;
   }
 
   private function buscar_por_clave($cod_lab)

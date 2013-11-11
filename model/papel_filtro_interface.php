@@ -27,17 +27,14 @@ public static function obtener_todos_papel_filtro()
 public static function agregar_papel_filtro($descripcion)
   {
     $conexion = new Conexion();
-    $existe = new ORM_papel_filtro();
-    $existe = $existe->buscar_por_clave($descripcion);
-    if ($existe == 0){
+    $existe = ORM_papel_filtro::buscar_por_clave($descripcion);
+    if (!$existe){
       $sql_insert = "INSERT INTO papel_filtro (descripcion) VALUES (?)";
       $campos = array($descripcion);
       $query = $conexion->consulta_row($sql_insert,$campos);
       return $query;
     }
-    else{
-      return 0;
-    }
+  return 0;
   }
 
   private function buscar_por_clave($descripcion)
@@ -73,8 +70,7 @@ public static function actualizar_papel_filtro($valor)
   public static function combinar_papel_filtro_analito($descripcion, $id_analito)
   {   //SE LE PASA ESOS PARAMETROS PORQUE AL MOMENTO DEL ALTA SE PUEDE CONOCER EL ID ANALITO PERO NO EL ID DE LA papel_filtro YA QUE NO SE SABE SI EXISTIA O NO PREVIAMENTE DESDE EL CONTROLLER
   $conexion = new Conexion();
-  $id_papel_filtro = new ORM_papel_filtro();
-  $id_papel_filtro = $id_papel_filtro->buscar_por_clave($descripcion);  //EN ESTE MOMENTO YA EXISTE SI O SI PORQUE PREVIO SE INSERTO
+  $id_papel_filtro = ORM_papel_filtro::buscar_por_clave($descripcion);  //EN ESTE MOMENTO YA EXISTE SI O SI PORQUE PREVIO SE INSERTO
   $sql_insert = "INSERT INTO analito_papel_filtro (id_analito, id_papel_filtro) VALUES (?,?)";
   $campos = array($id_analito, $id_papel_filtro);
   $query = $conexion->consulta_row($sql_insert,$campos);

@@ -27,17 +27,13 @@ public static function obtener_todos_interpretacion()
 public static function agregar_interpretacion($descripcion)
   {
     $conexion = new Conexion();
-    $existe = new ORM_interpretacion();
-    $existe = $existe->buscar_por_clave($descripcion);
-    if ($existe == 0){
+    $existe = ORM_interpretacion::buscar_por_clave($descripcion);
+    if (!$existe){
       $sql_insert = "INSERT INTO interpretacion (descripcion) VALUES (?)";
-      $campos = array($descripcion);
-      $query = $conexion->consulta_row($sql_insert,$campos);
+      $query = $conexion->consulta_row($sql_insert, array($descripcion));
       return $query;
-    }
-    else{
-      return 0;
-    }
+      }
+    return 0;
   }
 
   private function buscar_por_clave($descripcion)
@@ -71,13 +67,12 @@ public static function actualizar_interpretacion($interpretacion)
 
   public static function combinar_interpretacion_analito($descripcion, $id_analito)
   {   //SE LE PASA ESOS PARAMETROS PORQUE AL MOMENTO DEL ALTA SE PUEDE CONOCER EL ID ANALITO PERO NO EL ID DE LA interpretacion YA QUE NO SE SABE SI EXISTIA O NO PREVIAMENTE DESDE EL CONTROLLER
-  $conexion = new Conexion();
-  $id_interpretacion = new ORM_interpretacion();
-  $id_interpretacion = $id_interpretacion->buscar_por_clave($descripcion);  //EN ESTE MOMENTO YA EXISTE SI O SI PORQUE PREVIO SE INSERTO
-  $sql_insert = "INSERT INTO analito_interpretacion (id_interpretacion,id_analito) VALUES (?,?)";
-  $campos = array($id_interpretacion,$id_analito);
-  $query = $conexion->consulta_row($sql_insert,$campos);
-  return $query;
+    $conexion = new Conexion();
+    $id_interpretacion = ORM_interpretacion::buscar_por_clave($descripcion);  //EN ESTE MOMENTO YA EXISTE SI O SI PORQUE PREVIO SE INSERTO
+    $sql_insert = "INSERT INTO analito_interpretacion (id_interpretacion,id_analito) VALUES (?,?)";
+    $campos = array($id_interpretacion,$id_analito);
+    $query = $conexion->consulta_row($sql_insert,$campos);
+    return $query;
   }
 
 

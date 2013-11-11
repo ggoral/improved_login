@@ -27,17 +27,14 @@ public static function obtener_todos_analito()
 public static function agregar_analito($descripcion)
   {
     $conexion = new Conexion();
-    $existe = new ORM_analito();
-    $existe = $existe->buscar_por_clave($descripcion);
-    if ($existe == 0){
+    $existe = ORM_analito::buscar_por_clave($descripcion);
+    if (!$existe){
       $sql_insert = "INSERT INTO analito (descripcion) VALUES (?)";
       $campos = array($descripcion);
       $query = $conexion->consulta_row($sql_insert,$campos);
       return $query;
-    }
-    else{
-      return 0;
-    }
+      }
+    return 0;
   }
 
   private function buscar_por_clave($descripcion)

@@ -26,17 +26,14 @@ public static function obtener_todos_menu()
 public static function agregar_menu($destino, $perfil)
   {
     $conexion = new Conexion();
-    $existe = new ORM_menu();
-    $existe = $existe->buscar_por_clave($destino);
-    if ($existe == 0){
+    $existe = ORM_menu::buscar_por_clave($destino);
+    if (!$existe){
       $sql_insert = "INSERT INTO menu (destino, perfil) VALUES (?,?)";
       $campos = array($destino, $perfil);
       $query = $conexion->consulta_row($sql_insert,$campos);
       return $query;
-    }
-    else{
-      return 0;
-    }
+      }
+    return 0;
   }
 
   private function buscar_por_clave($destino)
@@ -51,8 +48,7 @@ public static function eliminar_menu($id_menu)
   {
     $conexion = new Conexion();
     $sql_delete = "DELETE FROM menu WHERE id_menu=?";
-    $campos = array($id_menu);
-    $query = $conexion->consulta_row($sql_delete,$campos);
+    $query = $conexion->consulta_row($sql_delete,array($id_menu));
     return $query;
   }
 
@@ -62,7 +58,7 @@ public static function actualizar_menu($menu)
     $sql_update = "UPDATE menu SET destino=?, perfil=? WHERE id_menu=?";
 
     $campos = array($menu->getDestino(),
-					$menu->getPerfil(),
+				            $menu->getPerfil(),
                     $menu->getId_menu());
     $query = $conexion->consulta_row($sql_update,$campos);
     return $query;
@@ -74,6 +70,5 @@ public static function actualizar_menu($menu)
     $query = $conexion->consulta("SELECT destino FROM menu WHERE perfil LIKE ?",array("%$perfil%"));
     return $query;
   }
-
 }
 ?>

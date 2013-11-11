@@ -27,17 +27,14 @@ public static function obtener_todos_valor_corte()
 public static function agregar_valor_corte($descripcion)
   {
     $conexion = new Conexion();
-    $existe = new ORM_valor_corte();
-    $existe = $existe->buscar_por_clave($descripcion);
-    if ($existe == 0){
+    $existe = ORM_valor_corte::buscar_por_clave($descripcion);
+    if (!$existe){
       $sql_insert = "INSERT INTO valor_corte (descripcion) VALUES (?)";
       $campos = array($descripcion);
       $query = $conexion->consulta_row($sql_insert,$campos);
       return $query;
-    }
-    else{
-      return 0;
-    }
+      }
+    return 0;
   }
 
   private function buscar_por_clave($descripcion)
@@ -72,15 +69,12 @@ public static function actualizar_valor_corte($valor)
 
   public static function combinar_valor_corte_analito($descripcion, $id_analito)
   {   //SE LE PASA ESOS PARAMETROS PORQUE AL MOMENTO DEL ALTA SE PUEDE CONOCER EL ID ANALITO PERO NO EL ID DE LA valor_corte YA QUE NO SE SABE SI EXISTIA O NO PREVIAMENTE DESDE EL CONTROLLER
-  $conexion = new Conexion();
-  $id_valor_corte = new ORM_valor_corte();
-  $id_valor_corte = $id_valor_corte->buscar_por_clave($descripcion);  //EN ESTE MOMENTO YA EXISTE SI O SI PORQUE PREVIO SE INSERTO
-  $sql_insert = "INSERT INTO analito_valor_corte (id_valor_corte,id_analito) VALUES (?,?)";
-  $campos = array($id_valor_corte,$id_analito);
-  $query = $conexion->consulta_row($sql_insert,$campos);
-  return $query;
+    $conexion = new Conexion();
+    $id_valor_corte = ORM_valor_corte::buscar_por_clave($descripcion);  //EN ESTE MOMENTO YA EXISTE SI O SI PORQUE PREVIO SE INSERTO
+    $sql_insert = "INSERT INTO analito_valor_corte (id_valor_corte,id_analito) VALUES (?,?)";
+    $campos = array($id_valor_corte,$id_analito);
+    $query = $conexion->consulta_row($sql_insert,$campos);
+    return $query;
   }
-
-
 }
 ?>
