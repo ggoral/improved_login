@@ -71,5 +71,6 @@ class Muestra
   {
     return $this->id_resultado;
   }
-  }
+  
+}
 ?>
