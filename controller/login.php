@@ -41,7 +41,7 @@ try {
 				$destino = $menuPerfil[0]['destino'];//segun su perfil/rol le setea el destino de la vista
 
 				$_SESSION['usuarioLogeado']['username'] = $usuarioLogeado->getUsername();
-				$_SESSION['usuarioLogeado']['rol'] = $descripcionRol;
+				$_SESSION['usuarioLogeado']['rol'] = $filaRol->getId_rol();
 				$_SESSION['usuarioLogeado']['barnav'] = $destino;
 				
 
