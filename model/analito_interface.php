@@ -11,7 +11,7 @@ public static function buscar_analito($id_analito)
     $query = $conexion->consulta("SELECT * FROM analito WHERE id_analito=?",array($id_analito));
     $row = $query[0];
 
-    $analito = new analito();
+    $analito = new Analito();
     // implementacion del metodo init
     $analito->init($row['id_analito'],$row['descripcion']);
     return $analito;
