@@ -16,13 +16,9 @@ function mostrarTabla(){
     });
      
     /* Add a click handler for the delete row */
-    $('#delete').click( function() {
+    $('#editar').click( function() {
         var anSelected = fnGetSelected( );
         if ( anSelected.length !== 0 ) {
-			/*if (confirm("Eliminara el elemento seleccionado")){	//aca iria el modficar
-				deleteRow(ObtenerIdFilaSeleccionada());
-				oTable.fnDeleteRow( anSelected[0] );
-			}*/
             modificarFila(ObtenerIdFilaSeleccionada());
         }
     } );
@@ -113,7 +109,8 @@ function deleteRow(id){
 }
 
 function modificarFila(id){
+alert('ACA HAY Q VER'); return false;
+cargarpagina('consultas_analito.php?id_analito='+id,'','content');/*SIMILAR A AJAX DE ABAJO PERO PARA VER SU USO*/
 
-    
 }
 
