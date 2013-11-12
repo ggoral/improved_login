@@ -2,10 +2,11 @@
 <!--CONTENT-->
 <h3 class="titulo"> ANALITO </h3>
 
-<form action="consultas_analito.php" method="POST">
+<form name="am_analito" id="am_analito" action="analito.php" method="POST">
 	<label> Descripcion:</label>
-	<input type="text" value="{{analito[descripcion]}}" size="50" />
-	<input class="btn"  type="submit" value={{action}} />
+	<input type="text" value="{{analito[descripcion]}}" size="50" id="descripcion" name="descripcion"/>
+	<br>
+	<div class="btn" onclick="validarAnalito()"> {{action}} </div>
 </form>
 
 <!--FIN CONTENT-->

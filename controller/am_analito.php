@@ -2,11 +2,6 @@
 
 require('validarSesion.php');
 
-if($idRolSesion!=1){ //CONTROLO EL ROL DEL USUARIO SOLAMENTE ESTO LUEGO SE PASARA A OTROO LADO PORQ ESTO ES BASE PARA INDICEEEE
-	//header('Location: ../index.php?error=ROL NO AUTORIZADO PARA ESTA SECCION');
-	die();	 
-}	  
- 
 // include and register Twig auto-loader
 require_once '../view/lib/Twig/Autoloader.php'; 
 Twig_Autoloader::register();
@@ -24,16 +19,8 @@ try {
 		));
 	$template = $twig->loadTemplate('abm/am_analito.html');
 	
-	
-	
-	//include '../model/analito_interface.php';
-	
-
-
-	
-	
 	$template->display(array(
-
+		'action' => $_GET['action']
 	));
 		
 } 
