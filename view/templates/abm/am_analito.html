@@ -4,9 +4,9 @@
 
 <form name="am_analito" id="am_analito" action="analito.php" method="POST">
 	<label> Descripcion:</label>
-	<input type="text" value="{{analito[descripcion]}}" size="50" id="descripcion" name="descripcion"/>
+	<input type="text" value="{{analito[descripcion]}}" size="50" id="descripcion" name="descripcion" required/>
 	<br>
-	<div class="btn" onclick="validarAnalito()"> {{action}} </div>
+	<input class="btn" type="submit" value={{action}} />
 </form>
 
 <!--FIN CONTENT-->
