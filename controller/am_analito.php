@@ -22,18 +22,18 @@ try {
 			//'cache' => 'compilation_cache',
 			'auto_reload' => TRUE
 		));
-	$template = $twig->loadTemplate('abm/analito.html');
+	$template = $twig->loadTemplate('abm/am_analito.html');
 	
-	include '../model/analito_interface.php';
 	
-	$columnas = Array('ID_ANALITO','DESCRIPCION');
+	
+	//include '../model/analito_interface.php';
+	
 
-	$datos = ORM_analito::obtener_todos_analito();
+
 	
 	
 	$template->display(array(
-		'cabecera' => $columnas,
-		'filas' => $datos,
+
 	));
 		
 } 

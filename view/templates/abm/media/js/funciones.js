@@ -19,7 +19,7 @@ function mostrarTabla(){
     $('#delete').click( function() {
         var anSelected = fnGetSelected( );
         if ( anSelected.length !== 0 ) {
-			if (confirm("Eliminara el elemento seleccionado")){
+			if (confirm("Eliminara el elemento seleccionado")){	//aca iria el modficar
 				deleteRow(ObtenerIdFilaSeleccionada());
 				oTable.fnDeleteRow( anSelected[0] );
 			}
@@ -114,16 +114,3 @@ function deleteRow(id){
 	});
 }
 
-
-function addForm(){
-	if(document.getElementById('addDiv').style.display=='block'){
-		document.getElementById('addDiv').style.display='none';
-		document.getElementById('datatables_wrapper').style.display='block';
-		document.getElementById('btnadd').style.backgroundImage="url('../view/img/add.png')";
-	
-	}else{
-		document.getElementById('btnadd').style.backgroundImage="url('../view/img/sub.png')";
-		document.getElementById('addDiv').style.display='block';
-		document.getElementById('datatables_wrapper').style.display='none';
-	}
-}
