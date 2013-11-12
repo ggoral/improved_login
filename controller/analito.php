@@ -24,7 +24,7 @@ try {
 		));
 	$template = $twig->loadTemplate('abm/analito.html');
 	
-	include '../model/analito_interface.php';
+	require_once '../model/analito_interface.php';
 	
 	$columnas = Array('ID_ANALITO','DESCRIPCION');
 
