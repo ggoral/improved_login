@@ -1,7 +1,7 @@
 function mostrarTabla(){
 	var asInitVals = new Array();
 
-	var oTable = '';
+	var oTable;
 
 	/*borrar elemento seleccionandolo*/
 	/* Add a click handler to the rows - this could be used as a callback */
@@ -86,3 +86,44 @@ function ObtenerIdFilaSeleccionada(  )
 	return($('#datatables tr.row_selected td:first-child')[0].getAttribute('name'));
 }
 
+function deleteRow(id){
+	/*FUNCION TIPICA DE AJAX*/
+	
+
+	tabla = (document.getElementById('tabla').getAttribute('name'));
+	var parametros = {
+		"id" : id,
+		"accion" : "baja",
+		"tabla" : tabla 
+	};
+	
+/*	var resultado = cargarpaginasinc('abm.php', parametros);	/*SIMILAR A AJAX DE ABAJO PERO PARA VER SU USO
+	alert(resultado); 
+*/		
+
+	var ajax = $.ajax({
+		data:  parametros,
+		url:   'abm.php',
+		type:  'post',
+		/*beforeSend: function () {
+			$("#resultado").html("Procesando, espere por favor...");
+		},*/
+		success:  function (data) {
+			alert('Ud elimino '+ajax.responseText+' elemento');
+		}
+	});
+}
+
+
+function addForm(){
+	if(document.getElementById('addDiv').style.display=='block'){
+		document.getElementById('addDiv').style.display='none';
+		document.getElementById('datatables_wrapper').style.display='block';
+		document.getElementById('btnadd').style.backgroundImage="url('../view/img/add.png')";
+	
+	}else{
+		document.getElementById('btnadd').style.backgroundImage="url('../view/img/sub.png')";
+		document.getElementById('addDiv').style.display='block';
+		document.getElementById('datatables_wrapper').style.display='none';
+	}
+}
