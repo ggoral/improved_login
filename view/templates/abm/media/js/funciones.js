@@ -19,10 +19,11 @@ function mostrarTabla(){
     $('#delete').click( function() {
         var anSelected = fnGetSelected( );
         if ( anSelected.length !== 0 ) {
-			if (confirm("Eliminara el elemento seleccionado")){	//aca iria el modficar
+			/*if (confirm("Eliminara el elemento seleccionado")){	//aca iria el modficar
 				deleteRow(ObtenerIdFilaSeleccionada());
 				oTable.fnDeleteRow( anSelected[0] );
-			}
+			}*/
+            modificarFila(ObtenerIdFilaSeleccionada());
         }
     } );
     /*fin del borrar*/
@@ -105,12 +106,14 @@ function deleteRow(id){
 		data:  parametros,
 		url:   'abm.php',
 		type:  'post',
-		/*beforeSend: function () {
-			$("#resultado").html("Procesando, espere por favor...");
-		},*/
 		success:  function (data) {
 			alert('Ud elimino '+ajax.responseText+' elemento');
 		}
 	});
+}
+
+function modificarFila(id){
+
+    
 }
 
