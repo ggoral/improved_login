@@ -108,6 +108,13 @@ h2{
 	box-shadow: 1px 1px 10px rgba(0,0,0,0.5);
 }
 
+.contenido h1{
+	margin-top: -2em;
+	margin-left: 1em;
+	text-align: center;
+	font-size: 28px;
+}
+
 .contenido p{
 	font-size: 14px;
 	padding: 40px;
@@ -121,6 +128,10 @@ h2{
 
 #trabajo{
 	margin-top: 80px;
+}
+
+#trabajo ul{
+	margin-top: -3em;
 }
 
 #formulario{
