@@ -1,0 +1,28 @@
+<table id="datatables" class="display">
+	<thead>
+		<tr>
+			{% for field, value in cabecera %}
+				<th>{{value}}</th>
+			{% endfor %}
+		</tr>
+	</thead>
+	<tbody>
+		{% for doc in filas %}	<!--PARA CADA UNA DE LAS FILAS-->
+			<tr>
+				{% for field, value in doc %}	<!--PARA CADA UNA DE LAS COLUMNAS EN LA FILA-->
+					<td id={{field~value}} name={{value}} >{{value}}</td>		
+				{% endfor %}
+			</tr>
+		{% endfor %}
+	</tbody>
+	<tfoot>
+		<tr>
+			{% for doc in cabecera %}		
+				<th><input type="text" name="search_engine" value="Buscar.." class="search_init" /></th>	
+			{% endfor %}	
+		</tr>
+	</tfoot>
+</table>
+
+
+

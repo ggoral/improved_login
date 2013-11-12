@@ -1,7 +1,7 @@
 function mostrarTabla(){
 	var asInitVals = new Array();
 
-	var oTable = '';
+	var oTable;
 
 	/*borrar elemento seleccionandolo*/
 	/* Add a click handler to the rows - this could be used as a callback */
@@ -19,7 +19,7 @@ function mostrarTabla(){
     $('#delete').click( function() {
         var anSelected = fnGetSelected( );
         if ( anSelected.length !== 0 ) {
-			if (confirm("Eliminara el elemento seleccionado")){
+			if (confirm("Eliminara el elemento seleccionado")){	//aca iria el modficar
 				deleteRow(ObtenerIdFilaSeleccionada());
 				oTable.fnDeleteRow( anSelected[0] );
 			}
@@ -84,5 +84,33 @@ function fnGetSelected(  )
 function ObtenerIdFilaSeleccionada(  )
 {
 	return($('#datatables tr.row_selected td:first-child')[0].getAttribute('name'));
+}
+
+function deleteRow(id){
+	/*FUNCION TIPICA DE AJAX*/
+	
+
+	tabla = (document.getElementById('tabla').getAttribute('name'));
+	var parametros = {
+		"id" : id,
+		"accion" : "baja",
+		"tabla" : tabla 
+	};
+	
+/*	var resultado = cargarpaginasinc('abm.php', parametros);	/*SIMILAR A AJAX DE ABAJO PERO PARA VER SU USO
+	alert(resultado); 
+*/		
+
+	var ajax = $.ajax({
+		data:  parametros,
+		url:   'abm.php',
+		type:  'post',
+		/*beforeSend: function () {
+			$("#resultado").html("Procesando, espere por favor...");
+		},*/
+		success:  function (data) {
+			alert('Ud elimino '+ajax.responseText+' elemento');
+		}
+	});
 }
 
