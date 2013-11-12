@@ -24,27 +24,26 @@ public static function buscar_usuario($id_usuario)
     return $usuario;
   }
 
+//public static function buscar_usuario_login($username, $password)
+//  {
+//    $conexion = new Conexion();
+//    $query = $conexion->consulta_fetch("SELECT id_usuario FROM usuario WHERE username=? and password=?",array($username,$password));
+//    $id_usuario = $query['id_usuario'];
+//    return (int)$id_usuario;
+//  }
+//
 public static function buscar_usuario_login($username, $password)
   {
     $conexion = new Conexion();
-    $query = $conexion->consulta_fetch("SELECT id_usuario FROM usuario WHERE username=? and password=?",array($username,$password));
-    $id_usuario = $query['id_usuario'];
-    return (int)$id_usuario;
-  }
-
-//  public static function buscar_usuario_login($username, $password)
-//  {
-//    $conexion = new Conexion();
-//    $row = $conexion->consulta_fetch("SELECT * FROM usuario WHERE username=? and password=?",array($username,$password));
-//    if ($row)
-//      {
-//      $usuario = new Usuario();
-//      $usuario->init($row['id_usuario'],$row['username'],$row['password'],$row['email'],$row['id_rol'],$row['activo']);
-//      return $usuario;
-//      }
-//    return null;
-//  }
-//
+    $row = $conexion->consulta_fetch("SELECT * FROM usuario WHERE username=? and password=?",array($username,$password));
+    if ($row)
+      {
+      $usuario = new Usuario();
+      $usuario->init($row['id_usuario'],$row['username'],$row['password'],$row['email'],$row['id_rol'],$row['activo']);
+      return $usuario;
+      }
+    return null;
+  } 
 
 public static function obtener_todos_usuario()
   {

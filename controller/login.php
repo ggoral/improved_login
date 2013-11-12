@@ -24,12 +24,12 @@ try {
 		require '../model/rol_interface.php';
 
 		//$usuario = new ORM_usuario();
-		$result = ORM_usuario::buscar_usuario_login($_POST['user'],$_POST['password']);
+		$usuario = ORM_usuario::buscar_usuario_login($_POST['user'],$_POST['password']);
 
-		if ($result != 0){
+		if ($usuario){
 			//entra porque encontro al usuario
 			
-			$usuarioLogeado = ORM_usuario::buscar_usuario($result);
+			$usuarioLogeado = $usuario;//ORM_usuario::buscar_usuario($result);
 	
 			if (($usuarioLogeado->getActivo())) {
 
