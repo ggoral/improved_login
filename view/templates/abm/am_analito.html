@@ -2,5 +2,11 @@
 <!--CONTENT-->
 <h3 class="titulo"> ANALITO </h3>
 
+<form action="consultas_analito.php" method="POST">
+	<label> Descripcion:</label>
+	<input type="text" value="{{analito[descripcion]}}" size="50" />
+	<input class="btn"  type="submit" value={{action}} />
+</form>
+
 <!--FIN CONTENT-->
 {% endblock content %}
