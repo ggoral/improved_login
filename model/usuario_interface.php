@@ -115,6 +115,14 @@ public static function agregar_usuario($username, $password, $email, $id_rol, $a
 	  }
 		return 0;
   }
+  
+public static function mostrar_usuarios()
+  {
+    $conexion = new Conexion();
+    $query = $conexion->consulta("SELECT id_usuario, username, email, descripcion, IF(activo=1, 'ACTIVO', 'INACTIVO') AS activo  
+								FROM usuario INNER JOIN rol ON (rol.id_rol=usuario.id_rol)");
+    return $query;
+  }
 
 }
 ?>
