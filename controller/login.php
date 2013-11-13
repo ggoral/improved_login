@@ -29,7 +29,7 @@ try {
 		if ($usuario){
 			//entra porque encontro al usuario
 			
-			$usuarioLogeado = $usuario;//ORM_usuario::buscar_usuario($result);
+			$usuarioLogeado = $usuario; //ORM_usuario::buscar_usuario($result);
 	
 			if (($usuarioLogeado->getActivo())) {
 
