@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!--CONTENT-->
+<h3 class="titulo"> USUARIO </h3>
+
+<div align="left" class="btn" id="alta" name="alta" onclick="clonarDiv('content');cargarpagina('am_usuario.php?action=alta','','content','')"">
+	<p class="titulofrm">añadir</p>
+</div>
+<div align="right" class="btn" id="baja" name="delete" onclick="#">
+	<p class="titulofrm">borrar</p>
+</div>
+<!--TABLA-->
+<div id="divContenedor">
+	<div id="divTabla">
+		<label for="txtBuscar">Buscar: </label>
+		<input type="search" id="txtBuscar" autofocus
+		placeholder="Digite el texto que desea buscar" onkeyup="Buscar($(this).val(),'tblDatos')">
+
+		
+		<div id="paginador"></div>
+		
+		<table id="tblDatos" class="" align="center">
+			<thead>
+				<tr>
+					{% for field, value in cabecera %}
+						<th>{{value}}</th>
+					{% endfor %}
+				</tr>
+			</thead>
+			<tbody>
+				{% for doc in filas %}	
+					<tr id={{doc['id_usuario']}} onclick="editarUsuario(this.getAttribute('id'))">
+						{% for field, value in doc %}	
+							<td id={{field~value}} name={{value}} >{{value}}</td>		
+						{% endfor %}
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>	
+	</div>
+</div>
+<!--FIN CONTENT-->
+{% endblock content %}
