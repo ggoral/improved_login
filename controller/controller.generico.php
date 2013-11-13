@@ -1,6 +1,4 @@
 <?php
-require_once '../model/usuario_interface.php';
- 
 // include and register Twig auto-loader
 require_once '../view/lib/Twig/Autoloader.php'; 
 Twig_Autoloader::register();
@@ -16,12 +14,11 @@ try {
 			//'cache' => 'compilation_cache',
 			'auto_reload' => TRUE
 		));
-	$template = $twig->loadTemplate('abm/usuario.html');
+	$template = $twig->loadTemplate($parametro_template);
 	
-	$columnas = Array('ID_USUARIO','USERNAME','E-MAIL','ROL','ACTIVO');
+	$columnas = $parametro_columnas;
 
-	$datos = ORM_usuario::mostrar_usuarios();
-	
+	$datos = $parametro_datos;
 
 	$template->display(array(
 		'cabecera' => $columnas,

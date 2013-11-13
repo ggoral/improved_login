@@ -9,6 +9,3 @@ $parametro_datos = ORM_analito::obtener_todos_analito();
 
 require 'controller.generico';
 ?>
-
-
-
