@@ -1,15 +1,7 @@
 <?php
-
-require('validarSesion.php');
-require_once '../model/usuario_interface.php';
-
-if($idRolSesion!=1){ //CONTROLO EL ROL DEL USUARIO SOLAMENTE ESTO LUEGO SE PASARA A OTROO LADO PORQ ESTO ES BASE PARA INDICEEEE
-	//header('Location: ../index.php?error=ROL NO AUTORIZADO PARA ESTA SECCION');
-	die();	 
-}	  
-
 // include and register Twig auto-loader
 require_once '../view/lib/Twig/Autoloader.php'; 
+require_once '../model/analito_interface.php';
 Twig_Autoloader::register();
 
 try {
@@ -23,16 +15,18 @@ try {
 			//'cache' => 'compilation_cache',
 			'auto_reload' => TRUE
 		));
-	$template = $twig->loadTemplate('abm/usuario.html');
+	$template = $twig->loadTemplate('abm/analito.html');
 	
-	$columnas = Array('ID_USUARIO','USERNAME','E-MAIL','ROL','ACTIVO');
+	
+	
+	$columnas = Array('ID_ANALITO','DESCRIPCION');
 
-	$datos = ORM_usuario::mostrar_usuarios();
+	$datos = ORM_analito::obtener_todos_analito();
 	
 	
 	$template->display(array(
 		'cabecera' => $columnas,
-		'filas' => $datos,
+		'filas' => $datos
 	));
 		
 } 

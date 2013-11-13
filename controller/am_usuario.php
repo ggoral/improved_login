@@ -1,8 +1,7 @@
 <?php
-
-
 // include and register Twig auto-loader
 require_once '../view/lib/Twig/Autoloader.php'; 
+require_once '../model/usuario_interface.php';
 Twig_Autoloader::register();
 
 try {
@@ -19,8 +18,16 @@ try {
 	$template = $twig->loadTemplate('abm/am_usuario.html');
 	$usuario = array();
 	if ($_GET['action'] == 'editar'){
-		require '../model/usuario_interface.php';
-		$usuario = ORM_usuario::buscar_usuario($_GET['id_usuario']);
+
+		$usuario = ORM_usuario::buscar_usuario($_POST['id_usuario']);
+
+		$usuario = array(
+				"username" => $usuario->getUsername(),		//PONER TODOS LOS DATOS O RESOLVERLO DESDE LA INTERFAZ
+				
+		);
+
+
+	
 	}
 	
 	$template->display(array(
