@@ -1,7 +1,8 @@
 <?php
+require_once '../model/usuario_interface.php';
+ 
 // include and register Twig auto-loader
 require_once '../view/lib/Twig/Autoloader.php'; 
-require_once '../model/usuario_interface.php';
 Twig_Autoloader::register();
 
 try {
@@ -15,24 +16,16 @@ try {
 			//'cache' => 'compilation_cache',
 			'auto_reload' => TRUE
 		));
-	$template = $twig->loadTemplate('abm/am_usuario.html');
-	$usuario = array();
-	if ($_GET['action'] == 'editar'){
-
-		$usuario = ORM_usuario::buscar_usuario($_POST['id_usuario']);
-
-		$usuario = array(
-				"username" => $usuario->getUsername(),		//PONER TODOS LOS DATOS O RESOLVERLO DESDE LA INTERFAZ
-				
-		);
-
-
+	$template = $twig->loadTemplate('abm/usuario.html');
 	
-	}
+	$columnas = Array('ID_USUARIO','USERNAME','E-MAIL','ROL','ACTIVO');
+
+	$datos = ORM_usuario::mostrar_usuarios();
 	
+
 	$template->display(array(
-		'action' => $_GET['action'],
-		'usuario' => $usuario
+		'cabecera' => $columnas,
+		'filas' => $datos
 	));
 		
 } 
