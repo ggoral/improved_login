@@ -1,4 +1,6 @@
 <?php
+//DRY don't repeat yourself
+
 require_once '../model/calibrador_interface.php';
 require_once '../model/analito_interface.php';
 
