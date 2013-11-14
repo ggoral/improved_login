@@ -6,10 +6,10 @@
 
 <form name="am_analito" id="am_analito" method="POST">
 	<label> Descripcion:</label>
-	<input type="text" value="{{analito['descripcion']}}" size="50" id="descripcion" name="descripcion" required pattern="^+[a-zA-Z1-9.!&+-_/*~|{}%=/s$]"/>
+	<input type="text" value="{{analito['descripcion']}}" size="50" id="descripcion" name="descripcion" required autofocus/>
 	<input type="hidden" value="{{analito['id_analito']}}" id="id_analito" name="id_analito"/>
 	<br>
-	<input class="btn" type="submit" onclick="submitearAnalito('{{action}}')" value={{action}} />
+	<input class="btn" type="button" onclick="submitearAnalito('{{action}}')" value={{action}} />
 </form>
 </div>
 <!--FIN CONTENT-->

@@ -19,13 +19,17 @@ function submitearAnalito(action){
 	parametros = 'action='+action+'&id_analito='+id_analito+'&descripcion='+descripcion;
 	var result = cargarpaginasinc('consultas_analito.php',parametros);
 	result = result.charAt(result.length-1);
-	cargarpagina('controller.analito.php', '','content');	
+	
 	if (result == 1){
-		alert(action+' Analito Satisfactorio');
-		return true;		//CAMBIAR PARA MOSTRAR MENSAJE Q CORRESPONDA
+		//alert(action+' Analito Satisfactorio');
+		//return true;		//CAMBIAR PARA MOSTRAR MENSAJE Q CORRESPONDA
+		mensaje='-ok';	
 	}
 	else{
-		alert(action+' Analito Erroneo');
-		return true;			//CAMBIAR PARA MOSTRAR MENSAJE Q CORRESPONDA
+		//alert(action+' Analito Erroneo');
+		//return false;			//CAMBIAR PARA MOSTRAR MENSAJE Q CORRESPONDA
+		mensaje='-NOT ok';	
 	}
+
+	cargarpagina('controller.analito.php', 'error='+mensaje,'content','mostrarTabla()');	
 }
