@@ -1,0 +1,20 @@
+{% block content %}
+<!--CONTENT-->
+
+<div align="center" width="100%">
+<h3>{{action|upper}}</h3>
+
+<form name="am_laboratorio" id="am_laboratorio" action="" method="POST">
+	<label> Descripcion:</label>
+	<input type="text" value="{{laboratorio['descripcion']}}" size="50" id="descripcion" name="descripcion" required/>
+	<input type="hidden" value="{{laboratorio['id_lab']}}" id="id_lab" name="id_lab"/>
+	<br>
+	<input class="btn" type="button" onclick="submitearLaboratorio('{{action}}')" value={{action}}/>
+	<input class="btn" type="submit" value={{action}} />
+</form>
+</div>
+</form>
+</div>
+
+<!--FIN CONTENT-->
+{% endblock content %}

@@ -8,7 +8,7 @@ try {
 
 	// define template directory location
 	$loader = new Twig_Loader_Filesystem('../view/templates');
-
+	
 	// initialize Twig environment
 	$twig = new Twig_Environment($loader,array(
 			//'debug'=> TRUE,
@@ -16,6 +16,7 @@ try {
 			'auto_reload' => TRUE
 		));
 	$template = $twig->loadTemplate('abm/am_usuario.html');
+	
 	$usuario = array();
 	if ($_GET['action'] == 'editar'){
 

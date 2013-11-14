@@ -23,7 +23,6 @@ function creaAjax(){
 
 function cargarpagina(pagina, parametros, div, funcion) {
 	var ajax = creaAjax();
-
 	ajax.open ('POST', pagina, true);
 	cargando = document.getElementById('cargando');
 	if(cargando!=null)
@@ -63,6 +62,7 @@ function cargarpagina(pagina, parametros, div, funcion) {
 
 function cargarpaginasinc(pagina, parametros)
 {		
+
 	  cargando = document.getElementById('cargando');
 	  if(cargando!=null)
 		   cargando.style.display='block';
@@ -77,7 +77,7 @@ function cargarpaginasinc(pagina, parametros)
 			document.getElementById('sessionExpired').value='si';
 			document.getElementById('frmSalir').submit(); 
 		 }	*/
-	  
+
 	  if(cargando!=null)
 			 cargando.style.display='none';
 	  
