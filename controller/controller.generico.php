@@ -3,6 +3,7 @@
 require_once '../view/lib/Twig/Autoloader.php'; 
 Twig_Autoloader::register();
 
+
 try {
 
 	// define template directory location
@@ -14,8 +15,9 @@ try {
 			//'cache' => 'compilation_cache',
 			'auto_reload' => TRUE
 		));
+
 	$template = $twig->loadTemplate($parametro_template);
-	
+
 	$columnas = $parametro_columnas;
 
 	$datos = $parametro_datos;
@@ -24,7 +26,7 @@ try {
 		'cabecera' => $columnas,
 		'filas' => $datos
 	));
-		
+	
 } 
 catch (Exception $e) {
 	die ('ERROR: ' . $e->getMessage());

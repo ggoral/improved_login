@@ -1,8 +1,8 @@
 {% block content %}
 <!--CONTENT-->
-<h3 class="titulo"> ANALITO </h3>
+<h3 class="titulo"> LABORATORIO </h3>
 
-<div align="left" class="btn" id="alta" name="alta" onclick="clonarDiv('content');cargarpagina('am_analito.php?action=alta','','content','')">
+<div align="left" class="btn" id="alta" name="alta" onclick="clonarDiv('content');cargarpagina('am_laboratorio.php?action=alta','','content','')">
 	<p class="titulofrm">añadir</p>
 </div>
 
@@ -31,7 +31,7 @@
 			</thead>
 			<tbody>
 				{% for doc in filas %}	
-					<tr id={{doc['id_analito']}} onclick="editarAnalito(this.getAttribute('id'))">
+					<tr id={{doc['id_lab']}} onclick="editarLaboratorio(this.getAttribute('id'))">
 						{% for field, value in doc %}	
 							<td id={{field~value}} name={{value}} >{{value}}</td>		
 						{% endfor %}

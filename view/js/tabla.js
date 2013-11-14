@@ -70,6 +70,7 @@ Paginador = function(divPaginador, tabla, tamPagina)
     }
 }
 function mostrarTabla(){
+	//alert(document.getElementById('paginador'));///TEST///
 	var p = new Paginador(
 		document.getElementById('paginador'),
 		document.getElementById('tblDatos'),

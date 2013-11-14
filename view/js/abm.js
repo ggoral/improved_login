@@ -9,9 +9,9 @@ function editarAnalito(id){
 }
 
 function submitearAnalito(action){
-	descripcion = document.getElementById('descripcion');
-	id_analito = document.getElementById('id_analito');
-	parametros = 'action='+action+'&id_analito='+id_analito+'descripcion='+descripcion;
-	cargarpaginasinc('consultas_analito',parametros);
+	descripcion = (document.getElementById('descripcion').value);
+	id_analito = (document.getElementById('id_analito').value);
+	parametros = 'action='+action+'&id_analito='+id_analito+'&descripcion='+descripcion;
+	cargarpaginasinc('consultas_analito.php',parametros);
 	cargarpagina('controller.analito.php', '','content');	
 }
