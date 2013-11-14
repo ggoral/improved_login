@@ -75,11 +75,5 @@ public static function actualizar_analito($analito)
     return $analito;
   }
 
-    public static function obtener_analitos_Twig()
-  {
-    $conexion = new Conexion();
-    $analito = $conexion->consulta_fetch("SELECT * FROM analito");
-    return $analito;
-  }
 }
 ?>
