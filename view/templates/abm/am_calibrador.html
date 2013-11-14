@@ -1,0 +1,21 @@
+{% block content %}
+<!--CONTENT-->
+
+<div align="center" width="100%">
+<h3>{{action|upper}}</h3>
+
+<form name="am_calibrador" id="am_calibrador" method="POST">
+	<label> Descripcion:</label>
+	<input type="text" value="{{calibrador['descripcion']}}" size="50" id="descripcion" name="descripcion" required pattern="^+[a-zA-Z1-9.!&+-_/*~|{}%=/s$]"/>
+	<select name="analito" id="analito" size="7" multiple>
+		{% for idanalito, value in datos_extra %}
+			<option value={{idanalito}}> {{value}} </option>
+		{% endfor %}
+	</select>
+	<input type="hidden" value="{{calibrador['id_calibrador']}}" id="id_calibrador" name="id_calibrador"/>
+	<br>
+	<input class="btn" type="submit" onclick="submitearcalibrador('{{action}}')" value={{action}} />
+</form>
+</div>
+<!--FIN CONTENT-->
+{% endblock content %}

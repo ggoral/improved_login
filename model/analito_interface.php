@@ -74,5 +74,12 @@ public static function actualizar_analito($analito)
     $analito = $conexion->consulta_fetch("SELECT * FROM analito WHERE id_analito=?",array($id_analito));
     return $analito;
   }
+
+    public static function obtener_analitos_Twig()
+  {
+    $conexion = new Conexion();
+    $analito = $conexion->consulta_fetch("SELECT * FROM analito);
+    return $analito;
+  }
 }
 ?>
