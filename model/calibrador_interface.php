@@ -77,6 +77,22 @@ public static function actualizar_calibrador($calibrador)
   return $query;
   }
 
+  public static function buscar_calibrador_Twig($id_calibrador)
+  {
+    $conexion = new Conexion();
+    $calibrador = $conexion->consulta_fetch("SELECT * FROM calibrador WHERE id_calibrador=?",array($id_calibrador));
+    return $calibrador;
+  }
+
+    public static function buscar_analito_calibrador_Twig($id_calibrador)
+  {
+    $conexion = new Conexion();
+    $calibrador = $conexion->consulta_fetch(" SELECT analito.id_analito, analito.descripcion 
+                                              FROM analito INNER JOIN analito_calibrador 
+                                              ON (analito_calibrador.id_analito = analito.id_analito)
+                                              WHERE analito_calibrador.id_calibrador=?",array($id_calibrador));
+    return $calibrador;
+  }
 
 }
 ?>
