@@ -1,7 +1,7 @@
 <?php
 //DRY don't repeat yourself
 
-require_once '../model/usuario_interface.php';
+require_once '../../model/usuario_interface.php';
 
 $usuario = array();
 if ($_GET['action'] == 'editar'){
@@ -17,6 +17,6 @@ $parametro_display = array(
 );
 
 $parametro_template = 'abm/am_usuario.html';
-require 'am_generico.php';
+require '../controller.generico.php';
 
 ?>

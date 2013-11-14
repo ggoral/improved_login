@@ -3,7 +3,6 @@
 require_once '../view/lib/Twig/Autoloader.php'; 
 Twig_Autoloader::register();
 
-
 try {
 
 	// define template directory location
@@ -17,17 +16,7 @@ try {
 		));
 
 	$template = $twig->loadTemplate($parametro_template);
-
-	$columnas = $parametro_columnas;
-
-	$datos = $parametro_datos;
-
-	$template->display(array(
-		'cabecera' => $columnas,
-		'filas' => $datos,
-		'error' => $error,
-		'displayerror' => $display
-	));
+	$template->display($parametro_display);
 	
 } 
 catch (Exception $e) {

@@ -1,7 +1,7 @@
 <?php
 //REALIZA LAS ALTAS Y MODIFICACIONES
 
-require_once '../model/analito_interface.php';
+require_once '../../model/analito_interface.php';
 
 if (isset($_POST['action'])){
 	//RECOBRAR LOS DATOS POR EL POST

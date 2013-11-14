@@ -1,8 +1,8 @@
 <?php
 //DRY don't repeat yourself
 
-require_once '../model/calibrador_interface.php';
-require_once '../model/analito_interface.php';
+require_once '../../model/calibrador_interface.php';
+require_once '../../model/analito_interface.php';
 
 $calibrador = array();
 $datos_extra = ORM_analito::obtener_analitos_Twig();
@@ -19,6 +19,6 @@ $parametro_display = array(
 );
 
 $parametro_template = 'abm/am_calibrador.html';
-require 'am_generico.php';
+require '../controller.generico.php';
 		
 ?>

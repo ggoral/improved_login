@@ -1,7 +1,7 @@
 <?php
 //DRY don't repeat yourself
 
-require_once '../model/analito_interface.php';
+require_once '../../model/analito_interface.php';
 
 $analito = array();
 
@@ -15,6 +15,6 @@ $parametro_display = array(
 );
 
 $parametro_template = 'abm/am_analito.html';
-require 'am_generico.php';
+require '../controller.generico.php';
 
 ?>
