@@ -37,7 +37,7 @@ public static function agregar_analito($descripcion)
     return 0;
   }
 
-  private function buscar_por_clave($descripcion)
+  public function buscar_por_clave($descripcion)
   {
     $conexion = new Conexion();
     $query = $conexion->consulta_fetch("SELECT id_analito FROM analito WHERE descripcion=?",array($descripcion));
@@ -68,5 +68,11 @@ public static function actualizar_analito($analito)
     return $query;
   }
 
+  public static function buscar_analito_Twig($id_analito)
+  {
+    $conexion = new Conexion();
+    $analito = $conexion->consulta_fetch("SELECT * FROM analito WHERE id_analito=?",array($id_analito));
+    return $analito;
+  }
 }
 ?>
