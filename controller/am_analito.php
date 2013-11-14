@@ -20,14 +20,8 @@ try {
 	$analito = array();
 	if ($_GET['action'] == 'editar'){
 
-		$analito = ORM_analito::buscar_analito($_POST['id_analito']);
-//var_dump($analito);
-		$analito = array(
-				"id_analito" => $analito->getId_analito(),
-				"descripcion" => $analito->getDescripcion(),		//PONER TODOS LOS DATOS O RESOLVERLO DESDE LA INTERFAZ
-																	//DEBE DEVOLVER ARREGLO Y DEVUELVE OBJETOS PRIVADOS VER CON VARDUMP
-		);	
-//var_dump($analito);
+		$analito = ORM_analito::buscar_analito_Twig($_POST['id_analito']);
+
 	}
 	
 	$template->display(array(
