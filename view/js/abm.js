@@ -12,20 +12,21 @@ function submitearAnalito(action){
 	descripcion = (document.getElementById('descripcion').value);
 	id_analito = (document.getElementById('id_analito').value);
 
-	if ((descripcion.length == 0)||(descripcion == '')){ //VALIDAR BIEN CN JQVALIDITY
-		alert('Ingrese descripcion');
-		return false;
-	}
-	parametros = 'action='+action+'&id_analito='+id_analito+'&descripcion='+descripcion;
-	var result = cargarpaginasinc('consultas_analito.php',parametros);
-	result = result.charAt(result.length-1);
-	cargarpagina('controller.analito.php', '','content');	
-	if (result == 1){
-		alert(action+' Analito Satisfactorio');
-		return true;		//CAMBIAR PARA MOSTRAR MENSAJE Q CORRESPONDA
+	if (descripcion.trim() == ''){ 
+		alert((descripcion.trim() == ''));
+		mensaje='Ingrese Descripcion';
 	}
 	else{
-		alert(action+' Analito Erroneo');
-		return true;			//CAMBIAR PARA MOSTRAR MENSAJE Q CORRESPONDA
+		parametros = 'action='+action+'&id_analito='+id_analito+'&descripcion='+descripcion;
+		var result = cargarpaginasinc('consultas_analito.php',parametros);
+		result = result.charAt(result.length-1);
+		
+		if (result == 1){
+			mensaje='-ok';	
+		}
+		else{
+			mensaje='-NOT ok';	
+		}
 	}
+	cargarpagina('controller.analito.php', 'error='+mensaje,'content','mostrarTabla()');	
 }

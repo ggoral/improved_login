@@ -24,7 +24,9 @@ try {
 
 	$template->display(array(
 		'cabecera' => $columnas,
-		'filas' => $datos
+		'filas' => $datos,
+		'error' => $error,
+		'displayerror' => $display
 	));
 	
 } 
