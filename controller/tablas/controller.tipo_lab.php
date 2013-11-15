@@ -1,11 +1,11 @@
 <?php
 //DRY don't repeat yourself
 
-require_once '../../model/analito_interface.php';
+require_once '../../model/tipo_lab_interface.php';
 
-$parametro_template = 'abm/analito.html';
-$parametro_columnas = Array('ID_ANALITO','DESCRIPCION');
-$parametro_datos = ORM_analito::obtener_todos_analito();
+$parametro_template = 'abm/tipo_lab.html';
+$parametro_columnas = Array('ID_TIPO_LAB','DESCRIPCION');
+$parametro_datos = ORM_tipo_lab::obtener_todos_tipo_lab();
 
 
 if (isset($_POST['error'])){
@@ -18,9 +18,9 @@ else{
   $display = 'none';
 }
 
-if($error == "1"){
+if($error = "OK!"){
+	var_dump($error);
   $color = "green";
-  $error = "Operacion Exitosa!";
 }
 
 $parametro_display = array(
