@@ -1,0 +1,16 @@
+{% block content %}
+<!--CONTENT-->
+
+<div align="center" width="100%">
+<h3>{{action|upper}}</h3>
+
+<form name="am_rol" id="am_rol" method="POST">
+	<label> Descripcion:</label>
+	<input type="text" value="{{rol['descripcion']}}" size="50" id="descripcion" name="descripcion" required autofocus/>
+	<input type="hidden" value="{{rol['id_rol']}}" id="id_rol" name="id_rol"/>
+	<br>
+	<input class="btn" type="button" onclick="submitearRol('{{action}}')" value={{action}} />
+</form>
+</div>
+<!--FIN CONTENT-->
+{% endblock content %}

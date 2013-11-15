@@ -1,11 +1,11 @@
 <?php
 //DRY don't repeat yourself
 
-require_once '../../model/analito_interface.php';
+require_once '../../model/rol_interface.php';
 
-$parametro_template = 'abm/analito.html';
-$parametro_columnas = Array('ID_ANALITO','DESCRIPCION');
-$parametro_datos = ORM_analito::obtener_todos_analito();
+$parametro_template = 'abm/rol.html';
+$parametro_columnas = Array('ID_ROL','DESCRIPCION');
+$parametro_datos = ORM_rol::obtener_todos_rol();
 
 
 if (isset($_POST['error'])){
@@ -19,6 +19,7 @@ else{
 }
 
 if($error = "OK!"){
+	var_dump($error);
   $color = "green";
 }
 
