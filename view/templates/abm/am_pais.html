@@ -1,0 +1,16 @@
+{% block content %}
+<!--CONTENT-->
+
+<div align="center" width="100%">
+<h3>{{action|upper}}</h3>
+
+<form name="am_pais" id="am_pais" method="POST">
+	<label> Descripcion:</label>
+	<input type="text" value="{{pais['descripcion']}}" size="50" id="descripcion" name="descripcion" required autofocus/>
+	<input type="hidden" value="{{pais['id_pais']}}" id="id_pais" name="id_pais"/>
+	<br>
+	<input class="btn" type="button" onclick="submitearPais('{{action}}')" value={{action}} />
+</form>
+</div>
+<!--FIN CONTENT-->
+{% endblock content %}

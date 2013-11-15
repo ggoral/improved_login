@@ -1,11 +1,11 @@
 <?php
 //DRY don't repeat yourself
 
-require_once '../../model/analito_interface.php';
+require_once '../../model/pais_interface.php';
 
-$parametro_template = 'abm/analito.html';
-$parametro_columnas = Array('ID_ANALITO','DESCRIPCION');
-$parametro_datos = ORM_analito::obtener_todos_analito();
+$parametro_template = 'abm/pais.html';
+$parametro_columnas = Array('ID_PAIS','DESCRIPCION');
+$parametro_datos = ORM_pais::buscar_pais_Twig();
 
 
 if (isset($_POST['error'])){
