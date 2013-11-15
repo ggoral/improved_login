@@ -5,10 +5,10 @@
 <h3>{{action|upper}}</h3>
 
 <form name="am_calibrador" id="am_calibrador" method="POST">
-	<label> Descripcion:</label>
-	<input type="text" value="{{calibrador['descripcion']}}" size="50" id="descripcion" name="descripcion" required pattern="^+[a-zA-Z1-9.!&+-_/*~|{}%=/s$]"/>
+	<label> Descripción:</label>
+	<input type="text" value="{{calibrador['descripcion']}}" size="50" id="descripcion" name="descripcion" required pattern="^[a-zA-Z0-9][a-zA-Z0-9-_\. /!$#@%*()}{';:,<>?=+]+$"/>
 
-		<select name="analito" id="analito" size="7" multiple>
+		<select name="analito" id="analito" size="7" multiple required>
 			{% for data in datos_extra %}	
 				<option value="{{data['id_analito']}}" {{data['activo']}}> {{data['descripcion']}} </option>
 			{% endfor %}
@@ -16,7 +16,8 @@
 
 	<input type="hidden" value="{{calibrador['id_calibrador']}}" id="id_calibrador" name="id_calibrador"/>
 	<br>
-	<input class="btn" type="submit" onclick="submitearCalibrador('{{action}}')" value={{action}} />
+	<input class="btn" type="button" onclick="submitearCalibrador('{{action}}')" value={{action}} />
+
 </form>
 </div>
 <!--FIN CONTENT-->
