@@ -36,7 +36,7 @@ public static function agregar_pais($descripcion)
     return 0;
   }
 
-  private function buscar_por_clave($descripcion)
+public static function buscar_por_clave($descripcion)
   {
     $conexion = new Conexion();
     $query = $conexion->consulta_fetch("SELECT id_pais FROM pais WHERE descripcion=?",array($descripcion));

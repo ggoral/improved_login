@@ -37,7 +37,7 @@ public static function agregar_analito($descripcion)
     return 0;
   }
 
-  public function buscar_por_clave($descripcion)
+  public static function buscar_por_clave($descripcion)
   {
     $conexion = new Conexion();
     $query = $conexion->consulta_fetch("SELECT id_analito FROM analito WHERE descripcion=?",array($descripcion));

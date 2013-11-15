@@ -36,7 +36,7 @@ public static function agregar_interpretacion($descripcion)
     return 0;
   }
 
-  private function buscar_por_clave($descripcion)
+public static function buscar_por_clave($descripcion)
   {
     $conexion = new Conexion();
     $query = $conexion->consulta_fetch("SELECT id_interpretacion FROM interpretacion WHERE descripcion=?",array($descripcion));
