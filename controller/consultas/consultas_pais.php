@@ -2,9 +2,15 @@
 //REALIZA LAS ALTAS Y MODIFICACIONES
 
 require_once '../../model/pais_interface.php';
+require_once '../../model/test_input.php';
 
 if (isset($_POST['action'])){
 	//RECOBRAR LOS DATOS POR EL POST
+	if ((!isset($_POST['descripcion']))or(!test_input($_POST['descripcion']))
+		or (!isset($_POST['id_pais']))or(!test_input($_POST['id_pais'])){
+			die ('5'); //NO PASA VALIDACION DEL LADO DEL SERVIDOR
+	}	
+
 	$descripcion = $_POST['descripcion'];
 	$id_pais = $_POST['id_pais'];
 	
