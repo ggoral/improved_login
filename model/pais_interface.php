@@ -64,5 +64,13 @@ public static function actualizar_pais($pais)
     $query = $conexion->consulta_row($sql_update,$campos);
     return $query;
   }
+
+public static function buscar_pais_Twig($id_pais)
+  {
+    $conexion = new Conexion();
+    $pais = $conexion->consulta_fetch("SELECT * FROM pais WHERE id_pais=?",array($id_pais));
+    return $pais;
+  }
+
 }
 ?>
