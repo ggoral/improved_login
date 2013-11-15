@@ -1,11 +1,11 @@
 function editarUsuario(id){
 	parametros = 'id_usuario='+id;
-	cargarpagina('am_usuario.php?action=editar', parametros,'content');	/*SIMILAR A AJAX DE ABAJO PERO PARA VER SU USO*/
+	cargarpagina('abm/am_usuario.php?action=editar', parametros,'content');	/*SIMILAR A AJAX DE ABAJO PERO PARA VER SU USO*/
 }
 
 function editarAnalito(id){
 	parametros = 'id_analito='+id;
-	cargarpagina('am_analito.php?action=editar', parametros,'content');	
+	cargarpagina('abm/am_analito.php?action=editar', parametros,'content');	
 }
 
 function submitearAnalito(action){
@@ -18,7 +18,7 @@ function submitearAnalito(action){
 	}
 	else{
 		parametros = 'action='+action+'&id_analito='+id_analito+'&descripcion='+descripcion;
-		var result = cargarpaginasinc('consultas_analito.php',parametros);
+		var result = cargarpaginasinc('consultas/consultas_analito.php',parametros);
 		result = result.charAt(result.length-1);
 		
 		if (result == 1){
@@ -28,5 +28,5 @@ function submitearAnalito(action){
 			mensaje='-NOT ok';	
 		}
 	}
-	cargarpagina('controller.analito.php', 'error='+mensaje,'content','mostrarTabla()');	
+	cargarpagina('tablas/controller.analito.php', 'error='+mensaje,'content','mostrarTabla()');	
 }
