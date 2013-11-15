@@ -64,5 +64,13 @@ public static function actualizar_rol($rol)
     $query = $conexion->consulta_row($sql_update,$campos);
     return $query;
   }
+
+public static function buscar_rol_Twig($id_rol)
+  {
+    $conexion = new Conexion();
+    $rol = $conexion->consulta_fetch("SELECT * FROM rol WHERE id_rol=?",array($id_rol));
+    return $rol;
+  }
+
 }
 ?>
