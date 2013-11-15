@@ -37,7 +37,7 @@ public static function agregar_papel_filtro($descripcion)
   return 0;
   }
 
-  private function buscar_por_clave($descripcion)
+public static function buscar_por_clave($descripcion)
   {
     $conexion = new Conexion();
     $query = $conexion->consulta_fetch("SELECT id_papel_filtro FROM papel_filtro WHERE descripcion=?",array($descripcion));

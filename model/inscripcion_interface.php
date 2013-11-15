@@ -77,7 +77,7 @@ public static function actualizar_inscripcion($inscripcion)
     return $query;
   }
   
-private static function buscar_por_fechaIngreso($fecha_ingreso)
+public static function buscar_por_fechaIngreso($fecha_ingreso)
   {
     $conexion = new Conexion();
     $query = $conexion->consulta_fetch("SELECT id_inscripcion FROM inscripcion WHERE fecha_ingreso=?",array($fecha_ingreso));
@@ -85,7 +85,7 @@ private static function buscar_por_fechaIngreso($fecha_ingreso)
     return (int)$id_inscripcion;
   }
 
-  private static function buscar_por_fechaBaja($fecha_baja)
+public static function buscar_por_fechaBaja($fecha_baja)
   {
     $conexion = new Conexion();
     $query = $conexion->consulta_fetch("SELECT id_inscripcion FROM inscripcion WHERE fecha_baja=?",array($fecha_baja));
@@ -102,9 +102,6 @@ public static function agregar_inscripcion($fecha_ingreso, $laboratorio_id_lab, 
 	  }
 		return 0;
   }
-
-  
-
 
 }
 ?>

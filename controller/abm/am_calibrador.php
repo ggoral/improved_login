@@ -5,11 +5,11 @@ require_once '../../model/calibrador_interface.php';
 require_once '../../model/analito_interface.php';
 
 $calibrador = array();
-$datos_extra = ORM_analito::obtener_analitos_Twig();
+$datos_extra = ORM_analito::obtener_todos_analito();
 
 if ($_GET['action'] == 'editar'){
 	$calibrador = ORM_calibrador::buscar_calibrador_Twig($_POST['id_calibrador']);
-	$datos_extra = ORM_calibrador::buscar_analito_calibrador_Twig($_POST['id_calibrador']);
+	$datos_extra = ORM_calibrador::buscar_analito_calibrador_Twig($_POST['id_calibrador']);	
 }
 	
 $parametro_display = array(
