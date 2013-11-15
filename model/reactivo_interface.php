@@ -36,7 +36,7 @@ public static function agregar_reactivo($descripcion)
     return 0;
   }
 
-  private function buscar_por_clave($descripcion)
+public static function buscar_por_clave($descripcion)
   {
     $conexion = new Conexion();
     $query = $conexion->consulta_fetch("SELECT id_reactivo FROM reactivo WHERE descripcion=?",array($descripcion));

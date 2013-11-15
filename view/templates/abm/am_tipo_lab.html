@@ -1,0 +1,16 @@
+{% block content %}
+<!--CONTENT-->
+
+<div align="center" width="100%">
+<h3>{{action|upper}}</h3>
+
+<form name="am_tipo_lab" id="am_tipo_lab" method="POST">
+	<label> Descripcion:</label>
+	<input type="text" value="{{tipo_lab['descripcion']}}" size="50" id="descripcion" name="descripcion" required autofocus/>
+	<input type="hidden" value="{{tipo_lab['id_tipo_lab']}}" id="id_tipo_lab" name="id_tipo_lab"/>
+	<br>
+	<input class="btn" type="button" onclick="submitearTipo_lab('{{action}}')" value={{action}} />
+</form>
+</div>
+<!--FIN CONTENT-->
+{% endblock content %}

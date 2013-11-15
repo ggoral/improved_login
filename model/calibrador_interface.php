@@ -37,10 +37,10 @@ public static function agregar_calibrador($descripcion)
     return 0;
   }
 
-  private function buscar_por_clave($id_calibrador)
+  public static function buscar_por_clave($descripcion)
   {
     $conexion = new Conexion();
-    $query = $conexion->consulta_fetch("SELECT id_calibrador FROM calibrador WHERE descripcion=?",array($id_calibrador));
+    $query = $conexion->consulta_fetch("SELECT id_calibrador FROM calibrador WHERE descripcion=?",array($descripcion));
     $id_calibrador = $query['id_calibrador'];
     return (int)$id_calibrador;
   }

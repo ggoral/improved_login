@@ -36,7 +36,7 @@ public static function agregar_laboratorio($cod_lab, $institucion, $sector, $res
     return 0;
   }
 
-  private function buscar_por_clave($cod_lab)
+ public static function buscar_por_clave($cod_lab)
   {
     $conexion = new Conexion();
     $query = $conexion->consulta_fetch("SELECT id_lab FROM laboratorio WHERE cod_lab=?",array($cod_lab));

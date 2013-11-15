@@ -36,7 +36,7 @@ public static function agregar_menu($destino, $perfil)
     return 0;
   }
 
-  private function buscar_por_clave($destino)
+public static function buscar_por_clave($destino)
   {
     $conexion = new Conexion();
     $query = $conexion->consulta_fetch("SELECT id_menu FROM menu WHERE destino=?",array($destino));

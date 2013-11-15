@@ -76,7 +76,7 @@ public static function actualizar_encuesta($encuesta)
     return $query;
   }
   
-private static function buscar_por_fechaInicio($fecha_inicio)
+public static function buscar_por_fechaInicio($fecha_inicio)
   {
     $conexion = new Conexion();
     $query = $conexion->consulta_fetch("SELECT id_encuesta FROM encuesta WHERE fecha_inicio=?",array($fecha_inicio));
@@ -84,7 +84,7 @@ private static function buscar_por_fechaInicio($fecha_inicio)
     return (int)$id_encuesta;
   }
 
-  private static function buscar_por_resultado($id_resultado)
+public static function buscar_por_resultado($id_resultado)
   {
     $conexion = new Conexion();
     $query = $conexion->consulta_fetch("SELECT id_encuesta FROM encuesta WHERE id_resultado=?",array($id_resultado));

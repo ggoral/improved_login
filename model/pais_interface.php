@@ -27,7 +27,7 @@ public static function obtener_todos_pais()
 public static function agregar_pais($descripcion)
   {
     $conexion = new Conexion();
-    $existe = ORM_pais()::buscar_por_clave($descripcion);
+    $existe = ORM_pais::buscar_por_clave($descripcion);
     if (!$existe){
       $sql_insert = "INSERT INTO pais (descripcion) VALUES (?)";
       $query = $conexion->consulta_row($sql_insert,array($descripcion));
@@ -36,7 +36,7 @@ public static function agregar_pais($descripcion)
     return 0;
   }
 
-  private function buscar_por_clave($descripcion)
+public static function buscar_por_clave($descripcion)
   {
     $conexion = new Conexion();
     $query = $conexion->consulta_fetch("SELECT id_pais FROM pais WHERE descripcion=?",array($descripcion));
@@ -64,5 +64,13 @@ public static function actualizar_pais($pais)
     $query = $conexion->consulta_row($sql_update,$campos);
     return $query;
   }
+
+public static function buscar_pais_Twig($id_pais)
+  {
+    $conexion = new Conexion();
+    $pais = $conexion->consulta_fetch("SELECT * FROM pais WHERE id_pais=?",array($id_pais));
+    return $pais;
+  }
+
 }
 ?>

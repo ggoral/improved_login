@@ -85,10 +85,10 @@ function cargarpaginasinc(pagina, parametros)
 }
 
 function reset()
-    {
-       divClonado= new Array();
+{
+   divClonado= new Array();
 
-    }	
+}	
 	
 function clonarDiv(div)
 {
@@ -118,4 +118,17 @@ function rearmarDiv(div)
 	var largo= divClonado.length;
 	nodoPadre.replaceChild(divClonado[(largo-1)], document.getElementById(div));	//VER ACA PARA Q VUELVA AL ANTERIOR SIN HACER 2 CLICKS -->LARGO-2
 	divClonado.splice((largo-1),1);
+}
+
+function aparDesapar()
+{
+	$('#loginError').css("background-color", "red");
+	$('#loginError').fadeIn("slow");
+	$('#loginError').delay(1000).fadeOut("slow");
+	$('#loginError').html(mensaje);
+}
+
+function desapar()
+{
+ 	$("#loginError").delay(1000).fadeOut("slow");
 }

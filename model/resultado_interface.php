@@ -43,7 +43,7 @@ public static function agregar_resultado($comentario, $fecha_recepcion, $fecha_a
     return $query;
   }
 
-  private function buscar_por_clave($id_resultado)
+public static function buscar_por_clave($id_resultado)
   {
     $conexion = new Conexion();
     $query = $conexion->consulta_fetch("SELECT id_resultado FROM resultado WHERE id_resultado=?",array($id_resultado));
