@@ -7,9 +7,11 @@ function editarAnalito(id){
 function submitearAnalito(action){
 	descripcion = (document.getElementById('descripcion').value);
 	id_analito = (document.getElementById('id_analito').value);
+	var error = false;
 
 	if (descripcion.trim() == ''){
 		mensaje='Ingrese Descripcion';
+		error =  true;
 	}
 	else{
 		parametros = 'action='+action+'&id_analito='+id_analito+'&descripcion='+descripcion;
@@ -17,13 +19,21 @@ function submitearAnalito(action){
 		result = result.charAt(result.length-1);
 		
 		if (result == 1){
-			mensaje='Operacion Exitosa';	
+			mensaje='1';	
 		}
 		else{
 			mensaje='Operacion Fallida - Error en Base de datos';	
+			error = true;
 		}
 	}
-	cargarpagina('tablas/controller.analito.php', 'error='+mensaje,'content','mostrarTabla()');	
+
+	if (!error){
+		cargarpagina('tablas/controller.analito.php', 'error='+mensaje,'content','mostrarTabla();desapar();');	
+	}else{
+		aparDesapar();
+		return false;
+	}
+
 }
 /*ANALITO*/
 /*CALIBRADOR*/
@@ -49,7 +59,7 @@ function submitearCalibrador(action){
 			result = result.charAt(result.length-1);		//TENER EN CUENTA QUE DEVUELVE EL ULTIMO CARACTER O SEA 1 SOLO NUMERO, ASI Q MANEJAR ERRORES CON ESTE CRITERIO DESDE EL SCRIPT DE LAS CONSULTAS	
 			
 			if (result == 1){							//PLANTEAR COMO UN SWITCH PARA LAS DIFERENTES RPTAS DEL SCRIPT
-				mensaje='Operacion Exitosa';	
+				mensaje='1';	
 			}
 			else{
 				mensaje='Operacion Fallida - Error en Base de datos';	
@@ -78,7 +88,7 @@ function submitearRol(action){
 		result = result.charAt(result.length-1);
 		
 		if (result == 1){
-			mensaje='Operacion Exitosa';	
+			mensaje='1';	
 		}
 		else{
 			mensaje='Operacion Fallida - Error en Base de datos';	
@@ -106,7 +116,7 @@ function submitearPais(action){
 		result = result.charAt(result.length-1);
 		
 		if (result == 1){
-			mensaje='Operacion Exitosa';	
+			mensaje='1';	
 		}
 		else{
 			mensaje='Operacion Fallida - Error en Base de datos';	
@@ -135,7 +145,7 @@ function submitearTipo_lab(action){
 		result = result.charAt(result.length-1);
 		
 		if (result == 1){
-			mensaje='Operacion Exitosa';	
+			mensaje='1';	
 		}
 		else{
 			mensaje='Operacion Fallida - Error en Base de datos';	

@@ -18,8 +18,9 @@ else{
   $display = 'none';
 }
 
-if($error = "OK!"){
+if($error == "1"){
   $color = "green";
+  $error = "Operacion Exitosa!";
 }
 
 $parametro_display = array(

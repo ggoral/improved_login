@@ -27,7 +27,7 @@ public static function obtener_todos_pais()
 public static function agregar_pais($descripcion)
   {
     $conexion = new Conexion();
-    $existe = ORM_pais()::buscar_por_clave($descripcion);
+    $existe = ORM_pais::buscar_por_clave($descripcion);
     if (!$existe){
       $sql_insert = "INSERT INTO pais (descripcion) VALUES (?)";
       $query = $conexion->consulta_row($sql_insert,array($descripcion));
