@@ -46,27 +46,35 @@ function submitearCalibrador(action){
 	descripcion = (document.getElementById('descripcion').value);
 	id_calibrador = (document.getElementById('id_calibrador').value);
 	id_analitos = ($('#analito').val());	//OBTENGO TODOS LOS ID SEPARADOS POR ","
+	error=false;
 	if (descripcion.trim() == ''){ 
-		mensaje='Ingrese Descripcion';
+	//	mensaje='Ingrese Descripcion';
+		error=true;
 	}
 	else{
-		if (id_analitos.trim() == ''){
-			mensaje='Seleccione al menos un analito';
+		if (id_analitos == null){
+			//mensaje='Seleccione al menos un analito';
+			error=true;
 		}
 		else{
 			parametros = 'action='+action+'&id_calibrador='+id_calibrador+'&descripcion='+descripcion+'&analitos='+id_analitos;
 			var result = cargarpaginasinc('consultas/consultas_calibrador.php',parametros);
-			result = result.charAt(result.length-1);		//TENER EN CUENTA QUE DEVUELVE EL ULTIMO CARACTER O SEA 1 SOLO NUMERO, ASI Q MANEJAR ERRORES CON ESTE CRITERIO DESDE EL SCRIPT DE LAS CONSULTAS	
-			
+			alert(result);result = result.charAt(result.length-1);		//TENER EN CUENTA QUE DEVUELVE EL ULTIMO CARACTER O SEA 1 SOLO NUMERO, ASI Q MANEJAR ERRORES CON ESTE CRITERIO DESDE EL SCRIPT DE LAS CONSULTAS	
+			alert(result);
 			if (result == 1){							//PLANTEAR COMO UN SWITCH PARA LAS DIFERENTES RPTAS DEL SCRIPT
-				mensaje='1';	
+				mensaje='Operacion Exitosa';	
 			}
 			else{
-				mensaje='Operacion Fallida - Error en Base de datos';	
+				error=true;//mensaje='Operacion Fallida - Error en Base de datos';	
 			}
 		}
 	}
-	cargarpagina('tablas/controller.calibrador.php', 'error='+mensaje,'content','mostrarTabla()');	
+	if (!error){
+		cargarpagina('tablas/controller.calibrador.php', 'error='+mensaje,'content','mostrarTabla()');	
+	}
+	else{
+		return false;
+	}
 }
 /*CALIBRADOR*/
 /*ROL*/
