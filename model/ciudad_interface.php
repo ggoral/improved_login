@@ -76,7 +76,7 @@ public static function actualizar_ciudad($ciudad)
     return $query;
   }
   
-private static function buscar_por_clave($descripcion)
+public static function buscar_por_clave($descripcion)
   {
     $conexion = new Conexion();
     $query = $conexion->consulta_fetch("SELECT id_ciudad FROM ciudad WHERE descripcion=?",array($descripcion));

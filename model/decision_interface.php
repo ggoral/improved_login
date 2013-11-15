@@ -68,7 +68,7 @@ public static function actualizar_decision($decision)
     return $query;
   }
 
-private static function buscar_por_clave($descripcion)
+public static function buscar_por_clave($descripcion)
   {
     $conexion = new Conexion();
     $query = $conexion->consulta_fetch("SELECT id_decision FROM decision WHERE descripcion=?",array($descripcion));

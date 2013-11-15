@@ -98,7 +98,7 @@ public static function actualizar_usuario($usuario)
     return $query;
   }
   
-private static function buscar_por_clave($username)
+public static function buscar_por_clave($username)
   {
     $conexion = new Conexion();
     $query = $conexion->consulta_fetch("SELECT id_usuario FROM usuario WHERE username=?",array($username));

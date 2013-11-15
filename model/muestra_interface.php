@@ -64,7 +64,7 @@ public static function actualizar_muestra($muestra)
     return $query;
   }
   
-private static function buscar_por_clave($id_interpretacion, $id_decision, $id_resultado)
+public static function buscar_por_clave($id_interpretacion, $id_decision, $id_resultado)
   {
     $conexion = new Conexion();
     $campos = array($id_interpretacion, $id_decision, $id_resultado);
