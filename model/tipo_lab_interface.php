@@ -66,6 +66,12 @@ public static function actualizar_tipo_lab($valor)
     return $query;
   }
 
+public static function buscar_tipo_lab_Twig($id_tipo_lab)
+  {
+    $conexion = new Conexion();
+    $tipo_lab = $conexion->consulta_fetch("SELECT * FROM tipo_lab WHERE id_tipo_lab=?",array($id_tipo_lab));
+    return $tipo_lab;
+  }
 
 }
 ?>

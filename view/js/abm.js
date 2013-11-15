@@ -115,3 +115,32 @@ function submitearPais(action){
 	cargarpagina('tablas/controller.pais.php', 'error='+mensaje,'content','mostrarTabla()');	
 }
 /*PAIS*/
+/*TIPO LAB*/
+function editarTipo_lab(id){
+	alert("ID: "+id); 
+	parametros = 'id_tipo_lab='+id;
+	cargarpagina('abm/am_tipo_lab.php?action=editar', parametros,'content');	
+}
+
+function submitearTipo_lab(action){
+	descripcion = (document.getElementById('descripcion').value);
+	id_tipo_lab = (document.getElementById('id_tipo_lab').value);
+
+	if (descripcion.trim() == ''){
+		mensaje='Ingrese Descripcion';
+	}
+	else{
+		parametros = 'action='+action+'&id_tipo_lab='+id_tipo_lab+'&descripcion='+descripcion;
+		var result = cargarpaginasinc('consultas/consultas_tipo_lab.php',parametros);
+		result = result.charAt(result.length-1);
+		
+		if (result == 1){
+			mensaje='Operacion Exitosa';	
+		}
+		else{
+			mensaje='Operacion Fallida - Error en Base de datos';	
+		}
+	}
+	cargarpagina('tablas/controller.tipo_lab.php', 'error='+mensaje,'content','mostrarTabla()');	
+}
+/*TIPO LAB*/
