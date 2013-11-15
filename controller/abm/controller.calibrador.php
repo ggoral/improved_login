@@ -21,7 +21,7 @@ $parametro_display = array(
     'filas' => $parametro_datos,
     'error' => $error,
     'displayerror' => $display
-  ));
+  );
 
 require '../controller.generico.php';
 
