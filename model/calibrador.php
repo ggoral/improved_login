@@ -1,6 +1,6 @@
 <?php
 
-class calibrador
+class Calibrador
   {
    private $id_calibrador;
    private $descripcion;

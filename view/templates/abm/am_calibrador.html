@@ -10,13 +10,13 @@
 
 		<select name="analito" id="analito" size="7" multiple>
 			{% for data in datos_extra %}	
-				<option value="{{data['id_analito']}}"> {{data['descripcion']}} </option>
+				<option value="{{data['id_analito']}}" {{data['activo']}}> {{data['descripcion']}} </option>
 			{% endfor %}
 		</select>
 
 	<input type="hidden" value="{{calibrador['id_calibrador']}}" id="id_calibrador" name="id_calibrador"/>
 	<br>
-	<input class="btn" type="submit" onclick="submitearcalibrador('{{action}}')" value={{action}} />
+	<input class="btn" type="submit" onclick="submitearCalibrador('{{action}}')" value={{action}} />
 </form>
 </div>
 <!--FIN CONTENT-->

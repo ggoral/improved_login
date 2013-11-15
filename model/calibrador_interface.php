@@ -11,7 +11,7 @@ public static function buscar_calibrador($id_calibrador)
     $query = $conexion->consulta("SELECT * FROM calibrador WHERE id_calibrador=?",array($id_calibrador));
     $row = $query[0];
 
-    $calibrador = new calibrador();
+    $calibrador = new Calibrador();
     // implementacion del metodo init
     $calibrador->init($row['id_calibrador'],$row['descripcion']);
     return $calibrador;
@@ -87,10 +87,7 @@ public static function actualizar_calibrador($calibrador)
     public static function buscar_analito_calibrador_Twig($id_calibrador)
   {
     $conexion = new Conexion();
-    $calibrador = $conexion->consulta_fetch(" SELECT analito.id_analito, analito.descripcion 
-                                              FROM analito INNER JOIN analito_calibrador 
-                                              ON (analito_calibrador.id_analito = analito.id_analito)
-                                              WHERE analito_calibrador.id_calibrador=?",array($id_calibrador));
+    $calibrador = $conexion->consulta("SELECT *, IF(analito.id_analito IN (SELECT id_analito FROM analito_calibrador WHERE id_calibrador = ?), 'selected', '') AS activo FROM analito",array($id_calibrador));
     return $calibrador;
   }
 
