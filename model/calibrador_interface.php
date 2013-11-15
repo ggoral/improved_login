@@ -90,6 +90,28 @@ public static function actualizar_calibrador($calibrador)
     $calibrador = $conexion->consulta("SELECT *, IF(analito.id_analito IN (SELECT id_analito FROM analito_calibrador WHERE id_calibrador = ?), 'selected', '') AS activo FROM analito",array($id_calibrador));
     return $calibrador;
   }
+  
+  public static function actualizar_combinaciones_analito ($id_calibrador, $id_analitos)	//RECIBE UN ARREGLO DE ANALITOS 
+  {
+	$conexion = new Conexion();
+	$sql_delete = "DELETE FROM analito_calibrador WHERE id_calibrador = ?";
+	$campos = array($id_calibrador);
+	$query = $conexion->consulta_row($sql_delete,$campos);
+	if ($query == 0){
+		return 0;
+	}
+	else{
+		$calibrador = buscar_calibrador($id_calibrador);
+		$descripcion = $calibrador->getDescripcion();
+		foreach ($id_analitos as $id_an){ 
+			$result = ORM_calibrador::combinar_calibrador_analito($descripcion,$id_an);
+			if ($query == 0){
+				return 0;
+			}
+		}
+	}
+	return 1;
+  }
 
 }
 ?>
