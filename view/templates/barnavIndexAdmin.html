@@ -1,18 +1,30 @@
 <ul class="menu">
 	<li><a href="#">GESTIONES</a>
 		<ul>
-			<li><a href="#">DATOS DE REFERENCIAS </a>
+			<li><a href="#">DATOS DE REFERENCIA </a>
 				<ul>
-					<li><a href="#" onclick="clonarDiv('content');cargarpagina('controller.analito.php','','content','mostrarTabla()')"> ANALITO </a></li>
-					<li><a href="#" onclick=""> METODO </a></li>
-					<li><a href="#" onclick=""> REACTIVO </a></li>
-					<li><a href="#" onclick=""> PAPEL DE FILTRO </a></li>
-					<li><a href="#" onclick=""> VALOR DE CORTE </a></li>
-					<li><a href="#" onclick="clonarDiv('content');cargarpagina('controller.calibrador.php','','content','mostrarTabla()')"> CALIBRADOR </a></li>		
+					<li><a href="#" onclick="clonarDiv('content');cargarpagina('abm/controller.analito.php','','content','mostrarTabla()')"> ANALITO </a></li>
+					<li><a href="#" onclick="clonarDiv('content');cargarpagina('abm/controller.metodo.php','','content','mostrarTabla()')"> METODO </a></li>
+					<li><a href="#" onclick="clonarDiv('content');cargarpagina('abm/controller.reactivo.php','','content','mostrarTabla()')"> REACTIVO </a></li>
+					<li><a href="#" onclick="clonarDiv('content');cargarpagina('abm/controller.papel_filtro.php','','content','mostrarTabla()')"> PAPEL DE FILTRO </a></li>
+					<li><a href="#" onclick="clonarDiv('content');cargarpagina('abm/controller.valor_corte.php','','content','mostrarTabla()')"> VALOR DE CORTE </a></li>
+					<li><a href="#" onclick="clonarDiv('content');cargarpagina('abm/controller.calibrador.php','','content','mostrarTabla()')"> CALIBRADOR </a></li>		
 				</ul>	
 			</li>
-			<li><a href="#" onclick="clonarDiv('content');cargarpagina('controller.laboratorio.php','','content','mostrarTabla()')">  LABORATORIOS </a></li>
-			<li><a href="#" onclick="clonarDiv('content');cargarpagina('controller.usuario.php','','content','mostrarTabla()')"> USUARIOS </a></li>
+			<li><a href="#" onclick="clonarDiv('content');cargarpagina('abm/controller.laboratorio.php','','content','mostrarTabla()')">  LABORATORIOS </a></li>
+			<li><a href="#"</a>ADMINISTRATIVO</a>
+				<ul>
+					<li><a href="#" onclick="clonarDiv('content');cargarpagina('/abm/controller.menu.php','','content','mostrarTabla()')">  MENU </a></li>
+					<li><a href="#" onclick="clonarDiv('content');cargarpagina('abm/controller.rol.php','','content','mostrarTabla()')"> ROL </a></li>	
+					<li><a href="#" onclick="clonarDiv('content');cargarpagina('abm/controller.usuario.php','','content','mostrarTabla()')"> USUARIO </a></li>		
+				</ul>
+			</li>
+			<li><a href="#"</a>GEOGRAFICO</a>
+				<ul>
+					<li><a href="#" onclick="clonarDiv('content');cargarpagina('abm/controller.pais.php','','content','mostrarTabla()')">  PAIS </a></li>
+					<li><a href="#" onclick="clonarDiv('content');cargarpagina('abm/controller.ciudad.php','','content','mostrarTabla()')"> CIUDAD </a></li>
+				</ul>
+			</li>
 		</ul>
 	</li>
 	<li><a href="#">RESULTADOS</a>
