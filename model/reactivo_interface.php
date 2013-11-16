@@ -11,7 +11,7 @@ public static function buscar_reactivo($id_reactivo)
     $query = $conexion->consulta("SELECT * FROM reactivo WHERE id_reactivo=?",array($id_reactivo));
     $row = $query[0];
 
-    $reactivo = new reactivo();
+    $reactivo = new Reactivo();
     // implementacion del reactivo init
     $reactivo->init($row['id_reactivo'],$row['descripcion']);
     return $reactivo;
@@ -27,7 +27,7 @@ public static function obtener_todos_reactivo()
 public static function agregar_reactivo($descripcion)
   {
     $conexion = new Conexion();
-    $existe = ORM_usuario::->buscar_por_clave($descripcion);
+    $existe = ORM_reactivo::buscar_por_clave($descripcion);
     if (!$existe){
       $sql_insert = "INSERT INTO reactivo (descripcion) VALUES (?)";
       $query = $conexion->consulta_row($sql_insert,array($descripcion));
@@ -75,7 +75,43 @@ public static function actualizar_reactivo($reactivo)
     $query = $conexion->consulta_row($sql_insert,$campos);
     return $query;
   }
+	
+ public static function buscar_reactivo_Twig($id_reactivo)
+  {
+    $conexion = new Conexion();
+    $reactivo = $conexion->consulta_fetch("SELECT * FROM reactivo WHERE id_reactivo=?",array($id_reactivo));
+    return $reactivo;
+  }
 
+    public static function buscar_analito_reactivo_Twig($id_reactivo)
+  {
+    $conexion = new Conexion();
+    $reactivo = $conexion->consulta("SELECT *, IF(analito.id_analito IN (SELECT id_analito FROM analito_reactivo WHERE id_reactivo = ?), 'selected', '') AS activo FROM analito",array($id_reactivo));
+    return $reactivo;
+  }
+  
+  public static function actualizar_combinaciones_analito ($id_reactivo, $id_analitos)	//RECIBE UN ARREGLO DE ANALITOS 
+  {
+	$conexion = new Conexion();
+	$sql_delete = "DELETE FROM analito_reactivo WHERE id_reactivo = ?";
+	$campos = array($id_reactivo);
+	$query = $conexion->consulta_row($sql_delete,$campos);
+	if ($query == 0){
+		return 0;
+	}
+	
+	else{
+		$reactivo = ORM_reactivo::buscar_reactivo($id_reactivo);
+		$descripcion = $reactivo->getDescripcion();
+		foreach ($id_analitos as $id_an){ 
+			$result = ORM_reactivo::combinar_reactivo_analito($descripcion,$id_an);
+			if ($query == 0){
+				return 0;
+			}
+		}
+	}
+	return 1;
+  }	
 
 }
 ?>

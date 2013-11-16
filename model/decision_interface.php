@@ -11,8 +11,8 @@ public static function buscar_decision($id_decision)
     $query = $conexion->consulta("SELECT * FROM decision WHERE id_decision=?",array($id_decision));
     $row = $query[0];
 
-    $decision = new decision();
-    // implementacion del metodo init
+    $decision = new Decision();
+    // implementacion del decision init
     $decision->init($row['id_decision'],$row['descripcion']);
     return $decision;
   }
@@ -74,6 +74,43 @@ public static function buscar_por_clave($descripcion)
     $query = $conexion->consulta_fetch("SELECT id_decision FROM decision WHERE descripcion=?",array($descripcion));
     $id_descripcion = $query['id_decision'];
     return (int)$id_descripcion;
+  }
+  
+   public static function buscar_decision_Twig($id_decision)
+  {
+    $conexion = new Conexion();
+    $decision = $conexion->consulta_fetch("SELECT * FROM decision WHERE id_decision=?",array($id_decision));
+    return $decision;
+  }
+
+    public static function buscar_analito_decision_Twig($id_decision)
+  {
+    $conexion = new Conexion();
+    $decision = $conexion->consulta("SELECT *, IF(analito.id_analito IN (SELECT id_analito FROM analito_decision WHERE id_decision = ?), 'selected', '') AS activo FROM analito",array($id_decision));
+    return $decision;
+  }
+  
+  public static function actualizar_combinaciones_analito ($id_decision, $id_analitos)	//RECIBE UN ARREGLO DE ANALITOS 
+  {
+	$conexion = new Conexion();
+	$sql_delete = "DELETE FROM analito_decision WHERE id_decision = ?";
+	$campos = array($id_decision);
+	$query = $conexion->consulta_row($sql_delete,$campos);
+	if ($query == 0){
+		return 0;
+	}
+	
+	else{
+		$decision = ORM_decision::buscar_decision($id_decision);
+		$descripcion = $decision->getDescripcion();
+		foreach ($id_analitos as $id_an){ 
+			$result = ORM_decision::combinar_decision_analito($descripcion,$id_an);
+			if ($query == 0){
+				return 0;
+			}
+		}
+	}
+	return 1;
   }
 }
 ?>

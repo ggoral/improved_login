@@ -1,6 +1,6 @@
 <?php
 
-class papel_filtro
+class Papel_filtro
   {
    private $id_valor;
    private $descripcion;

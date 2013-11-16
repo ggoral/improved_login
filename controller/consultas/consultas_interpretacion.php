@@ -1,7 +1,7 @@
 <?php
 //REALIZA LAS ALTAS Y MODIFICACIONES
 
-require_once '../../model/calibrador_interface.php';
+require_once '../../model/interpretacion_interface.php';
 require_once '../../model/test_input.php';
 
 if (isset($_POST['action'])){
@@ -17,17 +17,17 @@ if (isset($_POST['action'])){
 	$analitosArray = explode(",", $analitos);
 	
 	if ($_POST['action'] == 'editar'){
-		$id_calibrador = $_POST['id_calibrador'];
-		if ((!isset($_POST['id_calibrador']))or(!test_input($_POST['id_calibrador']))){
+		$id_interpretacion = $_POST['id_interpretacion'];
+		if ((!isset($_POST['id_interpretacion']))or(!test_input($_POST['id_interpretacion']))){
 			die ('5');	//DATOS INVALIDOS
 		}
 		else{
 			//HACE EL UPDATE
-			$calibrador = new Calibrador ();
-			$calibrador->setId_calibrador($id_calibrador);
-			$calibrador->setDescripcion($descripcion);
-			ORM_calibrador::actualizar_calibrador($calibrador);	
-			$result = ORM_calibrador::actualizar_combinaciones_analito($id_calibrador, $analitosArray);
+			$interpretacion = new Interpretacion ();
+			$interpretacion->setId_interpretacion($id_interpretacion);
+			$interpretacion->setDescripcion($descripcion);
+			ORM_interpretacion::actualizar_interpretacion($interpretacion);	
+			$result = ORM_interpretacion::actualizar_combinaciones_analito($id_interpretacion, $analitosArray);
 			if($result == 0){
 				die ('3');		//ERROR DE UPDATE
 			}
@@ -36,11 +36,11 @@ if (isset($_POST['action'])){
 	}
 	elseif ($_POST['action'] == 'alta'){
 		//HACE EL INSERT
-		$result = ORM_calibrador::agregar_calibrador($descripcion);	
+		$result = ORM_interpretacion::agregar_interpretacion($descripcion);	
 		if ($result == 0)
 			die('4');
 		foreach ($analitosArray as $id_an) 
-			$result = ORM_calibrador::combinar_calibrador_analito($descripcion,$id_an);
+			$result = ORM_interpretacion::combinar_interpretacion_analito($descripcion,$id_an);
 		if($result == 0){
 			die ('2');		//ERROR DE INSERCION DE ANALITOS
 		}

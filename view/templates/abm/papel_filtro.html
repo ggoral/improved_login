@@ -1,8 +1,8 @@
 {% block content %}
 <!--CONTENT-->
-<h3 class="titulo"> CALIBRADOR </h3>
+<h3 class="titulo"> PAPEL DE FILTRO </h3>
 
-<div align="center" class="btn" id="alta" name="alta" onclick="clonarDiv('content');cargarpagina('abm/am_calibrador.php?action=alta','','content','')">
+<div align="center" class="btn" id="alta" name="alta" onclick="clonarDiv('content');cargarpagina('abm/am_papel_filtro.php?action=alta','','content','')">
 	<p class="titulofrm">añadir</p>
 </div>
 
@@ -27,7 +27,7 @@
 			</thead>
 			<tbody>
 				{% for doc in filas %}	
-					<tr id={{doc['id_calibrador']}} onclick="editarForm(this.getAttribute('id'),'calibrador')">
+					<tr id={{doc['id_papel_filtro']}} onclick="editarPapel_filtro(this.getAttribute('id'),'papel_filtro')">
 						{% for field, value in doc %}	
 							<td id={{field~value}} name={{value}} >{{value}}</td>		
 						{% endfor %}

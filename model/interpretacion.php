@@ -1,6 +1,6 @@
 <?php
 
-class interpretacion
+class Interpretacion
   {
    private $id_interpretacion;
    private $descripcion;

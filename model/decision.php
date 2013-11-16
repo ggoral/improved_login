@@ -1,6 +1,6 @@
 <?php
 
-class decision
+class Decision
   {
    private $id_decision;
    private $descripcion;

@@ -4,9 +4,9 @@
 <div align="center" width="100%">
 <h3>{{action|upper}}</h3>
 
-<form name="am_calibrador" id="am_calibrador" method="POST">
+<form name="am_papel_filtro" id="am_papel_filtro" method="POST">
 	<label> Descripción:</label>
-	<input type="text" value="{{calibrador['descripcion']}}" size="50" id="descripcion" name="descripcion" required pattern="^[a-zA-Z0-9][a-zA-Z0-9-_\. /!$#@%*()}{';:,<>?=+]+$"/>
+	<input type="text" value="{{papel_filtro['descripcion']}}" size="50" id="descripcion" name="descripcion" required pattern="^[a-zA-Z0-9][a-zA-Z0-9-_\. /!$#@%*()}{';:,<>?=+]+$"/>
 
 		<select name="analito" id="analito" size="7" multiple required>
 			{% for data in datos_extra %}	
@@ -14,9 +14,9 @@
 			{% endfor %}
 		</select>
 
-	<input type="hidden" value="{{calibrador['id_calibrador']}}" id="id_calibrador" name="id_calibrador"/>
+	<input type="hidden" value="{{papel_filtro['id_papel_filtro']}}" id="id_papel_filtro" name="id_papel_filtro"/>
 	<br>
-	<input class="btn" type="button" onclick="submitearForm('{{action}}','calibrador')" value={{action}} />
+	<input class="btn" type="button" onclick="submitearPapel_filtro('{{action}}','papel_filtro')" value={{action}} />
 	<div id="loginError" style="display: none; background-color: red"></div>
 </form>
 </div>

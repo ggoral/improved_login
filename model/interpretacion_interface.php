@@ -11,8 +11,8 @@ public static function buscar_interpretacion($id_interpretacion)
     $query = $conexion->consulta("SELECT * FROM interpretacion WHERE id_interpretacion=?",array($id_interpretacion));
     $row = $query[0];
 
-    $interpretacion = new interpretacion();
-    // implementacion del metodo init
+    $interpretacion = new Interpretacion();
+    // implementacion del interpretacion init
     $interpretacion->init($row['id_interpretacion'],$row['descripcion']);
     return $interpretacion;
   }
@@ -75,6 +75,42 @@ public static function actualizar_interpretacion($interpretacion)
     return $query;
   }
 
+   public static function buscar_interpretacion_Twig($id_interpretacion)
+  {
+    $conexion = new Conexion();
+    $interpretacion = $conexion->consulta_fetch("SELECT * FROM interpretacion WHERE id_interpretacion=?",array($id_interpretacion));
+    return $interpretacion;
+  }
+
+    public static function buscar_analito_interpretacion_Twig($id_interpretacion)
+  {
+    $conexion = new Conexion();
+    $interpretacion = $conexion->consulta("SELECT *, IF(analito.id_analito IN (SELECT id_analito FROM analito_interpretacion WHERE id_interpretacion = ?), 'selected', '') AS activo FROM analito",array($id_interpretacion));
+    return $interpretacion;
+  }
+  
+  public static function actualizar_combinaciones_analito ($id_interpretacion, $id_analitos)	//RECIBE UN ARREGLO DE ANALITOS 
+  {
+	$conexion = new Conexion();
+	$sql_delete = "DELETE FROM analito_interpretacion WHERE id_interpretacion = ?";
+	$campos = array($id_interpretacion);
+	$query = $conexion->consulta_row($sql_delete,$campos);
+	if ($query == 0){
+		return 0;
+	}
+	
+	else{
+		$interpretacion = ORM_interpretacion::buscar_interpretacion($id_interpretacion);
+		$descripcion = $interpretacion->getDescripcion();
+		foreach ($id_analitos as $id_an){ 
+			$result = ORM_interpretacion::combinar_interpretacion_analito($descripcion,$id_an);
+			if ($query == 0){
+				return 0;
+			}
+		}
+	}
+	return 1;
+  }
 
 }
 ?>
