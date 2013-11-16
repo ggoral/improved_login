@@ -1,6 +1,6 @@
 <?php
 
-class metodo
+class Metodo
   {
    private $id_metodo;
    private $descripcion;

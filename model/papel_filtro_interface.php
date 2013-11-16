@@ -11,7 +11,7 @@ public static function buscar_papel_filtro($id_papel_filtro)
     $query = $conexion->consulta("SELECT * FROM papel_filtro WHERE id_papel_filtro=?",array($id_papel_filtro));
     $row = $query[0];
 
-    $valor = new papel_filtro();
+    $valor = new Papel_filtro();
     // implementacion del valor init
     $valor->init($row['id_papel_filtro'],$row['descripcion']);
     return $valor;
@@ -77,6 +77,42 @@ public static function actualizar_papel_filtro($valor)
   return $query;
   }
 
+   public static function buscar_papel_filtro_Twig($id_papel_filtro)
+  {
+    $conexion = new Conexion();
+    $papel_filtro = $conexion->consulta_fetch("SELECT * FROM papel_filtro WHERE id_papel_filtro=?",array($id_papel_filtro));
+    return $papel_filtro;
+  }
+
+    public static function buscar_analito_papel_filtro_Twig($id_papel_filtro)
+  {
+    $conexion = new Conexion();
+    $papel_filtro = $conexion->consulta("SELECT *, IF(analito.id_analito IN (SELECT id_analito FROM analito_papel_filtro WHERE id_papel_filtro = ?), 'selected', '') AS activo FROM analito",array($id_papel_filtro));
+    return $papel_filtro;
+  }
+  
+  public static function actualizar_combinaciones_analito ($id_papel_filtro, $id_analitos)	//RECIBE UN ARREGLO DE ANALITOS 
+  {
+	$conexion = new Conexion();
+	$sql_delete = "DELETE FROM analito_papel_filtro WHERE id_papel_filtro = ?";
+	$campos = array($id_papel_filtro);
+	$query = $conexion->consulta_row($sql_delete,$campos);
+	if ($query == 0){
+		return 0;
+	}
+	
+	else{
+		$papel_filtro = ORM_papel_filtro::buscar_papel_filtro($id_papel_filtro);
+		$descripcion = $papel_filtro->getDescripcion();
+		foreach ($id_analitos as $id_an){ 
+			$result = ORM_papel_filtro::combinar_papel_filtro_analito($descripcion,$id_an);
+			if ($query == 0){
+				return 0;
+			}
+		}
+	}
+	return 1;
+  }
 
 }
 ?>

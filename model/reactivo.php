@@ -1,6 +1,6 @@
 <?php
 
-class reactivo
+class Reactivo
   {
    private $id_reactivo;
    private $descripcion;

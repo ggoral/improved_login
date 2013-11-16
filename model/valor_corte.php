@@ -1,6 +1,6 @@
 <?php
 
-class valor_corte
+class Valor_corte
   {
    private $id_valor;
    private $descripcion;

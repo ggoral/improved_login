@@ -11,7 +11,7 @@ public static function buscar_metodo($id_metodo)
     $query = $conexion->consulta("SELECT * FROM metodo WHERE id_metodo=?",array($id_metodo));
     $row = $query[0];
 
-    $metodo = new metodo();
+    $metodo = new Metodo();
     // implementacion del metodo init
     $metodo->init($row['id_metodo'],$row['descripcion']);
     return $metodo;
@@ -75,6 +75,43 @@ public static function combinar_metodo_analito($descripcion, $id_analito)
     $campos = array($id_analito,$id_metodo);
     $query = $conexion->consulta_row($sql_insert,$campos);
     return $query;
+  }
+  
+   public static function buscar_metodo_Twig($id_metodo)
+  {
+    $conexion = new Conexion();
+    $metodo = $conexion->consulta_fetch("SELECT * FROM metodo WHERE id_metodo=?",array($id_metodo));
+    return $metodo;
+  }
+
+    public static function buscar_analito_metodo_Twig($id_metodo)
+  {
+    $conexion = new Conexion();
+    $metodo = $conexion->consulta("SELECT *, IF(analito.id_analito IN (SELECT id_analito FROM analito_metodo WHERE id_metodo = ?), 'selected', '') AS activo FROM analito",array($id_metodo));
+    return $metodo;
+  }
+  
+  public static function actualizar_combinaciones_analito ($id_metodo, $id_analitos)	//RECIBE UN ARREGLO DE ANALITOS 
+  {
+	$conexion = new Conexion();
+	$sql_delete = "DELETE FROM analito_metodo WHERE id_metodo = ?";
+	$campos = array($id_metodo);
+	$query = $conexion->consulta_row($sql_delete,$campos);
+	if ($query == 0){
+		return 0;
+	}
+	
+	else{
+		$metodo = ORM_metodo::buscar_metodo($id_metodo);
+		$descripcion = $metodo->getDescripcion();
+		foreach ($id_analitos as $id_an){ 
+			$result = ORM_metodo::combinar_metodo_analito($descripcion,$id_an);
+			if ($query == 0){
+				return 0;
+			}
+		}
+	}
+	return 1;
   }
 }
 ?>

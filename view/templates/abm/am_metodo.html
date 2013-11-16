@@ -1,0 +1,24 @@
+{% block content %}
+<!--CONTENT-->
+
+<div align="center" width="100%">
+<h3>{{action|upper}}</h3>
+
+<form name="am_metodo" id="am_metodo" method="POST">
+	<label> Descripción:</label>
+	<input type="text" value="{{metodo['descripcion']}}" size="50" id="descripcion" name="descripcion" required pattern="^[a-zA-Z0-9][a-zA-Z0-9-_\. /!$#@%*()}{';:,<>?=+]+$"/>
+
+		<select name="analito" id="analito" size="7" multiple required>
+			{% for data in datos_extra %}	
+				<option value="{{data['id_analito']}}" {{data['activo']}}> {{data['descripcion']}} </option>
+			{% endfor %}
+		</select>
+
+	<input type="hidden" value="{{metodo['id_metodo']}}" id="id_metodo" name="id_metodo"/>
+	<br>
+	<input class="btn" type="button" onclick="submitearMetodo('{{action}}')" value={{action}} />
+	<div id="loginError" style="display: none; background-color: red"></div>
+</form>
+</div>
+<!--FIN CONTENT-->
+{% endblock content %}
