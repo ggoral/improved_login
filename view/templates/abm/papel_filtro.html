@@ -27,7 +27,7 @@
 			</thead>
 			<tbody>
 				{% for doc in filas %}	
-					<tr id={{doc['id_papel_filtro']}} onclick="editarPapel_filtro(this.getAttribute('id'))">
+					<tr id={{doc['id_papel_filtro']}} onclick="editarPapel_filtro(this.getAttribute('id'),'papel_filtro')">
 						{% for field, value in doc %}	
 							<td id={{field~value}} name={{value}} >{{value}}</td>		
 						{% endfor %}

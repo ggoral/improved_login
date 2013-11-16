@@ -36,47 +36,7 @@ function submitearAnalito(action){
 
 }
 /*ANALITO*/
-/*CALIBRADOR*/
-function editarCalibrador(id){
-	parametros = 'id_calibrador='+id;
-	cargarpagina('abm/am_calibrador.php?action=editar', parametros,'content');	
-}
 
-function submitearCalibrador(action){
-	descripcion = (document.getElementById('descripcion').value);
-	id_calibrador = (document.getElementById('id_calibrador').value);
-	id_analitos = ($('#analito').val());	//OBTENGO TODOS LOS ID SEPARADOS POR ","
-	error=false;
-	if (descripcion.trim() == ''){ 
-		mensaje='Ingrese Descripcion';
-		error=true;
-	}
-	else{
-		if (id_analitos == null){
-			mensaje='Seleccione al menos un analito';
-			error=true;
-		}
-		else{
-			parametros = 'action='+action+'&id_calibrador='+id_calibrador+'&descripcion='+descripcion+'&analitos='+id_analitos;
-			var result = cargarpaginasinc('consultas/consultas_calibrador.php',parametros);
-			
-			if (result == 1){							
-				mensaje='1';	
-			}
-			else{
-				error=true;
-				mensaje='Operacion Fallida - Error en Base de datos';	
-			}
-		}
-	}
-		if (!error){
-		cargarpagina('tablas/controller.calibrador.php', 'error='+mensaje,'content','mostrarTabla();desapar();');	
-	}else{
-		aparDesapar();
-		return false;
-	}
-}
-/*CALIBRADOR*/
 /*ROL*/
 function editarRol(id){
 	parametros = 'id_rol='+id;
@@ -114,6 +74,7 @@ function submitearRol(action){
 	}
 }
 /*ROL*/
+
 /*PAIS*/
 function editarPais(id){
 	parametros = 'id_pais='+id;
@@ -150,6 +111,7 @@ function submitearPais(action){
 	}
 }
 /*PAIS*/
+
 /*TIPO LAB*/
 function editarTipo_lab(id){
 	alert("ID: "+id); 
