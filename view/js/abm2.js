@@ -57,4 +57,62 @@ function submitearForm(action, tabla){
 	}
 }
 
+/*CIUDAD*/
+function submitearFormCiudad(action, tabla){
+	descripcion = (document.getElementById('descripcion').value);
+	id_elemento = (document.getElementById('id_'+tabla).value);
+	codpostal = (document.getElementById('codpostal').value);
+	id_pais = ($('#pais').val());	//OBTENGO TODOS LOS ID SEPARADOS POR "," AUNQ ES SOLO 1
+	error=false;
+	if (descripcion.trim() == ''){ 
+		mensaje='Ingrese Descripcion';
+		error=true;
+	}
+	else{
+		if (codpostal.trim() == ''){ 
+			mensaje='Ingrese Código Postal';
+			error=true;
+		}
+		else{
+			if (id_pais == null){
+				mensaje='Seleccione un País';
+				error=true;
+			}
+			else{
+				parametros = 'action='+action+'&id_'+tabla+'='+id_elemento+'&descripcion='+descripcion+'&pais='+id_pais+'&codpostal='+codpostal;
+				var result = cargarpaginasinc('consultas/consultas_'+tabla+'.php',parametros);
+				
+				switch(result)
+				{
+				case '1':
+					mensaje='1';
+					break;
+				case '3':
+					error=true;
+					mensaje='Operacion Fallida - Error de Actualización';	
+					break;
+				case '4':
+					error=true;
+					mensaje='Operacion Fallida - Ciudad ya existente';	
+					break;
+				case '5':
+					error=true;
+					mensaje='Operacion Fallida - Complete todos los campos';	
+					break;
+				default:
+					error=true;
+					alert(result);
+					mensaje='Operacion Fallida - Error en Base de datos';	
+				}	
+			}
+		}
+	}
+	if (!error){
+		cargarpagina('tablas/controller.'+tabla+'.php', 'error='+mensaje,'content','mostrarTabla();desapar();');	
+	}else{
+		aparDesapar();
+		return false;
+	}
+}
 
+/*CIUDAD*/
