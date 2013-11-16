@@ -29,7 +29,7 @@ function submitearForm(action, tabla){
 				break;
 			case '2':
 				error=true;
-				mensaje='Operacion Fallida - Error al insertar elemento';	
+				mensaje='Operacion Fallida - Error al insertar Analito/s';	
 				break;
 			case '3':
 				error=true;
