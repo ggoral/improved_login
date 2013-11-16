@@ -12,11 +12,11 @@ if (isset($_POST['action'])){
 
 	$descripcion = $_POST['descripcion'];
 	if ($_POST['action'] == 'editar'){
-		$id_tipo_lab = $_POST['id_tipo_lab'];
 		if((!isset($_POST['id_tipo_lab']))or(!test_input($_POST['id_tipo_lab']))){
 			die('5'); //NO PASA VALIDACION DEL LADO DEL SERVIDOR
 		}else{
 			//HACE EL UPDATE
+			$id_tipo_lab = $_POST['id_tipo_lab'];
 			$tipo_lab = new Tipo_lab ();
 			$tipo_lab->setId_tipo_lab($id_tipo_lab);
 			$tipo_lab->setDescripcion($descripcion);

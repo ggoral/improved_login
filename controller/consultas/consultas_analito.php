@@ -13,11 +13,11 @@ if (isset($_POST['action'])){
 	$descripcion = $_POST['descripcion'];
 	
 	if ($_POST['action'] == 'editar'){
-		$id_analito = $_POST['id_analito'];
 		if((!isset($_POST['id_analito']))or(!test_input($_POST['id_analito']))){
 			die('5'); //NO PASA VALIDACION DEL LADO DEL SERVIDOR
 		}else{
 			//HACE EL UPDATE
+			$id_analito = $_POST['id_analito'];
 			$analito = new Analito ();
 			$analito->setId_analito($id_analito);
 			$analito->setDescripcion($descripcion);

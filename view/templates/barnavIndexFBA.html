@@ -3,7 +3,7 @@
 		<ul>
 			<li><a href="#">DATOS DE REFERENCIAS </a>
 				<ul>
-					<li><a href="#" onclick="clonarDiv('content');cargarpagina('insideabm.php','formAlta=abm/fAlta_analito.html&tabla=analito&template=abm/abm_analito.html','content','mostrarTabla()')"> ANALITO </a></li>	
+					<li><a href="#" onclick="clonarDiv('content');cargarpagina('tablas/controller.analito.php','','content','mostrarTabla()')"> ANALITO </a></li>
 				</ul>	
 			</li>
 			<li><a href="#" onclick=""> LABORATORIOS </a></li>
@@ -11,7 +11,8 @@
 	</li>
 	<li><a href="#">RESULTADOS</a>
 		<ul>
-			<li><a href="#" onclick="">LISTAR</a></li>
+			<li><a href="#" onclick="clonarDiv('content');cargarpagina('tablas/controller.resultado.php','','content','mostrarTabla()')"> LISTAR </a></li>
+			<li><a href="#" onclick="clonarDiv('content');cargarpagina('abm/am_resultado.php','','content','mostrarTabla()')"> CARGARR </a></li>
 		</ul>
 	</li>
 	<li><a href="#" class="logo">&nbsp;</a></li>
