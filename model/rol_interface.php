@@ -11,7 +11,7 @@ public static function buscar_rol($id_rol)
     $query = $conexion->consulta("SELECT * FROM rol WHERE id_rol=?",array($id_rol));
     $row = $query[0];
 
-    $rol = new rol();
+    $rol = new Rol();
     // implementacion del metodo init
     $rol->init($row['id_rol'],$row['descripcion']);
     return $rol;

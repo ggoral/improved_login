@@ -11,7 +11,7 @@ public static function buscar_tipo_lab($id_tipo_lab)
     $query = $conexion->consulta("SELECT * FROM tipo_lab WHERE id_tipo=?",array($id_tipo_lab));
     $row = $query[0];
 
-    $valor = new tipo_lab();
+    $valor = new Tipo_lab();
     // implementacion del valor init
     $valor->init($row['id_tipo'],$row['descripcion']);
     return $valor;
@@ -69,7 +69,7 @@ public static function actualizar_tipo_lab($valor)
 public static function buscar_tipo_lab_Twig($id_tipo_lab)
   {
     $conexion = new Conexion();
-    $tipo_lab = $conexion->consulta_fetch("SELECT * FROM tipo_lab WHERE id_tipo_lab=?",array($id_tipo_lab));
+    $tipo_lab = $conexion->consulta_fetch("SELECT * FROM tipo_lab WHERE id_tipo=?",array($id_tipo_lab));
     return $tipo_lab;
   }
 
