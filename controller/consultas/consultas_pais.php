@@ -18,7 +18,7 @@ if (isset($_POST['action'])){
 			die('5'); //NO PASA VALIDACION DEL LADO DEL SERVIDOR
 		}else{
 			//HACE EL UPDATE
-			$pais = new pais ();
+			$pais = new Pais ();
 			$pais->setId_pais($id_pais);
 			$pais->setDescripcion($descripcion);
 			$result = ORM_pais::actualizar_pais($pais);

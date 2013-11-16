@@ -38,7 +38,6 @@ function submitearFormSimple(action, tabla){
 			mensaje='Operacion Fallida - Faltan Datos';	
 			break;
 		default:
-			alert(result);
 			error=true;
 			mensaje='Operacion Fallida - Error en Base de datos';	
 		}	

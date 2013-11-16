@@ -7,7 +7,7 @@
 <form name="am_tipo_lab" id="am_tipo_lab" method="POST">
 	<label> Descripcion:</label>
 	<input type="text" value="{{tipo_lab['descripcion']}}" size="50" id="descripcion" name="descripcion" required autofocus/>
-	<input type="hidden" value="{{tipo_lab['id_tipo_lab']}}" id="id_tipo_lab" name="id_tipo_lab"/>
+	<input type="hidden" value="{{tipo_lab['id_tipo']}}" id="id_tipo_lab" name="id_tipo_lab"/>
 	<br>
 	<input class="btn" type="button" onclick="submitearFormSimple('{{action}}' , 'tipo_lab')" value={{action}} />
 	<div id="loginError" style="display: none; background-color: red"></div>

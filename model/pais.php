@@ -1,6 +1,6 @@
 <?php
 
-class pais
+class Pais
   {
    private $id_pais;
    private $descripcion;

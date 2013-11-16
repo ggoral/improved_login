@@ -11,7 +11,7 @@ public static function buscar_pais($id_pais)
     $query = $conexion->consulta("SELECT * FROM pais WHERE id_pais=?",array($id_pais));
     $row = $query[0];
 
-    $pais = new pais();
+    $pais = new Pais();
     // implementacion del metodo init
     $pais->init($row['id_pais'],$row['descripcion']);
     return $pais;

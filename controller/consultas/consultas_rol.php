@@ -18,7 +18,7 @@ if (isset($_POST['action'])){
 			die('5'); //NO PASA VALIDACION DEL LADO DEL SERVIDOR
 		}else{
 			//HACE EL UPDATE
-			$rol = new rol ();
+			$rol = new Rol ();
 			$rol->setId_rol($id_rol);
 			$rol->setDescripcion($descripcion);
 			$result = ORM_rol::actualizar_rol($rol);

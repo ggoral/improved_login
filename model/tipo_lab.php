@@ -1,6 +1,6 @@
 <?php
 
-class tipo_lab
+class Tipo_lab
   {
    private $id_valor;
    private $descripcion;
