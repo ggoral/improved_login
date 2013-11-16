@@ -10,6 +10,8 @@
 <div align="center" class="btn" id="baja" name="delete" onclick="#">
 	<p class="titulofrm">borrar</p>
 </div>
+
+<div id="loginError" style="display: {{displayerror}}; background-color: {{messagecolor}}"> {{error}} </div>
 <!--TABLA-->
 <div id="divContenedor">
 	<div id="divTabla">
@@ -30,7 +32,7 @@
 			</thead>
 			<tbody>
 				{% for doc in filas %}	
-					<tr id={{doc['id_usuario']}} onclick="editarUsuario(this.getAttribute('id'))">
+					<tr id={{doc['id_usuario']}} onclick="editarForm(this.getAttribute('id'), 'usuario')">
 						{% for field, value in doc %}	
 							<td id={{field~value}} name={{value}} >{{value}}</td>		
 						{% endfor %}

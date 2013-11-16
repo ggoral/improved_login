@@ -4,27 +4,29 @@
 <div align="center" width="100%">
 <h3>{{action|upper}}</h3>
 
-<form name="am_usuario" id="am_usuario" action="../controller/usuario.{{action}}.php" method="POST">
+<form name="am_usuario" id="am_usuario" method="POST">
+
 	<label> Username:</label>
-	<input type="text" value="{{usuario['username']}}" size="50" id="username" name="username" required/>
+	<input type="text" value="{{usuario['username']}}" size="40" id="username" name="username" required/>
 	<br>
 	<label> Password:</label>
-	<input type="password" value="{{usuario['password']}}" size="50" id="password" name="descripcion" required/>
+	<input type="password" value="{{usuario['password']}}" size="20" id="password" name="password" required {% if rol == 1 %} disabled readonly="true" {% endif %}/>
 	<br>
 	<label> Email:</label>
-	<input type="text" value="{{usuario['email']}}" size="50" id="email" name="descripcion" required/>
+	<input type="text" value="{{usuario['email']}}" size="40" id="email" name="email" required/>
 	<br>
 	<label> Rol:</label>
-	<select id="rol" name="rol">
-		<option value="rol1" id="rol1" name="rol1">Admin</option>
-		<option value="rol2" id="rol2" name="rol2">FBA</option>
-		<option value="rol3" id="rol3" name="rol3">Laboratorio</option>
+	<select name="rol" id="rol" size="1" required>
+			{% for data in datos_extra %}	
+				<option value="{{data['id_rol']}}" {% if data['activo'] %} selected="{{data['activo']}}"{% endif %} > {{data['descripcion']}} </option>
+			{% endfor %}
 	</select>
 	<label> Activo:</label>
-	<input type="checkbox" value="{{usuario['activo']}}" size="50" id="activo" name="descripcion" required/>
+	<input type="checkbox" {% if usuario['activo'] == 1 %} checked{% endif %} id="activo" name="activo" required/>
 	<br>
-	<br>
-	<input class="btn" type="submit" value={{action}} />
+	<input type="hidden" value="{{usuario['id_usuario']}}" id="id_usuario" name="id_usuario"/>
+	<input class="btn" type="button" onclick="submitearFormUsuario('{{action}}','usuario')" value={{action}} />
+	<div id="loginError" style="display: none; background-color: red"></div>
 </form>
 </div>
 <!--FIN CONTENT-->

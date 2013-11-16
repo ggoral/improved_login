@@ -17,11 +17,11 @@ if (isset($_POST['action'])){
 	$idPais = $_POST['pais'];	
 	
 	if ($_POST['action'] == 'editar'){
-		$id_ciudad = $_POST['id_ciudad'];
 		if ((!isset($_POST['id_ciudad']))or(!test_input($_POST['id_ciudad']))){
 			die ('5');	//DATOS INVALIDOS
 		}
 		else{
+			$id_ciudad = $_POST['id_ciudad'];
 			//HACE EL UPDATE
 			$ciudad = new Ciudad ();
 			$ciudad->setId_ciudad($id_ciudad);
