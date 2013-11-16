@@ -100,8 +100,9 @@ public static function actualizar_calibrador($calibrador)
 	if ($query == 0){
 		return 0;
 	}
+	
 	else{
-		$calibrador = buscar_calibrador($id_calibrador);
+		$calibrador = ORM_calibrador::buscar_calibrador($id_calibrador);
 		$descripcion = $calibrador->getDescripcion();
 		foreach ($id_analitos as $id_an){ 
 			$result = ORM_calibrador::combinar_calibrador_analito($descripcion,$id_an);
