@@ -17,11 +17,11 @@ if (isset($_POST['action'])){
 	$analitosArray = explode(",", $analitos);
 	
 	if ($_POST['action'] == 'editar'){
-		$id_reactivo = $_POST['id_reactivo'];
 		if ((!isset($_POST['id_reactivo']))or(!test_input($_POST['id_reactivo']))){
 			die ('5');	//DATOS INVALIDOS
 		}
 		else{
+			$id_reactivo = $_POST['id_reactivo'];
 			//HACE EL UPDATE
 			$reactivo = new Reactivo ();
 			$reactivo->setId_reactivo($id_reactivo);
