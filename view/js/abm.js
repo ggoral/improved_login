@@ -59,9 +59,8 @@ function submitearCalibrador(action){
 		else{
 			parametros = 'action='+action+'&id_calibrador='+id_calibrador+'&descripcion='+descripcion+'&analitos='+id_analitos;
 			var result = cargarpaginasinc('consultas/consultas_calibrador.php',parametros);
-			//result = result.charAt(result.length-1);		//TENER EN CUENTA QUE DEVUELVE EL ULTIMO CARACTER O SEA 1 SOLO NUMERO, ASI Q MANEJAR ERRORES CON ESTE CRITERIO DESDE EL SCRIPT DE LAS CONSULTAS	
-			//alert(result);
-			if (result == 1){							//PLANTEAR COMO UN SWITCH PARA LAS DIFERENTES RPTAS DEL SCRIPT
+			
+			if (result == 1){							
 				mensaje='1';	
 			}
 			else{
