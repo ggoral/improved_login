@@ -16,7 +16,7 @@ function submitearAnalito(action){
 	else{
 		parametros = 'action='+action+'&id_analito='+id_analito+'&descripcion='+descripcion;
 		var result = cargarpaginasinc('consultas/consultas_analito.php',parametros);
-		result = result.charAt(result.length-1);
+		//result = result.charAt(result.length-1);
 		
 		if (result == 1){
 			mensaje='1';	
@@ -86,23 +86,32 @@ function editarRol(id){
 function submitearRol(action){
 	descripcion = (document.getElementById('descripcion').value);
 	id_rol = (document.getElementById('id_rol').value);
+	var error = false;
 
 	if (descripcion.trim() == ''){
 		mensaje='Ingrese Descripcion';
+		error =  true;
 	}
 	else{
 		parametros = 'action='+action+'&id_rol='+id_rol+'&descripcion='+descripcion;
 		var result = cargarpaginasinc('consultas/consultas_rol.php',parametros);
-		result = result.charAt(result.length-1);
+		//result = result.charAt(result.length-1);
 		
 		if (result == 1){
 			mensaje='1';	
 		}
 		else{
-			mensaje='Operacion Fallida - Error en Base de datos';	
+			mensaje='Operacion Fallida - Error en Base de datos';
+			error = true;	
 		}
 	}
-	cargarpagina('tablas/controller.rol.php', 'error='+mensaje,'content','mostrarTabla()');	
+
+	if (!error){
+		cargarpagina('tablas/controller.rol.php', 'error='+mensaje,'content','mostrarTabla();desapar();');	
+	}else{
+		aparDesapar();
+		return false;
+	}
 }
 /*ROL*/
 /*PAIS*/
@@ -114,23 +123,31 @@ function editarPais(id){
 function submitearPais(action){
 	descripcion = (document.getElementById('descripcion').value);
 	id_pais = (document.getElementById('id_pais').value);
+	var error = false;
 
 	if (descripcion.trim() == ''){
 		mensaje='Ingrese Descripcion';
+		error =  true;
 	}
 	else{
 		parametros = 'action='+action+'&id_pais='+id_pais+'&descripcion='+descripcion;
 		var result = cargarpaginasinc('consultas/consultas_pais.php',parametros);
-		result = result.charAt(result.length-1);
+		//result = result.charAt(result.length-1);
 		
 		if (result == 1){
 			mensaje='1';	
 		}
 		else{
 			mensaje='Operacion Fallida - Error en Base de datos';	
+			error =  true;
 		}
 	}
-	cargarpagina('tablas/controller.pais.php', 'error='+mensaje,'content','mostrarTabla()');	
+	if (!error){
+		cargarpagina('tablas/controller.pais.php', 'error='+mensaje,'content','mostrarTabla();desapar();');	
+	}else{
+		aparDesapar();
+		return false;
+	}
 }
 /*PAIS*/
 /*TIPO LAB*/
@@ -159,6 +176,6 @@ function submitearTipo_lab(action){
 			mensaje='Operacion Fallida - Error en Base de datos';	
 		}
 	}
-	cargarpagina('tablas/controller.tipo_lab.php', 'error='+mensaje,'content','mostrarTabla()');	
+	cargarpagina('tablas/controller.tipo_lab.php', 'error='+mensaje,'content','mostrarTabla();desapar();');	
 }
 /*TIPO LAB*/
