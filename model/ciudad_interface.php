@@ -11,7 +11,7 @@ public static function buscar_ciudad($id_ciudad)
     $query = $conexion->consulta("SELECT * FROM ciudad WHERE id_ciudad=?",array($id_ciudad));
     $row = $query[0];
 
-    $ciudad = new ciudad();
+    $ciudad = new Ciudad();
     /*
     $ciudad->setId_ciudad($row['id_ciudad']);
     $ciudad->setdescripcion($row['descripcion']);
@@ -86,7 +86,7 @@ public static function buscar_por_clave($descripcion)
 	
 public static function agregar_ciudad($descripcion, $cod_postal, $id_pais)
   {
-		$existe = ORM_ciudad::buscar_ciudad_codPostal($descripcion, $cod_postal);
+	$existe = ORM_ciudad::buscar_ciudad_codPostal($descripcion, $cod_postal);
     if (!$existe){
       $row_affected = ORM_ciudad::agregar_ciudad_campos($descripcion, $cod_postal, $id_pais);
   	  return $row_affected;
@@ -94,8 +94,26 @@ public static function agregar_ciudad($descripcion, $cod_postal, $id_pais)
 		return 0;
   }
 
-  
+  public static function obtener_todos_ciudad_Twig()
+  {
+    $conexion = new Conexion();
+    $query = $conexion->consulta("SELECT id_ciudad, ciudad.descripcion, cod_postal, pais.descripcion AS descripcionPais FROM ciudad INNER JOIN pais ON (ciudad.id_pais = pais.id_pais)");
+	return $query;
+  }
 
+  public static function buscar_ciudad_Twig($id_ciudad)
+  {
+    $conexion = new Conexion();
+    $calibrador = $conexion->consulta_fetch("SELECT * FROM ciudad WHERE id_ciudad=?",array($id_ciudad));
+    return $calibrador;
+  }
+
+    public static function buscar_pais_ciudad_Twig($id_ciudad)
+  {
+    $conexion = new Conexion();
+    $calibrador = $conexion->consulta("SELECT *, IF(pais.id_pais IN (SELECT id_pais FROM ciudad WHERE id_ciudad = ?), 'selected', '') AS activo FROM pais",array($id_ciudad));
+    return $calibrador;
+  }
 
 }
 ?>

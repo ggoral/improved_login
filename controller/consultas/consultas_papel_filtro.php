@@ -17,11 +17,11 @@ if (isset($_POST['action'])){
 	$analitosArray = explode(",", $analitos);
 	
 	if ($_POST['action'] == 'editar'){
-		$id_papel_filtro = $_POST['id_papel_filtro'];
 		if ((!isset($_POST['id_papel_filtro']))or(!test_input($_POST['id_papel_filtro']))){
 			die ('5');	//DATOS INVALIDOS
 		}
 		else{
+			$id_papel_filtro = $_POST['id_papel_filtro'];
 			//HACE EL UPDATE
 			$papel_filtro = new Papel_filtro ();
 			$papel_filtro->setId_papel_filtro($id_papel_filtro);

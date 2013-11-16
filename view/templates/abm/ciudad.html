@@ -1,14 +1,9 @@
-
-
 {% block content %}
 <!--CONTENT-->
-<h3 class="titulo"> USUARIO </h3>
+<h3 class="titulo"> CIUDAD </h3>
 
-<div align="center" class="btn" id="alta" name="alta" onclick="clonarDiv('content');cargarpagina('abm/am_usuario.php?action=alta','','content','')">
+<div align="center" class="btn" id="alta" name="alta" onclick="clonarDiv('content');cargarpagina('abm/am_ciudad.php?action=alta','','content','')">
 	<p class="titulofrm">añadir</p>
-</div>
-<div align="center" class="btn" id="baja" name="delete" onclick="#">
-	<p class="titulofrm">borrar</p>
 </div>
 
 <div id="loginError" style="display: {{displayerror}}; background-color: {{messagecolor}}"> {{error}} </div>
@@ -32,7 +27,7 @@
 			</thead>
 			<tbody>
 				{% for doc in filas %}	
-					<tr id={{doc['id_usuario']}} onclick="editarForm(this.getAttribute('id'), 'usuario')">
+					<tr id={{doc['id_ciudad']}} onclick="editarForm(this.getAttribute('id'),'ciudad')">
 						{% for field, value in doc %}	
 							<td id={{field~value}} name={{value}} >{{value}}</td>		
 						{% endfor %}

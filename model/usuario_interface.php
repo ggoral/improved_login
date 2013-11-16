@@ -124,5 +124,19 @@ public static function mostrar_usuarios()
     return $query;
   }
 
+  
+  public static function buscar_usuario_Twig($id_usuario)
+  {
+    $conexion = new Conexion();
+    $calibrador = $conexion->consulta_fetch("SELECT * FROM usuario WHERE id_usuario=?",array($id_usuario));
+    return $calibrador;
+  }
+
+    public static function buscar_rol_usuario_Twig($id_usuario)
+  {
+    $conexion = new Conexion();
+    $calibrador = $conexion->consulta("SELECT *, IF(rol.id_rol IN (SELECT rol.id_rol FROM rol INNER JOIN usuario ON (rol.id_rol = usuario.id_rol) WHERE usuario.id_usuario = ?), 'selected', '') AS activo FROM rol",array($id_usuario));
+    return $calibrador;
+  }
 }
 ?>

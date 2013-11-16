@@ -16,12 +16,12 @@ if (isset($_POST['action'])){
 	$analitos = $_POST['analitos'];	//HACER EXPLODE
 	$analitosArray = explode(",", $analitos);
 	
-	if ($_POST['action'] == 'editar'){
-		$id_calibrador = $_POST['id_calibrador'];
+	if ($_POST['action'] == 'editar'){		
 		if ((!isset($_POST['id_calibrador']))or(!test_input($_POST['id_calibrador']))){
 			die ('5');	//DATOS INVALIDOS
 		}
 		else{
+			$id_calibrador = $_POST['id_calibrador'];
 			//HACE EL UPDATE
 			$calibrador = new Calibrador ();
 			$calibrador->setId_calibrador($id_calibrador);

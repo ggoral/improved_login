@@ -1,6 +1,6 @@
 <?php
 
-class ciudad
+class Ciudad
   {
    private $id_ciudad;
    private $descripcion;

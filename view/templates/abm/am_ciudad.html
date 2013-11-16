@@ -1,0 +1,27 @@
+{% block content %}
+<!--CONTENT-->
+
+<div align="center" width="100%">
+<h3>{{action|upper}}</h3>
+
+<form name="am_ciudad" id="am_ciudad" method="POST">
+	<label> Descripción:</label>
+	<input type="text" value="{{ciudad['descripcion']}}" size="50" id="descripcion" name="descripcion" required pattern="^[a-zA-Z0-9][a-zA-Z0-9-_\. /!$#@%*()}{';:,<>?=+]+$"/>
+	
+	<label> Código Postal:</label>
+	<input type="text" value="{{ciudad['cod_postal']}}" size="10" id="codpostal" name="codpostal" required pattern="^[a-zA-Z0-9][a-zA-Z0-9-_\. /!$#@%*()}{';:,<>?=+]+$"/>
+
+		<select name="pais" id="pais" size="7" required>
+			{% for data in datos_extra %}	
+				<option value="{{data['id_pais']}}" {{data['activo']}}> {{data['descripcion']}} </option>
+			{% endfor %}
+		</select>
+
+	<input type="hidden" value="{{ciudad['id_ciudad']}}" id="id_ciudad" name="id_ciudad"/>
+	<br>
+	<input class="btn" type="button" onclick="submitearFormCiudad('{{action}}','ciudad')" value={{action}} />
+	<div id="loginError" style="display: none; background-color: red"></div>
+</form>
+</div>
+<!--FIN CONTENT-->
+{% endblock content %}

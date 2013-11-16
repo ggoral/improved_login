@@ -17,11 +17,11 @@ if (isset($_POST['action'])){
 	$analitosArray = explode(",", $analitos);
 	
 	if ($_POST['action'] == 'editar'){
-		$id_decision = $_POST['id_decision'];
 		if ((!isset($_POST['id_decision']))or(!test_input($_POST['id_decision']))){
 			die ('5');	//DATOS INVALIDOS
 		}
 		else{
+			$id_decision = $_POST['id_decision'];
 			//HACE EL UPDATE
 			$decision = new Decision ();
 			$decision->setId_decision($id_decision);
