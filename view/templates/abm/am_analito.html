@@ -9,7 +9,7 @@
 	<input type="text" value="{{analito['descripcion']}}" size="50" id="descripcion" name="descripcion" required autofocus/>
 	<input type="hidden" value="{{analito['id_analito']}}" id="id_analito" name="id_analito"/>
 	<br>
-	<input class="btn" type="button" onclick="submitearAnalito('{{action}}')" value={{action}} />
+	<input class="btn" type="button" onclick="submitearFormSimple('{{action}}','analito')" value={{action}} />
 	<div id="loginError" style="display: none; background-color: red"></div>
 </form>
 </div>

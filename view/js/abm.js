@@ -1,143 +1,108 @@
-/*ANALITO*/
-function editarAnalito(id){
-	parametros = 'id_analito='+id;
-	cargarpagina('abm/am_analito.php?action=editar', parametros,'content');	
+function editarForm(id, tabla){
+	parametros = 'id_'+tabla+'='+id;
+	cargarpagina('abm/am_'+tabla+'.php?action=editar', parametros,'content');	
 }
 
-function submitearAnalito(action){
+function submitearFormSimple(action, tabla){
 	descripcion = (document.getElementById('descripcion').value);
-	id_analito = (document.getElementById('id_analito').value);
-	var error = false;
-
-	if (descripcion.trim() == ''){
+	id_elemento = (document.getElementById('id_'+tabla).value);
+	error=false;
+	if (descripcion.trim() == ''){ 
 		mensaje='Ingrese Descripcion';
-		error =  true;
+		error=true;
 	}
 	else{
-		parametros = 'action='+action+'&id_analito='+id_analito+'&descripcion='+descripcion;
-		var result = cargarpaginasinc('consultas/consultas_analito.php',parametros);
-		//result = result.charAt(result.length-1);
+
+		parametros = 'action='+action+'&id_'+tabla+'='+id_elemento+'&descripcion='+descripcion;
+		var result = cargarpaginasinc('consultas/consultas_'+tabla+'.php',parametros);
 		
-		if (result == 1){
-			mensaje='1';	
-		}
-		else{
+		switch(result)
+		{
+		case '1':
+			mensaje='1';
+			break;
+		case '2':
+			error=true;
+			mensaje='Operacion Fallida - Error al insertar elemento';	
+			break;
+		case '3':
+			error=true;
+			mensaje='Operacion Fallida - Error de Actualización';	
+			break;
+		case '4':
+			error=true;
+			mensaje='Operacion Fallida - Elemento ya existente';	
+			break;
+		case '5':
+			error=true;
+			mensaje='Operacion Fallida - Faltan Datos';	
+			break;
+		default:
+			alert(result);
+			error=true;
 			mensaje='Operacion Fallida - Error en Base de datos';	
-			error = true;
-		}
-	}
-
-	if (!error){
-		cargarpagina('tablas/controller.analito.php', 'error='+mensaje,'content','mostrarTabla();desapar();');	
-	}else{
-		aparDesapar();
-		return false;
-	}
-
-}
-/*ANALITO*/
-
-/*ROL*/
-function editarRol(id){
-	parametros = 'id_rol='+id;
-	cargarpagina('abm/am_rol.php?action=editar', parametros,'content');	
-}
-
-function submitearRol(action){
-	descripcion = (document.getElementById('descripcion').value);
-	id_rol = (document.getElementById('id_rol').value);
-	var error = false;
-
-	if (descripcion.trim() == ''){
-		mensaje='Ingrese Descripcion';
-		error =  true;
-	}
-	else{
-		parametros = 'action='+action+'&id_rol='+id_rol+'&descripcion='+descripcion;
-		var result = cargarpaginasinc('consultas/consultas_rol.php',parametros);
-		//result = result.charAt(result.length-1);
+		}	
 		
-		if (result == 1){
-			mensaje='1';	
-		}
-		else{
-			mensaje='Operacion Fallida - Error en Base de datos';
-			error = true;	
-		}
 	}
-
 	if (!error){
-		cargarpagina('tablas/controller.rol.php', 'error='+mensaje,'content','mostrarTabla();desapar();');	
+		cargarpagina('tablas/controller.'+tabla+'.php', 'error='+mensaje,'content','mostrarTabla();desapar();');	
 	}else{
 		aparDesapar();
 		return false;
 	}
 }
-/*ROL*/
 
-/*PAIS*/
-function editarPais(id){
-	parametros = 'id_pais='+id;
-	cargarpagina('abm/am_pais.php?action=editar', parametros,'content');	
-}
-
-function submitearPais(action){
+function submitearForm(action, tabla){
 	descripcion = (document.getElementById('descripcion').value);
-	id_pais = (document.getElementById('id_pais').value);
-	var error = false;
-
-	if (descripcion.trim() == ''){
+	id_elemento = (document.getElementById('id_'+tabla).value);
+	id_analitos = ($('#analito').val());	//OBTENGO TODOS LOS ID SEPARADOS POR ","
+	error=false;
+	if (descripcion.trim() == ''){ 
 		mensaje='Ingrese Descripcion';
-		error =  true;
+		error=true;
 	}
 	else{
-		parametros = 'action='+action+'&id_pais='+id_pais+'&descripcion='+descripcion;
-		var result = cargarpaginasinc('consultas/consultas_pais.php',parametros);
-		//result = result.charAt(result.length-1);
-		
-		if (result == 1){
-			mensaje='1';	
+		if (id_analitos == null){
+			mensaje='Seleccione al menos un analito';
+			error=true;
 		}
 		else{
-			mensaje='Operacion Fallida - Error en Base de datos';	
-			error =  true;
+			parametros = 'action='+action+'&id_'+tabla+'='+id_elemento+'&descripcion='+descripcion+'&analitos='+id_analitos;
+			var result = cargarpaginasinc('consultas/consultas_'+tabla+'.php',parametros);
+			
+			switch(result)
+			{
+			case '1':
+				mensaje='1';
+				break;
+			case '2':
+				error=true;
+				mensaje='Operacion Fallida - Error al insertar elemento';	
+				break;
+			case '3':
+				error=true;
+				mensaje='Operacion Fallida - Error de Actualización';	
+				break;
+			case '4':
+				error=true;
+				mensaje='Operacion Fallida - Elemento ya existente';	
+				break;
+			case '5':
+				error=true;
+				mensaje='Operacion Fallida - Complete todos los campos';	
+				break;
+			default:
+				error=true;
+				mensaje='Operacion Fallida - Error en Base de datos';	
+			}	
 		}
 	}
 	if (!error){
-		cargarpagina('tablas/controller.pais.php', 'error='+mensaje,'content','mostrarTabla();desapar();');	
+		cargarpagina('tablas/controller.'+tabla+'.php', 'error='+mensaje,'content','mostrarTabla();desapar();');	
 	}else{
 		aparDesapar();
 		return false;
 	}
 }
-/*PAIS*/
 
-/*TIPO LAB*/
-function editarTipo_lab(id){
-	alert("ID: "+id); 
-	parametros = 'id_tipo_lab='+id;
-	cargarpagina('abm/am_tipo_lab.php?action=editar', parametros,'content');	
-}
 
-function submitearTipo_lab(action){
-	descripcion = (document.getElementById('descripcion').value);
-	id_tipo_lab = (document.getElementById('id_tipo_lab').value);
-
-	if (descripcion.trim() == ''){
-		mensaje='Ingrese Descripcion';
-	}
-	else{
-		parametros = 'action='+action+'&id_tipo_lab='+id_tipo_lab+'&descripcion='+descripcion;
-		var result = cargarpaginasinc('consultas/consultas_tipo_lab.php',parametros);
-		result = result.charAt(result.length-1);
-		
-		if (result == 1){
-			mensaje='1';	
-		}
-		else{
-			mensaje='Operacion Fallida - Error en Base de datos';	
-		}
-	}
-	cargarpagina('tablas/controller.tipo_lab.php', 'error='+mensaje,'content','mostrarTabla();desapar();');	
-}
-/*TIPO LAB*/
