@@ -78,6 +78,27 @@ public static function actualizar_laboratorio($laboratorio)
     return $query;
   }
 
-
+  public static function mostrar_laboratorio()
+  {
+    $conexion = new Conexion();
+    $query = $conexion->consulta("SELECT 	id_lab,
+											cod_lab,
+											ciudad.descripcion AS ciudad, 
+											tipo_lab.descripcion AS tipo_lab
+										FROM laboratorio 	INNER JOIN ciudad ON (laboratorio.id_ciudad = ciudad.id_ciudad) 
+															INNER JOIN tipo_lab ON (laboratorio.id_tipo = tipo_lab.id_tipo)");
+    return $query;
+  }
+	public static function mostrar_datos_laboratorio($id_lab)
+	  {
+		$conexion = new Conexion();
+		$query = $conexion->consulta("SELECT 	*,
+												ciudad.descripcion AS ciudad, 
+												tipo_lab.descripcion AS tipo_lab
+											FROM laboratorio 	INNER JOIN ciudad ON (laboratorio.id_ciudad = ciudad.id_ciudad) 
+																INNER JOIN tipo_lab ON (laboratorio.id_tipo = tipo_lab.id_tipo)
+											WHERE id_lab = ?",array($id_lab));
+		return $query;
+	  }
 }
 ?>
