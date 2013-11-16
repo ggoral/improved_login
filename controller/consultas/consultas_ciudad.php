@@ -23,7 +23,7 @@ if (isset($_POST['action'])){
 		}
 		else{
 			//HACE EL UPDATE
-			$ciudad = new ciudad ();
+			$ciudad = new Ciudad ();
 			$ciudad->setId_ciudad($id_ciudad);
 			$ciudad->setDescripcion($descripcion);
 			$ciudad->setCod_postal($codPostal);
