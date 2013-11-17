@@ -10,7 +10,7 @@
 	<input type="text" value="{{usuario['username']}}" size="40" id="username" name="username" required/>
 	<br>
 	<label> Password:</label>
-	<input type="password" value="{{usuario['password']}}" size="20" id="password" name="password" required {% if rol == 1 %} disabled readonly="true" {% endif %}/>
+	<input type="password" value="{{usuario['password']}}" size="20" id="password" name="password" required/> <!--{% if rol == 1 %} disabled readonly="true" {% endif %}--> 
 	<br>
 	<label> Email:</label>
 	<input type="text" value="{{usuario['email']}}" size="40" id="email" name="email" required/>
