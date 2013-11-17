@@ -1,6 +1,6 @@
 <?php
 
-class encuesta
+class Encuesta
   {
    private $id_encuesta;
    private $fecha_inicio;

@@ -1,0 +1,30 @@
+{% block content %}
+<!--CONTENT-->
+
+<div align="center" width="100%">
+<h3>{{action|upper}}</h3>
+
+<form name="am_encuesta" id="am_encuesta" method="POST">
+	<label> Fecha de Inicio:</label>
+	<input type="date" value="{{encuesta['fecha_inicio']}}" size="50" id="fecha_inicio" name="fecha_inicio" required pattern="^[a-zA-Z0-9][a-zA-Z0-9-_\. /!$#@%*()}{';:,<>?=+]+$"/>
+	</span><br>	
+	<span>
+	<label> Fecha de Cierre:</label>
+	<input type="date" value="{{encuesta['fecha_cierre']}}" size="50" id="fecha_cierre" name="fecha_cierre" required pattern="^[a-zA-Z0-9][a-zA-Z0-9-_\. /!$#@%*()}{';:,<>?=+]+$"/>
+	</span><br>	
+		<span>
+		<label> resultado:</label>
+		<select name="resultado" id="resultado" size="1" required>
+			{% for data in id_resultado %}	
+				<option value="{{data['id_resultado']}}" {% if data['activo'] %} selected="{{data['activo']}}"{% endif %}> {{data['id_resultado']}} </option>
+			{% endfor %}
+		</select>
+		</span><br>
+	<input type="hidden" value="{{encuesta['id_encuesta']}}" id="id_encuesta" name="id_encuesta"/>
+	<br>
+	<input class="btn" type="button" onclick="submitearFormEncuesta('{{action}}', 'encuesta')" value={{action}} />
+	<div id="loginError" style="display: none; background-color: red"></div>
+</form>
+</div>
+<!--FIN CONTENT-->
+{% endblock content %}

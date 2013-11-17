@@ -1,0 +1,81 @@
+{% block content %}
+<!--CONTENT-->
+
+<div align="center" width="100%">
+<h3>INFORMACION</h3>
+
+<form name="vista_encuesta" id="vista_encuesta" method="POST">
+<div id="data" name="data">
+	<span>
+		<label> Id Encuesta:</label>
+		<label> {{encuesta['id_encuesta']}}</label>
+	</span> <br>
+
+	<span>
+		<label> Fecha Inicio:</label>
+		<label> {{encuesta['fecha_inicio']}}</label>
+	</span> <br>
+
+	<span>
+		<label> Fecha Cierre:</label>
+		<label> {{encuesta['fecha_cierre']}}</label>
+	</span> <br>
+
+	<span>
+		<label> Id Resultado:</label>
+		<label> {{encuesta['id_resultado']}}</label>
+	</span> <br>
+	
+	<span>
+		<label> Comentario:</label>
+		<label> {{encuesta['comentario']}}</label>
+	</span> <br>	
+	<span>
+		<label> Fecha de Recepción:</label>
+		<label> {{encuesta['fecha_recepcion']}}</label>
+	</span> <br>	
+	<span>
+		<label> Fecha de Análisis:</label>
+		<label> {{encuesta['fecha_analisis']}}</label>
+	</span> <br>	
+	<span>
+		<label> Fecha de Ingreso:</label>
+		<label> {{encuesta['fecha_ingreso']}}</label>
+	</span> <br>		
+	<span>
+		<label> Laboratorio:</label>
+		<label> {{encuesta['cod_lab']}}</label>
+	</span> <br>	
+	<span>
+		<label> Analito:</label>
+		<label> {{encuesta['descanalito']}}</label>
+	</span> <br>	
+	<span>
+		<label> Método:</label>
+		<label> {{encuesta['descmetodo']}}</label>
+	</span> <br>	
+	<span>
+		<label> Reactivo:</label>
+		<label> {{encuesta['descreactivo']}}</label>
+	</span> <br>	
+	<span>
+		<label> Calibrador:</label>
+		<label> {{encuesta['desccalibrador']}}</label>
+	</span> <br>	
+	<span>
+		<label> Papel de Filtro:</label>
+		<label> {{encuesta['descpapel_filtro']}}</label>
+	</span> <br>
+	<span>
+		<label> Valor de Corte:</label>
+		<label> {{encuesta['descvalor_corte']}}</label>
+	</span> <br>		
+</div>
+	<div align="left" class="btn" id="editar" name="editar" onclick="editarForm('{{encuesta['id_encuesta']}}','encuesta')">
+		<p class="titulofrm">editar</p>
+	</div>
+	
+</form>
+</div>
+<!--FIN CONTENT-->
+{% endblock content %}
