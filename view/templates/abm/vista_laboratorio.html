@@ -53,7 +53,7 @@
 	</span> <br>	
 	<span>
 		<label> Estado:</label>
-		<label> {{laboratorio['estado']}}</label>
+		<label> {% if laboratorio['estado']=='1' %} Activo {% else %} Inactivo {% endif %}</label>
 	</span> <br>	
 	<span>
 		<label> Tipo:</label>
