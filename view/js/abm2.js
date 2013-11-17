@@ -106,7 +106,6 @@ function submitearFormCiudad(action, tabla){
 					break;
 				default:
 					error=true;
-					alert(result);
 					mensaje='Operacion Fallida - Error en Base de datos';	
 				}	
 			}
@@ -176,7 +175,6 @@ function submitearFormUsuario(action, tabla){
 						break;
 					default:
 						error=true;
-						alert(result);
 						mensaje='Operacion Fallida - Error en Base de datos';	
 					}
 				}
@@ -214,69 +212,112 @@ function submitearFormLaboratorio(action, tabla){
 	responsable = (document.getElementById('responsable').value);
 	domicilio = (document.getElementById('domicilio').value);
 	domicilio_corresp = (document.getElementById('domicilio_corresp').value);
-*	email = (document.getElementById('mail').value);
-*	tel = (document.getElementById('tel').value);
-*	coordx = (document.getElementById('coord_x').value);
-*	coordy = (document.getElementById('coord_y').value);
+	email = (document.getElementById('mail').value);
+	tel = (document.getElementById('tel').value);
+	coordx = (document.getElementById('coord_x').value);
+	coordy = (document.getElementById('coord_y').value);
 	estado = (document.getElementById('estado').checked);
-	rol = ($('#tipo_lab').val());
-	rol = ($('#ciudad').val());
+	tipolab = ($('#tipo_lab').val());
+	ciudad = ($('#ciudad').val());
 	id_elemento = (document.getElementById('id_'+tabla).value);
 	
 	error=false;
 	
-	if (username.trim() == ''){ 
-		mensaje='Ingrese Nombre de Usuario';
+	if (codlab.trim() == ''){ 
+		mensaje='Ingrese Código de Laboratorio';
 		error=true;
 	}
 	else{
-		if (password.trim() == ''){ 
-			mensaje='Ingrese Contraseña';
+		if (institucion.trim() == ''){ 
+			mensaje='Ingrese Institución';
 			error=true;
 		}
 		else{
-			if (rol == null){ 
-				mensaje='Seleccione Rol de Usuario';
+			if (sector.trim() == ''){ 
+				mensaje='Ingrese Sector';
 				error=true;
 			}
-			else
-			{
-				if(!validarEmail(email)){
-					mensaje='Ingrese un mail válido';
+			else{
+				if (responsable.trim() == ''){ 
+					mensaje='Ingrese Responsable';
 					error=true;
 				}
 				else{
-				/*module*/
-					parametros = 'action='+action+'&id_'+tabla+'='+id_elemento+//acaaaaa
-					var result = cargarpaginasinc('consultas/consultas_'+tabla+'.php',parametros);
-					
-					switch(result)
-					{
-					case '1':
-						mensaje='1';
-						break;
-					case '3':
+					if (domicilio.trim() == ''){ 
+						mensaje='Ingrese Domicilio';
 						error=true;
-						mensaje='Operacion Fallida - Error de Actualización';	
-						break;
-					case '4':
-						error=true;
-						mensaje='Operacion Fallida - Laboratorio ya existente';	
-						break;
-					case '5':
-						error=true;
-						mensaje='Operacion Fallida - Complete todos los campos correctamente';	
-						break;
-					default:
-						error=true;
-						alert(result);
-						mensaje='Operacion Fallida - Error en Base de datos';	
 					}
-					
-				/*module*/
-				}
+					else{
+						if (domicilio_corresp.trim() == ''){ 
+							mensaje='Ingrese Domicilio de Correspondencia';
+							error=true;
+						}
+						else{
+							if(!validarEmail(email)){
+								mensaje='Ingrese un mail válido';
+								error=true;
+							}
+							else{
+								if(isNaN(tel)){
+									mensaje='Ingrese un telefono válido';
+									error=true;
+								}
+								else{
+									if(isNaN(coordx)){
+										mensaje='Ingrese coordenada x válida';
+										error=true;
+									}
+									else{
+										if(isNaN(coordy)){
+											mensaje='Ingrese coordenada y válida';
+											error=true;
+										}
+										else{
+											if (tipolab == null){ 
+												mensaje='Seleccione Tipo de Laboratorio';
+												error=true;
+											}
+											else{
+												if (ciudad == null){ 
+													mensaje='Seleccione Ciudad';
+													error=true;
+												}
+												else{
+													parametros = 'action='+action+'&id_'+tabla+'='+id_elemento+'&cod_lab='+codlab+'&institucion='+institucion+'&sector='+sector+'&responsable='+responsable+'&domicilio='+domicilio+'&domicilio_corresp='+domicilio_corresp+'&email='+email+'&tel='+tel+'&coord_x='+coordx+'&coord_y='+coordy+'&estado='+estado+'&tipo_lab='+tipolab+'&ciudad='+ciudad;
+													var result = cargarpaginasinc('consultas/consultas_'+tabla+'.php',parametros);
+													
+													switch(result)
+													{
+													case '1':
+														mensaje='1';
+														break;
+													case '3':
+														error=true;
+														mensaje='Operacion Fallida - Error de Actualización';	
+														break;
+													case '4':
+														error=true;
+														mensaje='Operacion Fallida - Laboratorio ya existente';	
+														break;
+													case '5':
+														error=true;
+														mensaje='Operacion Fallida - Complete todos los campos correctamente';	
+														break;
+													default:
+														error=true;
+														mensaje='Operacion Fallida - Error en Base de datos';	
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}	
+				}				
 			}
-		}	
+		}
 	}
 	if (!error){
 		cargarpagina('tablas/controller.'+tabla+'.php', 'error='+mensaje,'content','mostrarTabla();desapar();');	
