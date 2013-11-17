@@ -11,7 +11,7 @@ public static function buscar_encuesta($id_encuesta)
     $query = $conexion->consulta("SELECT * FROM encuesta WHERE id_encuesta=?",array($id_encuesta));
     $row = $query[0];
 
-    $encuesta = new encuesta();
+    $encuesta = new Encuesta();
     /*
     $encuesta->setId_encuesta($row['id_encuesta']);
     $encuesta->setfecha_inicio($row['fecha_inicio']);
@@ -102,8 +102,42 @@ public static function agregar_encuesta($fecha_inicio, $fecha_cierre, $id_result
 		return 0;
   }
 
-  
+public static function buscar_encuesta_Twig($id_encuesta)
+  {
+    $conexion = new Conexion();
+    $encuesta = $conexion->consulta_fetch("SELECT * FROM encuesta WHERE id_encuesta=?",array($id_encuesta));
+    return $encuesta;
+  }
 
+public static function buscar_encuesta_resultado_Twig($id_encuesta)
+  {
+    $conexion = new Conexion();
+    $encuesta = $conexion->consulta("SELECT *, IF(resultado.id_resultado IN (SELECT id_resultado FROM encuesta WHERE id_encuesta = ?), 'selected', '') AS activo FROM resultado",array($id_encuesta));
+    return $encuesta;
+  }
+
+public static function buscar_encuesta_Twig2($id_encuesta)
+  {
+    $conexion = new Conexion();
+    $encuesta = $conexion->consulta_fetch("SELECT id_encuesta, 
+      fecha_inicio, 
+      fecha_cierre,  
+      resultado.id_resultado, 
+      resultado.comentario, 
+      resultado.fecha_recepcion, 
+      resultado.fecha_analisis, 
+      resultado.fecha_ingreso, 
+      laboratorio.id_lab,
+      metodo.descripcion AS descmetodo,
+      reactivo.descripcion AS descreactivo,
+      calibrador.descripcion AS desccalibrador,
+      analito.descripcion AS descanalito,
+      papel_filtro.descripcion AS descpapel_filtro,
+      valor_corte.descripcion AS descvalor_corte
+      FROM encuesta INNER JOIN resultado ON encuesta.id_resultado = resultado.id_resultado INNER JOIN laboratorio ON resultado.id_lab = laboratorio.id_lab INNER JOIN metodo ON resultado.id_metodo = metodo.id_metodo INNER JOIN reactivo ON resultado.id_reactivo = reactivo.id_reactivo INNER JOIN calibrador ON calibrador.id_calibrador = resultado.id_calibrador INNER JOIN analito ON resultado.id_analito = analito.id_analito INNER JOIN papel_filtro ON resultado.id_papel_filtro = papel_filtro.id_papel_filtro INNER JOIN valor_corte ON resultado.id_valor = valor_corte.id_valor
+    WHERE id_encuesta = ?", array($id_encuesta));
+    return $encuesta;
+  }
 
 }
 ?>

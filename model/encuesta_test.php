@@ -1,7 +1,7 @@
 <?php
 require_once "encuesta.php";
 
-$encuesta = new encuesta();
+$encuesta = new Encuesta();
 
 $encuesta->setId_encuesta(6);
 echo "id_encuesta:",$encuesta->getId_encuesta(),"\n";

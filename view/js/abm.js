@@ -104,4 +104,73 @@ function submitearForm(action, tabla){
 	}
 }
 
+/*ENCUESTA*/
+function submitearFormEncuesta(action, tabla){
+	fecha_inicio = (document.getElementById('fecha_inicio').value);
+	fecha_cierre = (document.getElementById('fecha_cierre').value);
+	id_resultado = ($('#resultado').val());
+	id_elemento = (document.getElementById('id_'+tabla).value);
+	
+	error=false;
+
+	if (fecha_inicio == null){ 
+		mensaje='Seleccione Fecha De Inicio';
+		error=true;
+	}
+	else{
+		if (fecha_cierre == null){ 
+			mensaje='Seleccione Fecha de Cierre';
+			error=true;
+		}
+		else{
+			if (id_resultado== null){ 
+				mensaje='Seleccione Resultado';
+				error=true;
+			}
+			else{
+					parametros = 'action='+action+'&id_'+tabla+'='+id_elemento+'&fecha_inicio='+fecha_inicio+'&fecha_cierre='+fecha_cierre+'&id_resultado='+id_resultado;
+					
+					var result = cargarpaginasinc('consultas/consultas_'+tabla+'.php',parametros);
+
+					switch(result)
+					{
+					case '1':
+						mensaje='1';
+						break;
+					case '2':
+						error=true;
+						mensaje='Operacion Fallida - Error de creacion de Rol';	
+						break;	
+					case '3':
+						error=true;
+						mensaje='Operacion Fallida - Error de Actualización';	
+						break;
+					case '4':
+						error=true;
+						mensaje='Operacion Fallida - Laboratorio ya existente';	
+						break;
+					case '5':
+						error=true;
+						mensaje='Operacion Fallida - Complete todos los campos correctamente';	
+						break;
+					default:
+						error=true;
+						mensaje='Operacion Fallida - Error en Base de datos';	
+	
+					}
+				}
+			}
+		}	
+
+	if (!error){
+		cargarpagina('tablas/controller.'+tabla+'.php', 'error='+mensaje,'content','mostrarTabla();desapar();');	
+	}else{
+		aparDesapar();
+		return false;
+	}
+}
+/*ENCUESTA*/
+
+
+
 
