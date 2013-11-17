@@ -291,6 +291,10 @@ function submitearFormLaboratorio(action, tabla){
 													case '1':
 														mensaje='1';
 														break;
+													case '2':
+														error=true;
+														mensaje='Operacion Fallida - Error de creacion de Rol';	
+														break;	
 													case '3':
 														error=true;
 														mensaje='Operacion Fallida - Error de Actualización';	
@@ -305,6 +309,7 @@ function submitearFormLaboratorio(action, tabla){
 														break;
 													default:
 														error=true;
+														alert(result);
 														mensaje='Operacion Fallida - Error en Base de datos';	
 													}
 												}
