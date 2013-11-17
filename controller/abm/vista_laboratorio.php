@@ -8,7 +8,7 @@ $parametro_datos = ORM_laboratorio::buscar_laboratorio_Twig2($_POST['id_laborato
 
 
 $parametro_display = array(
-    'laboratorio' => $parametro_datos,
+    'laboratorio' => $parametro_datos
   );
 
 require '../controller.generico.php';

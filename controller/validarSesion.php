@@ -7,12 +7,12 @@ if(isset($_SESSION['usuarioLogeado']['rol']))
   $validar_rol = substr($_SESSION['usuarioLogeado']['rol'],0,3);
   if ( ! in_array($validar_rol,$tipo_usuario)) 
     {
-    die("Permisos Insuficientes");
+		die("Permisos Insuficientes");
     }
     else
     {
-    $idRolSesion= $_SESSION['usuarioLogeado']['rol'];
-    $idUsuarioSesion= $_SESSION['usuarioLogeado']['username'];
+		$idRolSesion= $_SESSION['usuarioLogeado']['rol'];
+		$idUsuarioSesion= $_SESSION['usuarioLogeado']['username'];
     }
   }	
 else
