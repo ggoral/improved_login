@@ -100,5 +100,37 @@ public static function actualizar_laboratorio($laboratorio)
 											WHERE id_lab = ?",array($id_lab));
 		return $query;
 	  }
+	  
+	public static function buscar_laboratorio_Twig($id_laboratorio)
+  {
+    $conexion = new Conexion();
+    $laboratorio = $conexion->consulta_fetch("SELECT * FROM laboratorio WHERE id_lab=?",array($id_laboratorio));
+    return $laboratorio;
+  }
+  
+  	public static function buscar_laboratorio_Twig2($id_laboratorio)
+  {
+    $conexion = new Conexion();
+    $laboratorio = $conexion->consulta_fetch("SELECT id_lab AS id,
+	cod_lab,
+	institucion,
+	sector,
+	responsable,
+	domicilio,
+	domicilio_corresp,
+	mail,
+	tel,
+	coord_x,
+	coord_y,
+	estado,
+	laboratorio.id_tipo,
+	laboratorio.id_ciudad,
+	ciudad.descripcion AS ciudad, 
+	tipo_lab.descripcion AS tipo_lab
+	FROM laboratorio 	INNER JOIN ciudad ON (laboratorio.id_ciudad = ciudad.id_ciudad) 
+						INNER JOIN tipo_lab ON (laboratorio.id_tipo = tipo_lab.id_tipo)
+	WHERE id_lab = ?",array($id_laboratorio));
+    return $laboratorio;
+  }
 }
 ?>

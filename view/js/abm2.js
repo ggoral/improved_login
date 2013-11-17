@@ -1,3 +1,8 @@
+function showInfo(id, tabla){
+	parametros = 'id_'+tabla+'='+id;
+	cargarpagina('abm/vista_'+tabla+'.php?action=vista', parametros,'content');	
+}
+
 function editarForm(id, tabla){
 	parametros = 'id_'+tabla+'='+id;
 	cargarpagina('abm/am_'+tabla+'.php?action=editar', parametros,'content');	
@@ -200,3 +205,86 @@ function validarEmail( email ) {
 }
 
 /*USUARIO*/
+
+/*LABORATORIO*/
+function submitearFormLaboratorio(action, tabla){
+	codlab = (document.getElementById('cod_lab').value);
+	institucion = (document.getElementById('institucion').value);
+	sector = (document.getElementById('sector').value);
+	responsable = (document.getElementById('responsable').value);
+	domicilio = (document.getElementById('domicilio').value);
+	domicilio_corresp = (document.getElementById('domicilio_corresp').value);
+*	email = (document.getElementById('mail').value);
+*	tel = (document.getElementById('tel').value);
+*	coordx = (document.getElementById('coord_x').value);
+*	coordy = (document.getElementById('coord_y').value);
+	estado = (document.getElementById('estado').checked);
+	rol = ($('#tipo_lab').val());
+	rol = ($('#ciudad').val());
+	id_elemento = (document.getElementById('id_'+tabla).value);
+	
+	error=false;
+	
+	if (username.trim() == ''){ 
+		mensaje='Ingrese Nombre de Usuario';
+		error=true;
+	}
+	else{
+		if (password.trim() == ''){ 
+			mensaje='Ingrese Contraseña';
+			error=true;
+		}
+		else{
+			if (rol == null){ 
+				mensaje='Seleccione Rol de Usuario';
+				error=true;
+			}
+			else
+			{
+				if(!validarEmail(email)){
+					mensaje='Ingrese un mail válido';
+					error=true;
+				}
+				else{
+				/*module*/
+					parametros = 'action='+action+'&id_'+tabla+'='+id_elemento+//acaaaaa
+					var result = cargarpaginasinc('consultas/consultas_'+tabla+'.php',parametros);
+					
+					switch(result)
+					{
+					case '1':
+						mensaje='1';
+						break;
+					case '3':
+						error=true;
+						mensaje='Operacion Fallida - Error de Actualización';	
+						break;
+					case '4':
+						error=true;
+						mensaje='Operacion Fallida - Laboratorio ya existente';	
+						break;
+					case '5':
+						error=true;
+						mensaje='Operacion Fallida - Complete todos los campos correctamente';	
+						break;
+					default:
+						error=true;
+						alert(result);
+						mensaje='Operacion Fallida - Error en Base de datos';	
+					}
+					
+				/*module*/
+				}
+			}
+		}	
+	}
+	if (!error){
+		cargarpagina('tablas/controller.'+tabla+'.php', 'error='+mensaje,'content','mostrarTabla();desapar();');	
+	}else{
+		aparDesapar();
+		return false;
+	}
+}
+
+/*LABORATORIO*/
+

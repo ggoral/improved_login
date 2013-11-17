@@ -4,17 +4,73 @@
 <div align="center" width="100%">
 <h3>{{action|upper}}</h3>
 
-<form name="am_laboratorio" id="am_laboratorio" action="" method="POST">
-	<label> Descripcion:</label>
-	<input type="text" value="{{laboratorio['descripcion']}}" size="50" id="descripcion" name="descripcion" required/>
-	<input type="hidden" value="{{laboratorio['id_lab']}}" id="id_lab" name="id_lab"/>
-	<br>
-	<input class="btn" type="button" onclick="submitearLaboratorio('{{action}}')" value={{action}}/>
-	<input class="btn" type="submit" value={{action}} />
-</form>
-</div>
-</form>
-</div>
+<form name="am_laboratorio" id="am_laboratorio" method="POST">
 
+	<span>
+		<label> Código:</label>
+		<input type="text" value="{{laboratorio['cod_lab']}}" size="10" id="codigo" name="codigo" required/>
+	</span> <br>	
+	<span>
+		<label> Institución:</label>
+		<input type="text" value="{{laboratorio['institucion']}}" size="15" id="institucion" name="institucion" required/>
+	</span> <br>	
+	<span>
+		<label> Sector:</label>
+		<input type="text" value="{{laboratorio['sector']}}" size="15" id="sector" name="sector" required/>
+	</span> <br>	
+	<span>
+		<label> Responsable:</label>
+		<input type="text" value="{{laboratorio['responsable']}}" size="15" id="responsable" name="responsable" required/>
+	</span> <br>		
+	<span>
+		<label> Domicilio:</label>
+		<input type="text" value="{{laboratorio['domicilio']}}" size="10" id="domicilio" name="domicilio" required/>
+	</span> <br>	
+	<span>
+		<label> Domicilio Correspondencia:</label>
+		<input type="text" value="{{laboratorio['domicilio_corresp']}}" size="10" id="domicilio_corresp" name="domicilio_corresp" required/>
+	</span> <br>	
+	<span>
+		<label> E-Mail:</label>
+		<input type="text" value="{{laboratorio['mail']}}" size="10" id="mail" name="mail" required/>
+	</span> <br>	
+	<span>
+		<label> Teléfono:</label>
+		<input type="text" value="{{laboratorio['tel']}}" size="10" id="tel" name="tel" required/>
+	</span> <br>	
+	<span>
+		<label> Coordenada X:</label>
+		<input type="text" value="{{laboratorio['coord_x']}}" size="10" id="coord_x" name="coord_x" required/>
+	</span> <br>	
+	<span>
+		<label> Coordenada Y:</label>
+		<input type="text" value="{{laboratorio['coord_y']}}" size="10" id="coord_y" name="coord_y" required/>
+	</span> <br>	
+	<span>
+		<label> Estado:</label>
+		<input type="checkbox" {% if laboratorio['estado'] == 1 %} checked{% endif %} id="estado" name="estado" required/>
+	</span> <br>	
+	<span>
+		<label> Tipo:</label>
+		<select name="tipo_lab" id="tipo_lab" size="1" required>
+			{% for data in datos_tipo_lab %}	
+				<option value="{{data['id_tipo']}}" {{data['activo']}} > {{data['descripcion']}} </option>
+			{% endfor %}
+		</select>
+	</span> <br>	
+	<span>
+		<label> Ciudad:</label>
+		<select name="ciudad" id="ciudad" size="1" required>
+			{% for data in datos_ciudad %}	
+				<option value="{{data['id_ciudad']}}" {{data['activo']}} > {{data['descripcion']}} </option>
+			{% endfor %}
+		</select>
+	</span> <br>
+	
+	<input type="hidden" value="{{laboratorio['id_lab']}}" id="id_laboratorio" name="id_laboratorio"/>
+	<input class="btn" type="button" onclick="submitearFormLaboratorio('{{action}}','laboratorio')" value={{action}} />
+	<div id="loginError" style="display: none; background-color: red"></div>
+</form>
+</div>
 <!--FIN CONTENT-->
 {% endblock content %}

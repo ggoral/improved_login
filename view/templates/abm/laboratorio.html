@@ -7,9 +7,7 @@
 </div>
 
 </div>
-<div align="right" class="btn" id="baja" name="delete" onclick="#">
-	<p class="titulofrm">borrar</p>
-</div>
+
 
 <!--TABLA-->
 <div id="divContenedor">
@@ -31,7 +29,7 @@
 			</thead>
 			<tbody>
 				{% for doc in filas %}	
-					<tr id={{doc['id_lab']}} onclick="editarLaboratorio(this.getAttribute('id'))">
+					<tr id={{doc['id_lab']}} onclick="showInfo(this.getAttribute('id'),'laboratorio')">
 						{% for field, value in doc %}	
 							<td id={{field~value}} name={{value}} >{{value}}</td>		
 						{% endfor %}
