@@ -1,6 +1,6 @@
 <?php
 
-class inscripcion
+class Inscripcion
   {
    private $id_inscripcion;
    private $fecha_ingreso;

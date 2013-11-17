@@ -1,0 +1,37 @@
+{% block content %}
+<!--CONTENT-->
+
+<div align="center" width="100%">
+<h3>{{action|upper}}</h3>
+
+<form name="am_inscripcion" id="am_inscripcion" method="POST">
+	
+	
+	
+	{% if action == 'alta' %}
+	<label> Nro y Fecha de Encuesta:</label>
+	<select name="encuesta" id="encuesta" size="1" required>
+		{% for data in datos_extra %}	
+			<option value="{{data['id_encuesta']}}" {{data['activo']}}> Nro{{data['id_encuesta']}}~Fecha~{{data['fecha_inicio']}} </option>
+		{% endfor %}
+	</select>
+	{% else %}
+		<label> Encuesta:</label>
+		{% for data in datos_extra %}	
+			{% if data['activo']=='selected' %}
+				<input type="text" disabled readonly value="{{data['id_encuesta']}}" id="encuesta" name="encuesta"/>
+			{% endif %}
+		{% endfor %}
+
+	{% endif %}
+	<input type="hidden" value="{{inscripcion['laboratorio_id_lab']}}" id="laboratorio_id_lab" name="laboratorio_id_lab"/>
+	<input type="hidden" value="{{inscripcion['fecha_ingreso']}}" id="fecha_ingreso" name="fecha_ingreso"/>	
+	<input type="hidden" value="{{inscripcion['fecha_baja']}}" id="fecha_baja" name="fecha_baja"/>
+	<input type="hidden" value="{{inscripcion['id_inscripcion']}}" id="id_inscripcion" name="id_inscripcion"/>
+	<br>
+	<input class="btn" type="button" onclick="submitearInscripcion('{{action}}','inscripcion')" value={{action}} />
+	<div id="loginError" style="display: none; background-color: red"></div>
+</form>
+</div>
+<!--FIN CONTENT-->
+{% endblock content %}

@@ -199,5 +199,11 @@ public static function buscar_resultado_Twig_Tabla()
     return $resultado;
   }
 
+   public static function buscar_analito_resultado($id_resultado)
+  {
+    $conexion = new Conexion();
+    $resultado = $conexion->consulta_fetch("SELECT id_analito FROM resultado WHERE id_resultado = ?", array($id_resultado));
+    return $resultado;
+  }
 }
 ?>

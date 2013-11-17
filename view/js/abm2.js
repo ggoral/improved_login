@@ -8,6 +8,11 @@ function editarForm(id, tabla){
 	cargarpagina('abm/am_'+tabla+'.php?action=editar', parametros,'content');	
 }
 
+function editarFormInsc(id, tabla){
+	parametros = 'id_'+tabla+'='+id;
+	cargarpagina('abm/am_'+tabla+'.php?action=desinscripcion', parametros,'content');	
+}
+
 
 function submitearForm(action, tabla){
 	descripcion = (document.getElementById('descripcion').value);
@@ -440,3 +445,59 @@ function submitearFormResultado(action, tabla){
 	}
 }
 /*RESULTADOS*/
+/*INSCRIPCION*/
+
+function submitearInscripcion(action, tabla){
+	fecha_ingreso = (document.getElementById('fecha_ingreso').value);
+	laboratorio = (document.getElementById('laboratorio_id_lab').value);
+	fecha_baja = (document.getElementById('fecha_baja').value);
+	id_elemento = (document.getElementById('id_'+tabla).value);
+	
+	if (action == 'alta'){	
+		encuesta = ($('#encuesta').val());
+	}
+	else{
+		encuesta = (document.getElementById('encuesta').value);
+	}
+
+	error=false;
+	if (encuesta == null){
+		mensaje='Seleccione una Encuesta';
+		error=true;
+	}
+	else{
+		parametros = 'action='+action+'&id_'+tabla+'='+id_elemento+'&fecha_ingreso='+fecha_ingreso+'&fecha_baja='+fecha_baja+'&laboratorio_id_lab='+laboratorio+'&id_encuesta='+encuesta;
+		var result = cargarpaginasinc('consultas/consultas_'+tabla+'.php',parametros);
+		
+		switch(result)
+		{
+		case '1':
+			mensaje='1';
+			break;
+		case '3':
+			error=true;
+			mensaje='Operacion Fallida - Error de Actualización';	
+			break;
+		case '4':
+			error=true;
+			mensaje='Operacion Fallida - Elemento ya existente';	
+			break;
+		case '5':
+			error=true;
+			mensaje='Operacion Fallida - Complete todos los campos correctamente';	
+			break;
+		default:
+			error=true;
+			alert(result);
+			mensaje='Operacion Fallida - Error en Base de datos';	
+		}	
+	}
+	
+	if (!error){
+		cargarpagina('tablas/controller.'+tabla+'.php', 'error='+mensaje,'content','mostrarTabla();desapar();');	
+	}else{
+		aparDesapar();
+		return false;
+	}
+}
+/*INSCRIPCION*/
