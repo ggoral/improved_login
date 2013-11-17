@@ -8,43 +8,43 @@
 
 	<span>
 		<label> Código:</label>
-		<input type="text" value="{{laboratorio['cod_lab']}}" size="10" id="cod_lab" name="cod_lab" {% if perfil == 'FBA' %} readonly="true" {% endif %} required/>
+		<input type="text" value="{{laboratorio['cod_lab']}}" size="10" id="cod_lab" name="cod_lab" {% if perfil == 'FBA' %} disabled {% endif %} required/>
 	</span> <br>	
 	<span>
 		<label> Institución:</label>
-		<input type="text" value="{{laboratorio['institucion']}}" size="15" id="institucion" name="institucion" {% if perfil == 'FBA' %} readonly="true" {% endif %}  required/>
+		<input type="text" value="{{laboratorio['institucion']}}" size="15" id="institucion" name="institucion" {% if perfil == 'FBA' %} disabled {% endif %}  required/>
 	</span> <br>	
 	<span>
 		<label> Sector:</label>
-		<input type="text" value="{{laboratorio['sector']}}" size="15" id="sector" name="sector" {% if perfil == 'FBA' %} readonly="true" {% endif %}  required/>
+		<input type="text" value="{{laboratorio['sector']}}" size="15" id="sector" name="sector" {% if perfil == 'FBA' %} disabled {% endif %}  required/>
 	</span> <br>	
 	<span>
 		<label> Responsable:</label>
-		<input type="text" value="{{laboratorio['responsable']}}" size="15" id="responsable" name="responsable" {% if perfil == 'FBA' %} readonly="true" {% endif %}  required/>
+		<input type="text" value="{{laboratorio['responsable']}}" size="15" id="responsable" name="responsable" {% if perfil == 'FBA' %} disabled {% endif %}  required/>
 	</span> <br>		
 	<span>
 		<label> Domicilio:</label>
-		<input type="text" value="{{laboratorio['domicilio']}}" size="10" id="domicilio" name="domicilio" {% if perfil == 'FBA' %} readonly="true" {% endif %}  required/>
+		<input type="text" value="{{laboratorio['domicilio']}}" size="10" id="domicilio" name="domicilio" {% if perfil == 'FBA' %} disabled {% endif %}  required/>
 	</span> <br>	
 	<span>
 		<label> Domicilio Correspondencia:</label>
-		<input type="text" value="{{laboratorio['domicilio_corresp']}}" size="10" id="domicilio_corresp" name="domicilio_corresp" {% if perfil == 'FBA' %} readonly="true" {% endif %}  required/>
+		<input type="text" value="{{laboratorio['domicilio_corresp']}}" size="10" id="domicilio_corresp" name="domicilio_corresp" {% if perfil == 'FBA' %} disabled {% endif %}  required/>
 	</span> <br>	
 	<span>
 		<label> E-Mail:</label>
-		<input type="text" value="{{laboratorio['mail']}}" size="10" id="mail" name="mail" {% if perfil == 'FBA' %} readonly="true" {% endif %}  required/>
+		<input type="text" value="{{laboratorio['mail']}}" size="10" id="mail" name="mail" {% if perfil == 'FBA' %} disabled {% endif %}  required/>
 	</span> <br>	
 	<span>
 		<label> Teléfono:</label>
-		<input type="text" value="{{laboratorio['tel']}}" size="10" id="tel" name="tel" {% if perfil == 'FBA' %} readonly="true" {% endif %}  required/>
+		<input type="text" value="{{laboratorio['tel']}}" size="10" id="tel" name="tel" {% if perfil == 'FBA' %} disabled {% endif %}  required/>
 	</span> <br>	
 	<span>
 		<label> Coordenada X:</label>
-		<input type="text" value="{{laboratorio['coord_x']}}" size="10" id="coord_x" name="coord_x" {% if perfil == 'FBA' %} readonly="true" {% endif %}  required/>
+		<input type="text" value="{{laboratorio['coord_x']}}" size="10" id="coord_x" name="coord_x" {% if perfil == 'FBA' %} disabled {% endif %}  required/>
 	</span> <br>	
 	<span>
 		<label> Coordenada Y:</label>
-		<input type="text" value="{{laboratorio['coord_y']}}" size="10" id="coord_y" name="coord_y" {% if perfil == 'FBA' %} readonly="true" {% endif %}  required/>
+		<input type="text" value="{{laboratorio['coord_y']}}" size="10" id="coord_y" name="coord_y" {% if perfil == 'FBA' %} disabled {% endif %}  required/>
 	</span> <br>	
 	<span>
 		<label> Activo:</label>
@@ -52,7 +52,7 @@
 	</span> <br>	
 	<span>
 		<label> Tipo:</label>
-		<select name="tipo_lab" id="tipo_lab" size="1" {% if perfil == 'FBA' %} readonly="true" {% endif %}  required>
+		<select name="tipo_lab" id="tipo_lab" size="1" {% if perfil == 'FBA' %} disabled {% endif %}  required>
 			{% for data in datos_tipo_lab %}	
 				<option value="{{data['id_tipo']}}" {{data['activo']}} > {{data['descripcion']}} </option>
 			{% endfor %}
@@ -60,7 +60,7 @@
 	</span> <br>	
 	<span>
 		<label> Ciudad:</label>
-		<select name="ciudad" id="ciudad" size="1" {% if perfil == 'FBA' %} readonly="true" {% endif %}  required>
+		<select name="ciudad" id="ciudad" size="1" {% if perfil == 'FBA' %} disabled {% endif %}  required>
 			{% for data in datos_ciudad %}	
 				<option value="{{data['id_ciudad']}}" {{data['activo']}} > {{data['descripcion']}} </option>
 			{% endfor %}
