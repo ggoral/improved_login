@@ -1,0 +1,74 @@
+{% block content %}
+<!--CONTENT-->
+
+<div align="center" width="100%">
+<h3>INFORMACION</h3>
+
+<form name="vista_laboratorio" id="vista_laboratorio" method="POST">
+<div id="data" name="data">
+	<span>
+		<label> Id Laboratorio:</label>
+		<label> {{laboratorio['id']}}</label>
+	</span> <br>
+	
+	<span>
+		<label> Código:</label>
+		<label> {{laboratorio['cod_lab']}}</label>
+	</span> <br>	
+	<span>
+		<label> Institución:</label>
+		<label> {{laboratorio['institucion']}}</label>
+	</span> <br>	
+	<span>
+		<label> Sector:</label>
+		<label> {{laboratorio['sector']}}</label>
+	</span> <br>	
+	<span>
+		<label> Responsable:</label>
+		<label> {{laboratorio['responsable']}}</label>
+	</span> <br>		
+	<span>
+		<label> Domicilio:</label>
+		<label> {{laboratorio['domicilio']}}</label>
+	</span> <br>	
+	<span>
+		<label> Domicilio Correspondencia:</label>
+		<label> {{laboratorio['domicilio_corresp']}}</label>
+	</span> <br>	
+	<span>
+		<label> E-Mail:</label>
+		<label> {{laboratorio['mail']}}</label>
+	</span> <br>	
+	<span>
+		<label> Teléfono:</label>
+		<label> {{laboratorio['tel']}}</label>
+	</span> <br>	
+	<span>
+		<label> Coordenada X:</label>
+		<label> {{laboratorio['coord_x']}}</label>
+	</span> <br>	
+	<span>
+		<label> Coordenada Y:</label>
+		<label> {{laboratorio['coord_y']}}</label>
+	</span> <br>	
+	<span>
+		<label> Estado:</label>
+		<label> {{laboratorio['estado']}}</label>
+	</span> <br>	
+	<span>
+		<label> Tipo:</label>
+		<label> {{laboratorio['tipo_lab']}}</label>
+	</span> <br>	
+	<span>
+		<label> Ciudad:</label>
+		<label> {{laboratorio['ciudad']}}</label>
+	</span> <br>	
+</div>
+	<div align="left" class="btn" id="editar" name="editar" onclick="editarForm('{{laboratorio['id']}}','laboratorio')">
+		<p class="titulofrm">editar</p>
+	</div>
+	
+</form>
+</div>
+<!--FIN CONTENT-->
+{% endblock content %}

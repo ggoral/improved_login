@@ -111,9 +111,15 @@ public static function agregar_ciudad($descripcion, $cod_postal, $id_pais)
     public static function buscar_pais_ciudad_Twig($id_ciudad)
   {
     $conexion = new Conexion();
-    $calibrador = $conexion->consulta("SELECT *, IF(pais.id_pais IN (SELECT id_pais FROM ciudad WHERE id_ciudad = ?), 'selected', '') AS activo FROM pais",array($id_ciudad));
-    return $calibrador;
+    $ciudad = $conexion->consulta("SELECT *, IF(pais.id_pais IN (SELECT id_pais FROM ciudad WHERE id_ciudad = ?), 'selected', '') AS activo FROM pais",array($id_ciudad));
+    return $ciudad;
   }
 
+    public static function buscar_lab_ciudad_Twig($id_lab)
+  {
+    $conexion = new Conexion();
+    $ciudad = $conexion->consulta("SELECT *, IF(ciudad.id_ciudad IN (SELECT laboratorio.id_ciudad FROM laboratorio WHERE id_lab = ?), 'selected', '') AS activo FROM ciudad",array($id_lab));
+    return $ciudad;
+  }
 }
 ?>

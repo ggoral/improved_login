@@ -72,6 +72,13 @@ public static function buscar_tipo_lab_Twig($id_tipo_lab)
     $tipo_lab = $conexion->consulta_fetch("SELECT * FROM tipo_lab WHERE id_tipo=?",array($id_tipo_lab));
     return $tipo_lab;
   }
+  
+  public static function buscar_tipo_lab_Twig2($id_tipo_lab)
+  {
+    $conexion = new Conexion();
+    $tipo_lab = $conexion->consulta("SELECT *, IF(tipo_lab.id_tipo IN (SELECT id_tipo FROM laboratorio WHERE id_lab = ?), 'selected', '') AS activo FROM tipo_lab",array($id_tipo_lab));
+    return $tipo_lab;
+  }
 
 }
 ?>
