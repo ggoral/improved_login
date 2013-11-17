@@ -1,6 +1,8 @@
 <?php
 //DRY don't repeat yourself
+$tipo_usuario = array('Adm','FBA');
 
+require_once '../validarSesion.php';
 require_once '../../model/laboratorio_interface.php';
 require_once '../../model/ciudad_interface.php';
 require_once '../../model/tipo_lab_interface.php';
@@ -8,7 +10,7 @@ require_once '../../model/tipo_lab_interface.php';
 $laboratorio = array();
 $datos_ciudad = ORM_ciudad::obtener_todos_ciudad();
 $datos_tipo_lab = ORM_tipo_lab::obtener_todos_tipo_lab();
-
+$perfil = $_SESSION['usuarioLogeado']['rol'];
 
 if ($_GET['action'] == 'editar'){
 	$laboratorio = ORM_laboratorio::buscar_laboratorio_Twig($_POST['id_laboratorio']);
@@ -21,7 +23,8 @@ $parametro_display = array(
 	'action' => $_GET['action'],
 	'laboratorio' => $laboratorio,
 	'datos_ciudad' => $datos_ciudad,
-	'datos_tipo_lab' => $datos_tipo_lab
+	'datos_tipo_lab' => $datos_tipo_lab,
+	'perfil' => $perfil
 );
 
 $parametro_template = 'abm/am_laboratorio.html';

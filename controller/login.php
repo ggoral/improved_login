@@ -37,7 +37,11 @@ try {
 				$filaRol = ORM_rol::buscar_rol($idRolUsuario);
 				$descripcionRol = $filaRol->getDescripcion();
 
-				$menuPerfil = ORM_menu::buscar_menu_perfil($descripcionRol);
+				$perfil = $descripcionRol;
+				if (($descripcionRol != 'Administrador')and($descripcionRol != 'FBA'))
+					$perfil = str_replace($descripcionRol,'Laboratorio',$perfil);
+				
+				$menuPerfil = ORM_menu::buscar_menu_perfil($perfil);
 				$destino = $menuPerfil[0]['destino'];//segun su perfil/rol le setea el destino de la vista
 
 				$_SESSION['usuarioLogeado']['username'] = $usuarioLogeado->getUsername();
