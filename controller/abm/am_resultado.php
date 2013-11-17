@@ -1,11 +1,5 @@
 <?php
 //DRY don't repeat yourself
-function normalize_date($date){   
-	if(!empty($date)){ 
-		$var = explode('/',str_replace('-','/',$date)); 
-		return "$var[2]/$var[1]/$var[0]";		
-	}   
-}
 
 require_once '../../model/resultado_interface.php';
 require_once '../../model/laboratorio_interface.php';
@@ -28,7 +22,7 @@ $valor_corte = 1;
 
 if ($_GET['action'] == 'editar'){
 
-  $resultado = ORM_resultado::buscar_resultado_Twig($_POST['id_resultado']);
+  $resultado = ORM_resultado::buscar_resultado_Twig2($_POST['id_resultado']);
   $laboratorio = ORM_resultado::buscar_resultado_laboratorio_Twig($_POST['id_resultado']);
   $metodo = ORM_resultado::buscar_resultado_metodo_Twig($_POST['id_resultado']);
   $reactivo = ORM_resultado::buscar_resultado_reactivo_Twig($_POST['id_resultado']);

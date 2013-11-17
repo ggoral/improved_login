@@ -32,6 +32,7 @@
 		<span>
 		<label> Analito:</label>
 		<select name="analito" id="analito" size="1" required onload="changeSelectAnalito()" onchange="changeSelectAnalito()">
+				<option></option>
 			{% for data in analito %}	
 				<option value="{{data['id_analito']}}" {% if data['activo'] %} selected="{{data['activo']}}"{% endif %}> {{data['descripcion']}} </option>
 			{% endfor %}
@@ -77,7 +78,7 @@
 		<label> Valor de Corte:</label>
 		<select name="valor_corte" id="valor_corte" size="1" required>
 			{% for data in valor_corte %}	
-				<option value="{{data['id_valor_corte']}}" {% if data['activo'] %} selected="{{data['activo']}}"{% endif %}> {{data['descripcion']}} </option>
+				<option value="{{data['id_valor']}}" {% if data['activo'] %} selected="{{data['activo']}}"{% endif %}> {{data['descripcion']}} </option>
 			{% endfor %}
 		</select>
 		</span><br>
