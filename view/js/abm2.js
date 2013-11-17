@@ -307,6 +307,10 @@ function submitearFormLaboratorio(action, tabla){
 														error=true;
 														mensaje='Operacion Fallida - Complete todos los campos correctamente';	
 														break;
+													case '6':
+														error=true;
+														mensaje='Operacion Fallida - Fechas Incorrectas';	
+														break;
 													default:
 														error=true;
 														alert(result);
@@ -349,57 +353,54 @@ function submitearFormResultado(action, tabla){
 	fecha_recepcion = (document.getElementById('fecha_recepcion').value);
 	fecha_analisis = (document.getElementById('fecha_analisis').value);
 	fecha_ingreso = (document.getElementById('fecha_ingreso').value);
-	id_lab = ($('#id_lab').val());
-	id_metodo = ($('#id_metodo').val());
-	id_reactivo = ($('#id_reactivo').val());
-	id_calibrador = ($('#id_calibrador').val());
-	id_analito = ($('#id_analito').val());
-	id_papel_filtro = ($('#id_papel_filtro').val());
-	id_valor_corte = ($('#id_valor_corte').val());
+	id_lab = ($('#laboratorio').val());
+	id_metodo = ($('#metodo').val());
+	id_reactivo = ($('#reactivo').val());
+	id_calibrador = ($('#calibrador').val());
+	id_analito = ($('#analito').val());
+	id_papel_filtro = ($('#papel_filtro').val());
+	id_valor_corte = ($('#valor_corte').val());
 	id_elemento = (document.getElementById('id_'+tabla).value);
-	
+
 	error=false;
-	parametros = 'action='+action+'&id_'+tabla+'='+id_elemento+'&comentario='+comentario+'&fecha_recepcion='+fecha_recepcion+'&fecha_ingreso='+fecha_ingreso+'&fecha_analisis='+fecha_analisis+'&id_lab='+id_lab+'&id_analito='+id_analito+'&id_metodo='+id_metodo+'&id_reactivo='+id_reactivo+'&id_calibrador='+id_calibrador+'&id_papel_filtro='+id_papel_filtro+'&id_valor_corte='+id_valor_corte;
-	alert(parametros);
-	return false;
+
 	if (id_lab == null){ 
 		mensaje='Seleccione Tipo de Laboratorio';
 		error=true;
 	}
 	else{
-		if (id_analito == null){ 
-			mensaje='Seleccione Tipo de Laboratorio';
+		if ((id_analito == null)||(id_analito.trim() == '')){ 
+			mensaje='Seleccione Analito';
 			error=true;
 		}
 		else{
 			if (id_metodo == null){ 
-				mensaje='Seleccione Tipo de Laboratorio';
+				mensaje='Seleccione Método';
 				error=true;
 			}
 			else{
 				if (id_reactivo == null){ 
-					mensaje='Seleccione Tipo de Laboratorio';
+					mensaje='Seleccione Reactivo';
 					error=true;
 				}
 				else{
 					if (id_calibrador == null){ 
-						mensaje='Seleccione Tipo de Laboratorio';
+						mensaje='Seleccione Calibrador';
 						error=true;
 					}
 					else{
 						if (id_papel_filtro == null){ 
-							mensaje='Seleccione Tipo de Laboratorio';
+							mensaje='Seleccione Papel de Filtro';
 							error=true;
 						}
 						else{
 							if (id_valor_corte == null){ 
-								mensaje='Seleccione Tipo de Laboratorio';
+								mensaje='Seleccione Valor de Corte';
 								error=true;
 							}
 							else{
-								parametros = 'action='+action+'&id_'+tabla+'='+id_elemento+'&comentario='+comentario+'&fecha_recepcion='+fecha_recepcion+'&fecha_ingreso='+fecha_ingreso+'&fecha_analisis='+fecha_analisis+'&id_lab='+id_lab+'&id_analito='+id_analito+'&id_metodo='+id_metodo+'&id_reacitvo='+id_reacitvo+'&id_calibrador='+id_calibrador+'&id_papel_filtro='+id_papel_filtro+'&id_valor_corte='+id_valor_corte;
+								parametros = 'action='+action+'&id_'+tabla+'='+id_elemento+'&comentario='+comentario+'&fecha_recepcion='+fecha_recepcion+'&fecha_ingreso='+fecha_ingreso+'&fecha_analisis='+fecha_analisis+'&id_lab='+id_lab+'&id_analito='+id_analito+'&id_metodo='+id_metodo+'&id_reactivo='+id_reactivo+'&id_calibrador='+id_calibrador+'&id_papel_filtro='+id_papel_filtro+'&id_valor_corte='+id_valor_corte;
 								
-								alert(parametros);return false;
 								var result = cargarpaginasinc('consultas/consultas_'+tabla+'.php',parametros);
 
 								switch(result)
