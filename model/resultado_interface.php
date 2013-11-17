@@ -78,7 +78,7 @@ public static function actualizar_resultado($resultado)
                     $resultado->getId_analito(),
                     $resultado->getId_papel_filtro(),
                     $resultado->getId_valor(),
-                    $resultado->getid_resultado());
+                    $resultado->getId_resultado());
     $query = $conexion->consulta_row($sql_update,$campos);
     return $query;
   }
