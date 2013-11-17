@@ -102,8 +102,19 @@ public static function agregar_encuesta($fecha_inicio, $fecha_cierre, $id_result
 		return 0;
   }
 
-  
+public static function buscar_encuesta_Twig($id_encuesta)
+  {
+    $conexion = new Conexion();
+    $encuesta = $conexion->consulta_fetch("SELECT * FROM encuesta WHERE id_encuesta=?",array($id_encuesta));
+    return $encuesta;
+  }
 
+public static function buscar_encuesta_resultado_Twig($id_encuesta)
+  {
+    $conexion = new Conexion();
+    $encuesta = $conexion->consulta("SELECT *, IF(resultado.id_resultado IN (SELECT id_resultado FROM encuesta WHERE id_encuesta = ?), 'selected', '') AS activo FROM resultado",array($id_encuesta));
+    return $encuesta;
+  }
 
 }
 ?>

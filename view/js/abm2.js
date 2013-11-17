@@ -443,3 +443,63 @@ function submitearFormResultado(action, tabla){
 	}
 }
 /*RESULTADOS*/
+/*ENCUESTA*/
+function submitearEncuesta(action){
+	
+	error=false;
+	
+	if (document.getElementById('id_resultado').value == null){ 
+		mensaje='Seleccione al menos un resultado';
+		error=true;
+	}
+	else{
+		id_resultado = (document.getElementById('id_resultado').value);
+		if ((document.getElementById('fecha_inicio').value); == null){
+			mensaje='Seleccione al menos una fecha inicio';
+			error=true;
+		}
+		else{
+			fecha_inicio = (document.getElementById('fecha_inicio').value);
+			if ((document.getElementById('fecha_cierre').value); == null){
+				mensaje='Seleccione al menos una fecha cierre';
+				error=true;
+			}else{
+				fecha_cierre = (document.getElementById('fecha_cierre').value);
+				parametros = 'action='+action+'&fecha_inicio='+fecha_inicio+'&fecha_cierre='+fecha_cierre+'&resultado='+id_resultado;
+				var result = cargarpaginasinc('consultas/consultas_encuesta.php',parametros);
+			}
+			switch(result)
+			{
+			case '1':
+				mensaje='1';
+				break;
+			case '2':
+				error=true;
+				mensaje='Operacion Fallida - Error al insertar elemento';	
+				break;
+			case '3':
+				error=true;
+				mensaje='Operacion Fallida - Error de Actualización';	
+				break;
+			case '4':
+				error=true;
+				mensaje='Operacion Fallida - Elemento ya existente';	
+				break;
+			case '5':
+				error=true;
+				mensaje='Operacion Fallida - Complete todos los campos';	
+				break;
+			default:
+				error=true;
+				mensaje='Operacion Fallida - Error en Base de datos';	
+			}	
+		}
+	}
+	if (!error){
+		cargarpagina('tablas/controller.encuesta.php', 'error='+mensaje,'content','mostrarTabla();desapar();');	
+	}else{
+		aparDesapar();
+		return false;
+	}
+}
+/*ENCUESTA*/
