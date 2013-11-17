@@ -113,6 +113,13 @@ public static function actualizar_papel_filtro($valor)
 	}
 	return 1;
   }
+  
+    public static function obtener_todos_papel_filtro_analito($id_analito)
+  {
+    $conexion = new Conexion();
+    $query = $conexion->consulta("SELECT * FROM papel_filtro INNER JOIN analito_papel_filtro ON (analito_papel_filtro.id_papel_filtro= papel_filtro.id_papel_filtro) WHERE id_analito = ?",array($id_analito));
+    return $query;
+  }
 
 }
 ?>

@@ -111,6 +111,13 @@ public static function actualizar_interpretacion($interpretacion)
 	}
 	return 1;
   }
+  
+    public static function obtener_todos_interpretacion_analito($id_analito)
+  {
+    $conexion = new Conexion();
+    $query = $conexion->consulta("SELECT * FROM interpretacion INNER JOIN analito_interpretacion ON (analito_interpretacion.id_interpretacion= interpretacion.id_interpretacion) WHERE id_analito = ?",array($id_analito));
+    return $query;
+  }
 
 }
 ?>

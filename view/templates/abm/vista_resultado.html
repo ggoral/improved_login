@@ -1,0 +1,66 @@
+{% block content %}
+<!--CONTENT-->
+
+<div align="center" width="100%">
+<h3>INFORMACION</h3>
+
+<form name="vista_resultado" id="vista_resultado" method="POST">
+<div id="data" name="data">
+	<span>
+		<label> Id Resultado:</label>
+		<label> {{resultado['id_resultado']}}</label>
+	</span> <br>
+	
+	<span>
+		<label> Comentario:</label>
+		<label> {{resultado['comentario']}}</label>
+	</span> <br>	
+	<span>
+		<label> Fecha de Recepción:</label>
+		<label> {{resultado['fecha_recepcion']}}</label>
+	</span> <br>	
+	<span>
+		<label> Fecha de Análisis:</label>
+		<label> {{resultado['fecha_analisis']}}</label>
+	</span> <br>	
+	<span>
+		<label> Fecha de Ingreso:</label>
+		<label> {{resultado['fecha_ingreso']}}</label>
+	</span> <br>		
+	<span>
+		<label> Laboratorio:</label>
+		<label> {{resultado['cod_lab']}}</label>
+	</span> <br>	
+	<span>
+		<label> Analito:</label>
+		<label> {{resultado['descanalito']}}</label>
+	</span> <br>	
+	<span>
+		<label> Método:</label>
+		<label> {{resultado['descmetodo']}}</label>
+	</span> <br>	
+	<span>
+		<label> Reactivo:</label>
+		<label> {{resultado['descreactivo']}}</label>
+	</span> <br>	
+	<span>
+		<label> Calibrador:</label>
+		<label> {{resultado['desccalibrador']}}</label>
+	</span> <br>	
+	<span>
+		<label> Papel de Filtro:</label>
+		<label> {{resultado['descpapel_filtro']}}</label>
+	</span> <br>
+	<span>
+		<label> Valor de Corte:</label>
+		<label> {{resultado['descvalor_corte']}}</label>
+	</span> <br>		
+</div>
+	<div align="left" class="btn" id="editar" name="editar" onclick="editarForm('{{resultado['id_resultado']}}','resultado')">
+		<p class="titulofrm">editar</p>
+	</div>
+	
+</form>
+</div>
+<!--FIN CONTENT-->
+{% endblock content %}

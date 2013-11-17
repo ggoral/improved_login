@@ -112,6 +112,14 @@ public static function actualizar_reactivo($reactivo)
 	}
 	return 1;
   }	
+  
+    public static function obtener_todos_reactivo_analito($id_analito)
+  {
+    $conexion = new Conexion();
+    $query = $conexion->consulta("SELECT * FROM reactivo INNER JOIN analito_reactivo ON (analito_reactivo.id_reactivo= reactivo.id_reactivo) WHERE id_analito = ?",array($id_analito));
+    return $query;
+  }
 
+  
 }
 ?>

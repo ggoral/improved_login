@@ -113,6 +113,13 @@ public static function actualizar_calibrador($calibrador)
 	}
 	return 1;
   }
+  
+  public static function obtener_todos_calibrador_analito($id_analito)
+  {
+    $conexion = new Conexion();
+    $query = $conexion->consulta("SELECT * FROM calibrador INNER JOIN analito_calibrador ON (analito_calibrador.id_calibrador= calibrador.id_calibrador) WHERE id_analito = ?",array($id_analito));
+    return $query;
+  }
 
 }
 ?>

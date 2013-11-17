@@ -113,5 +113,12 @@ public static function combinar_metodo_analito($descripcion, $id_analito)
 	}
 	return 1;
   }
+  
+    public static function obtener_todos_metodo_analito($id_analito)
+  {
+    $conexion = new Conexion();
+    $query = $conexion->consulta("SELECT * FROM metodo INNER JOIN analito_metodo ON (analito_metodo.id_metodo= metodo.id_metodo) WHERE id_analito = ?",array($id_analito));
+    return $query;
+  }
 }
 ?>

@@ -5,48 +5,91 @@
 <h3>{{action|upper}}</h3>
 
 <form name="am_resultado" id="am_resultado" method="POST">
-	<label> Descripción:</label>
-	<input type="text" value="{{resultado['descripcion']}}" size="50" id="descripcion" name="descripcion" required pattern="^[a-zA-Z0-9][a-zA-Z0-9-_\. /!$#@%*()}{';:,<>?=+]+$"/>
-
-		<select name="laboratorio" id="laboratorio" size="7" multiple required>
+	<span>
+	<label> Comentario:</label>
+	<input type="text" value="{{resultado['comentario']}}" size="50" id="comentario" name="comentario" required pattern="^[a-zA-Z0-9][a-zA-Z0-9-_\. /!$#@%*()}{';:,<>?=+]+$"/>
+	</span><br>	
+	<span>
+	<label> Fecha de Recepción:</label>
+	<input type="date" value="{{resultado['fecha_recepcion']}}" size="50" id="fecha_recepcion" name="fecha_recepcion" required pattern="^[a-zA-Z0-9][a-zA-Z0-9-_\. /!$#@%*()}{';:,<>?=+]+$"/>
+	</span><br>	
+	<span>
+	<label> Fecha de Análisis:</label>
+	<input type="date" value="{{resultado['fecha_analisis']}}" size="50" id="fecha_analisis" name="fecha_analisis" required pattern="^[a-zA-Z0-9][a-zA-Z0-9-_\. /!$#@%*()}{';:,<>?=+]+$"/>
+	</span><br>	
+	<span>
+	<label> Fecha de Ingreso:</label>
+	<input type="date" value="{{resultado['fecha_ingreso']}}" size="50" id="fecha_ingreso" name="fecha_ingreso" required pattern="^[a-zA-Z0-9][a-zA-Z0-9-_\. /!$#@%*()}{';:,<>?=+]+$"/>
+	</span><br>	
+		<span>
+		<label> Laboratorio:</label>
+		<select name="laboratorio" id="laboratorio" size="1" required>
 			{% for data in laboratorio %}	
-				<option value="{{data['id_lab']}}" {{data['activo']}}> {{data['cod_lab']}} </option>
+				<option value="{{data['id_lab']}}" {% if data['activo'] %} selected="{{data['activo']}}"{% endif %}> {{data['cod_lab']}} </option>
 			{% endfor %}
 		</select>
-		<select name="metodo" id="metodo" size="7" multiple required>
-			{% for data in metodo %}	
-				<option value="{{data['id_metodo']}}" {{data['activo']}}> {{data['descripcion']}} </option>
-			{% endfor %}
-		</select>
-		<select name="reactivo" id="reactivo" size="7" multiple required>
-			{% for data in reactivo %}	
-				<option value="{{data['id_reactivo']}}" {{data['activo']}}> {{data['descripcion']}} </option>
-			{% endfor %}
-		</select>
-		<select name="calibrador" id="calibrador" size="7" multiple required>
-			{% for data in calibrador%}	
-				<option value="{{data['id_calibrador']}}" {{data['activo']}}> {{data['descripcion']}} </option>
-			{% endfor %}
-		</select>
-		<select name="analito" id="analito" size="7" multiple required>
+		</span><br>
+		<span>
+		<label> Analito:</label>
+		<select name="analito" id="analito" size="1" required onload="changeSelectAnalito()" onchange="changeSelectAnalito()">
 			{% for data in analito %}	
-				<option value="{{data['id_analito']}}" {{data['activo']}}> {{data['descripcion']}} </option>
+				<option value="{{data['id_analito']}}" {% if data['activo'] %} selected="{{data['activo']}}"{% endif %}> {{data['descripcion']}} </option>
 			{% endfor %}
 		</select>
-		<select name="papel_filtro" id="papel_filtro" size="7" multiple required>
+		</span><br>
+		
+		<div id="selects" name="selects">
+		<!--     MODULO ---->
+		{% if metodo != 1 %}
+		<span>
+		<label> Método:</label>
+		<select name="metodo" id="metodo" size="1" required>
+			{% for data in metodo %}	
+				<option value="{{data['id_metodo']}}" {% if data['activo'] %} selected="{{data['activo']}}"{% endif %}> {{data['descripcion']}} </option>
+			{% endfor %}
+		</select>
+		</span><br>
+		<span>
+		<label> Reactivo:</label>
+		<select name="reactivo" id="reactivo" size="1" required>
+			{% for data in reactivo %}	
+				<option value="{{data['id_reactivo']}}" {% if data['activo'] %} selected="{{data['activo']}}"{% endif %}> {{data['descripcion']}} </option>
+			{% endfor %}
+		</select>
+		</span><br>
+		<span>
+		<label> Calibrador:</label>
+		<select name="calibrador" id="calibrador" size="1" required>
+			{% for data in calibrador%}	
+				<option value="{{data['id_calibrador']}}" {% if data['activo'] %} selected="{{data['activo']}}"{% endif %}> {{data['descripcion']}} </option>
+			{% endfor %}
+		</select>
+		</span><br>
+		<label> Papel de Filtro:</label>
+		<span>
+		<select name="papel_filtro" id="papel_filtro" size="1" required>
 			{% for data in papel_filtro %}	
-				<option value="{{data['id_papel_filtro']}}" {{data['activo']}}> {{data['descripcion']}} </option>
+				<option value="{{data['id_papel_filtro']}}" {% if data['activo'] %} selected="{{data['activo']}}"{% endif %}> {{data['descripcion']}} </option>
 			{% endfor %}
 		</select>
-		<select name="valor_corte" id="valor_corte" size="7" multiple required>
+		</span><br>
+		<span>
+		<label> Valor de Corte:</label>
+		<select name="valor_corte" id="valor_corte" size="1" required>
 			{% for data in valor_corte %}	
-				<option value="{{data['id_valor_corte']}}" {{data['activo']}}> {{data['descripcion']}} </option>
+				<option value="{{data['id_valor_corte']}}" {% if data['activo'] %} selected="{{data['activo']}}"{% endif %}> {{data['descripcion']}} </option>
 			{% endfor %}
 		</select>
-
+		</span><br>
+		{% endif %}
+		<!--     MODULO ---->
+		
+		
+		</div>
+		
 	<input type="hidden" value="{{resultado['id_resultado']}}" id="id_resultado" name="id_resultado"/>
 	<br>
-	<input class="btn" type="button" onclick="submitearForm('{{action}}','resultado')" value={{action}} />
+	<input class="btn" type="button" onclick="submitearFormResultado('{{action}}','resultado')" value={{action}} />
 	<div id="loginError" style="display: none; background-color: red"></div>
 </form>
 </div>

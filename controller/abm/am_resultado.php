@@ -1,5 +1,11 @@
 <?php
 //DRY don't repeat yourself
+function normalize_date($date){   
+	if(!empty($date)){ 
+		$var = explode('/',str_replace('-','/',$date)); 
+		return "$var[2]/$var[1]/$var[0]";		
+	}   
+}
 
 require_once '../../model/resultado_interface.php';
 require_once '../../model/laboratorio_interface.php';
@@ -12,15 +18,16 @@ require_once '../../model/valor_corte_interface.php';
 
 $resultado = array();
 $laboratorio = ORM_laboratorio::obtener_todos_laboratorio();
-$metodo = ORM_metodo::obtener_todos_metodo();
-$reactivo = ORM_reactivo::obtener_todos_reactivo();
-$calibrador = ORM_calibrador::obtener_todos_calibrador();
 $analito = ORM_analito::obtener_todos_analito();
-$papel_filtro = ORM_papel_filtro::obtener_todos_papel_filtro();
-$valor_corte = ORM_valor_corte::obtener_todos_valor_corte();
 
+$metodo = 1;
+$reactivo = 1;
+$calibrador = 1;
+$papel_filtro = 1;
+$valor_corte = 1;
 
 if ($_GET['action'] == 'editar'){
+
   $resultado = ORM_resultado::buscar_resultado_Twig($_POST['id_resultado']);
   $laboratorio = ORM_resultado::buscar_resultado_laboratorio_Twig($_POST['id_resultado']);
   $metodo = ORM_resultado::buscar_resultado_metodo_Twig($_POST['id_resultado']);
