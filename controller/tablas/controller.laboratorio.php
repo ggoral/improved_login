@@ -1,6 +1,8 @@
 <?php
 //DRY don't repeat yourself
+$tipo_usuario = array('Adm','Fba');
 
+require_once '../validarSesion.php';
 require_once '../../model/laboratorio_interface.php';
 
 $parametro_template = 'abm/laboratorio.html';
