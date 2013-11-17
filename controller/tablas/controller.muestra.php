@@ -3,19 +3,19 @@
 $tipo_usuario = array('FBA','Lab');
 
 require_once '../validarSesion.php';
-require_once '../../model/encuesta_interface.php';
+require_once '../../model/muestra_interface.php';
 require_once '../../model/laboratorio_interface.php';
 
-$parametro_template = 'abm/encuesta.html';
-$parametro_columnas = Array('ID_ENCUESTA','FECHA INICIO','FECHA CIERRE','ID_RESULTADO');
-$parametro_datos = ORM_encuesta::obtener_todos_encuesta();
+$parametro_template = 'abm/muestra.html';
+$parametro_columnas = Array('ID_MUESTRA','RESULTADO CONTROL','INTERPRETACION','DECISION','RESULTADO');
+$parametro_datos = ORM_muestra::buscar_muestra_Twig_Tabla();
 
 $perfil = $_SESSION['usuarioLogeado']['rol'];
 if (($perfil != 'Administrador')and($perfil != 'FBA')){
 	$perfil = str_replace('Laboratorio_','',$perfil);
 	$laboratorio = ORM_laboratorio:: buscar_laboratorio_Twig($perfil);	//es la busqueda por id de  lab
 	$codlab = $laboratorio['cod_lab'];
-	$parametro_datos = ORM_encuesta::buscar_encuesta_Twig_Tabla_para_lab($codlab);	
+	$parametro_datos = ORM_muestra::buscar_muestra_Twig_Tabla_para_lab($codlab);	
 }
 
 if (isset($_POST['error'])){
@@ -42,7 +42,7 @@ $parametro_display = array(
     'displayerror' => $display,
     'messagecolor' => $color
   );
-
+  
 require 'controller.checkerror.php';
 require '../controller.generico.php';
 

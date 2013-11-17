@@ -83,5 +83,94 @@ public static function agregar_muestra($resultado_control, $id_interpretacion, $
     return 0;
   }
 
+public static function buscar_muestra_Twig_Tabla()
+  {
+    $conexion = new Conexion();
+    $muestra = $conexion->consulta("SELECT id_muestra, 
+                      resultado_control, 
+                      interpretacion.descripcion AS interpretacion, 
+                      decision.descripcion AS decision, 
+                      resultado.id_resultado
+                  FROM muestra 
+                  INNER JOIN decision ON muestra.id_decision = decision.id_decision
+                  INNER JOIN interpretacion ON muestra.id_interpretacion = interpretacion.id_interpretacion 
+                  INNER JOIN resultado ON muestra.id_resultado = resultado.id_resultado" );
+    return $muestra;
+  }
+
+public static function buscar_muestra_Twig_Tabla_para_lab($codlab)
+  {
+    $conexion = new Conexion();
+    $muestra = $conexion->consulta("SELECT id_muestra, 
+      resultado_control, 
+      interpretacion.descripcion AS interpretacion,
+      decision.descripcion AS decision,
+      resultado.id_resultado
+      resultado.comentario, 
+      resultado.fecha_recepcion, 
+      resultado.fecha_analisis, 
+      resultado.fecha_ingreso, 
+      laboratorio.id_lab,
+      metodo.descripcion AS descmetodo,
+      reactivo.descripcion AS descreactivo,
+      calibrador.descripcion AS desccalibrador,
+      analito.descripcion AS descanalito,
+      papel_filtro.descripcion AS descpapel_filtro,
+      valor_corte.descripcion AS descvalor_corte
+                  FROM muestra 
+                  INNER JOIN interpretacion ON muestra.id_interpretacion = interpretacion.id_interpretacion INNER JOIN decision ON muestra.id_decision = decision.id_decision INNER JOIN resultado ON muestra.id_resultado = resultado.id_resultado INNER JOIN laboratorio ON resultado.id_lab = laboratorio.id_lab INNER JOIN metodo ON resultado.id_metodo = metodo.id_metodo INNER JOIN reactivo ON resultado.id_reactivo = reactivo.id_reactivo INNER JOIN calibrador ON calibrador.id_calibrador = resultado.id_calibrador INNER JOIN analito ON resultado.id_analito = analito.id_analito INNER JOIN papel_filtro ON resultado.id_papel_filtro = papel_filtro.id_papel_filtro INNER JOIN valor_corte ON resultado.id_valor = valor_corte.id_valor
+    WHERE id_muestra = ? AND laboratorio.cod_lab = $cod_lab", array($id_muestra));
+                 
+    return $muestra;
+  }
+
+
+public static function buscar_muestra_Twig2($id_muestra)
+  {
+    $conexion = new Conexion();
+    $muestra = $conexion->consulta_fetch("SELECT id_muestra, 
+      resultado_control, 
+      interpretacion.descripcion AS interpretacion,
+      decision.descripcion AS decision,
+      resultado.id_resultado,
+      resultado.comentario, 
+      resultado.fecha_recepcion, 
+      resultado.fecha_analisis, 
+      resultado.fecha_ingreso, 
+      laboratorio.id_lab,
+      metodo.descripcion AS descmetodo,
+      reactivo.descripcion AS descreactivo,
+      calibrador.descripcion AS desccalibrador,
+      analito.descripcion AS descanalito,
+      papel_filtro.descripcion AS descpapel_filtro,
+      valor_corte.descripcion AS descvalor_corte
+                  FROM muestra 
+                  INNER JOIN interpretacion ON muestra.id_interpretacion = interpretacion.id_interpretacion INNER JOIN decision ON muestra.id_decision = decision.id_decision INNER JOIN resultado ON muestra.id_resultado = resultado.id_resultado INNER JOIN laboratorio ON resultado.id_lab = laboratorio.id_lab INNER JOIN metodo ON resultado.id_metodo = metodo.id_metodo INNER JOIN reactivo ON resultado.id_reactivo = reactivo.id_reactivo INNER JOIN calibrador ON calibrador.id_calibrador = resultado.id_calibrador INNER JOIN analito ON resultado.id_analito = analito.id_analito INNER JOIN papel_filtro ON resultado.id_papel_filtro = papel_filtro.id_papel_filtro INNER JOIN valor_corte ON resultado.id_valor = valor_corte.id_valor
+    WHERE id_muestra = ?", array($id_muestra));
+                 
+    return $muestra;
+  }
+
+public static function buscar_muestra_interpretacion_Twig($id_muestra)
+  {
+    $conexion = new Conexion();
+    $muestra = $conexion->consulta("SELECT *, IF(interpretacion.id_interpretacion IN (SELECT id_interpretacion FROM muestra WHERE id_muestra = ?), 'selected', '') AS activo FROM interpretacion",array($id_muestra));
+    return $muestra;
+  }
+
+public static function buscar_muestra_decision_Twig($id_muestra)
+  {
+    $conexion = new Conexion();
+    $muestra = $conexion->consulta("SELECT *, IF(decision.id_decision IN (SELECT id_decision FROM muestra WHERE id_muestra = ?), 'selected', '') AS activo FROM decision",array($id_muestra));
+    return $muestra;
+  }
+
+public static function buscar_muestra_resultado_Twig($id_muestra)
+  {
+    $conexion = new Conexion();
+    $muestra = $conexion->consulta("SELECT *, IF(resultado.id_resultado IN (SELECT id_resultado FROM muestra WHERE id_muestra = ?), 'selected', '') AS activo FROM resultado",array($id_muestra));
+    return $muestra;
+  }
+
 }
 ?>

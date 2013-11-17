@@ -1,0 +1,84 @@
+{% block content %}
+<!--CONTENT-->
+
+<div align="center" width="100%">
+<h3>INFORMACION</h3>
+
+<form name="vista_muestra" id="vista_muestra" method="POST">
+<div id="data" name="data">
+	<span>
+		<label> Id muestra:</label>
+		<label> {{muestra['id_muestra']}}</label>
+	</span> <br>
+
+	<span>
+		<label> Resultado Control:</label>
+		<label> {{muestra['resultado_control']}}</label>
+	</span> <br>
+
+	<span>
+		<label> Interpretacion:</label>
+		<label> {{muestra['interpretacion']}}</label>
+	</span> <br>
+
+	<span>
+		<label> Decision:</label>
+		<label> {{muestra['decision']}}</label>
+	</span> <br>
+
+	<span>
+		<label> Id Resultado:</label>
+		<label> {{muestra['id_resultado']}}</label>
+	</span> <br>
+	
+	<span>
+		<label> Comentario:</label>
+		<label> {{muestra['resultado_control']}}</label>
+	</span> <br>	
+	<span>
+		<label> Fecha de Recepción:</label>
+		<label> {{muestra['fecha_recepcion']}}</label>
+	</span> <br>	
+	<span>
+		<label> Fecha de Análisis:</label>
+		<label> {{muestra['fecha_analisis']}}</label>
+	</span> <br>	
+	<span>
+		<label> Fecha de Ingreso:</label>
+		<label> {{muestra['fecha_ingreso']}}</label>
+	</span> <br>		
+	<span>
+		<label> Analito:</label>
+		<label> {{muestra['descanalito']}}</label>
+	</span> <br>	
+	<span>
+		<label> Método:</label>
+		<label> {{muestra['descmetodo']}}</label>
+	</span> <br>	
+	<span>
+		<label> Reactivo:</label>
+		<label> {{muestra['descreactivo']}}</label>
+	</span> <br>	
+	<span>
+		<label> Calibrador:</label>
+		<label> {{muestra['desccalibrador']}}</label>
+	</span> <br>	
+	<span>
+		<label> Papel de Filtro:</label>
+		<label> {{muestra['descpapel_filtro']}}</label>
+	</span> <br>
+	<span>
+		<label> Valor de Corte:</label>
+		<label> {{muestra['descvalor_corte']}}</label>
+	</span> <br>		
+</div>
+{% if perfil != 'Administrador' %}
+	<div align="left" class="btn" id="editar" name="editar" onclick="editarForm('{{muestra['id_muestra']}}','muestra')">
+		<p class="titulofrm">editar</p>
+	</div>
+{% endif %}
+	
+</form>
+</div>
+<!--FIN CONTENT-->
+{% endblock content %}
