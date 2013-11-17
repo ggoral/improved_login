@@ -15,13 +15,12 @@ $id_resultado = ORM_resultado::obtener_todos_resultado();
 
 $fecha_inicio = 1/1/1;
 $fecha_cierre = 2/2/2;
-$id_resultado = 1;
+
 
 if ($_GET['action'] == 'editar'){
 
   $encuesta = ORM_encuesta::buscar_encuesta_Twig($_POST['id_encuesta']);
-  $id_resultado = ORM_resultado::buscar_encuesta_resultado_Twig($_POST['id_encuesta']);
-
+  $id_resultado = ORM_encuesta::buscar_encuesta_resultado_Twig($_POST['id_encuesta']);
 
 }
 
