@@ -112,5 +112,12 @@ public static function buscar_por_clave($descripcion)
 	}
 	return 1;
   }
+  
+    public static function obtener_todos_decision_analito($id_analito)
+  {
+    $conexion = new Conexion();
+    $query = $conexion->consulta("SELECT * FROM decision INNER JOIN analito_decision ON (analito_decision.id_decision= decision.id_decision) WHERE id_analito = ?",array($id_analito));
+    return $query;
+  }
 }
 ?>

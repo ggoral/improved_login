@@ -113,5 +113,12 @@ public static function actualizar_valor_corte($valor)
 	}
 	return 1;
   }
+  
+    public static function obtener_todos_valor_corte_analito($id_analito)
+  {
+    $conexion = new Conexion();
+    $query = $conexion->consulta("SELECT * FROM valor_corte INNER JOIN analito_valor_corte ON (analito_valor_corte.id_valor_corte= valor_corte.id_valor) WHERE id_analito = ?",array($id_analito));
+    return $query;
+  }
 }
 ?>

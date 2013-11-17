@@ -334,3 +334,112 @@ function submitearFormLaboratorio(action, tabla){
 
 /*LABORATORIO*/
 
+/*SELECT*/
+function changeSelectAnalito(){
+	idanalito = ($('#analito').val());
+	parametros = 'analito='+idanalito;
+	var result = cargarpaginasinc('consultas/consultas_select.php',parametros);
+	document.getElementById('selects').innerHTML = result;
+													
+}
+/*SELECT*/
+/*RESULTADOS*/
+function submitearFormResultado(action, tabla){
+	comentario = (document.getElementById('comentario').value);
+	fecha_recepcion = (document.getElementById('fecha_recepcion').value);
+	fecha_analisis = (document.getElementById('fecha_analisis').value);
+	fecha_ingreso = (document.getElementById('fecha_ingreso').value);
+	id_lab = ($('#id_lab').val());
+	id_metodo = ($('#id_metodo').val());
+	id_reactivo = ($('#id_reactivo').val());
+	id_calibrador = ($('#id_calibrador').val());
+	id_analito = ($('#id_analito').val());
+	id_papel_filtro = ($('#id_papel_filtro').val());
+	id_valor_corte = ($('#id_valor_corte').val());
+	id_elemento = (document.getElementById('id_'+tabla).value);
+	
+	error=false;
+	parametros = 'action='+action+'&id_'+tabla+'='+id_elemento+'&comentario='+comentario+'&fecha_recepcion='+fecha_recepcion+'&fecha_ingreso='+fecha_ingreso+'&fecha_analisis='+fecha_analisis+'&id_lab='+id_lab+'&id_analito='+id_analito+'&id_metodo='+id_metodo+'&id_reactivo='+id_reactivo+'&id_calibrador='+id_calibrador+'&id_papel_filtro='+id_papel_filtro+'&id_valor_corte='+id_valor_corte;
+	alert(parametros);
+	return false;
+	if (id_lab == null){ 
+		mensaje='Seleccione Tipo de Laboratorio';
+		error=true;
+	}
+	else{
+		if (id_analito == null){ 
+			mensaje='Seleccione Tipo de Laboratorio';
+			error=true;
+		}
+		else{
+			if (id_metodo == null){ 
+				mensaje='Seleccione Tipo de Laboratorio';
+				error=true;
+			}
+			else{
+				if (id_reactivo == null){ 
+					mensaje='Seleccione Tipo de Laboratorio';
+					error=true;
+				}
+				else{
+					if (id_calibrador == null){ 
+						mensaje='Seleccione Tipo de Laboratorio';
+						error=true;
+					}
+					else{
+						if (id_papel_filtro == null){ 
+							mensaje='Seleccione Tipo de Laboratorio';
+							error=true;
+						}
+						else{
+							if (id_valor_corte == null){ 
+								mensaje='Seleccione Tipo de Laboratorio';
+								error=true;
+							}
+							else{
+								parametros = 'action='+action+'&id_'+tabla+'='+id_elemento+'&comentario='+comentario+'&fecha_recepcion='+fecha_recepcion+'&fecha_ingreso='+fecha_ingreso+'&fecha_analisis='+fecha_analisis+'&id_lab='+id_lab+'&id_analito='+id_analito+'&id_metodo='+id_metodo+'&id_reacitvo='+id_reacitvo+'&id_calibrador='+id_calibrador+'&id_papel_filtro='+id_papel_filtro+'&id_valor_corte='+id_valor_corte;
+								
+								alert(parametros);return false;
+								var result = cargarpaginasinc('consultas/consultas_'+tabla+'.php',parametros);
+
+								switch(result)
+								{
+								case '1':
+									mensaje='1';
+									break;
+								case '2':
+									error=true;
+									mensaje='Operacion Fallida - Error de creacion de Rol';	
+									break;	
+								case '3':
+									error=true;
+									mensaje='Operacion Fallida - Error de Actualización';	
+									break;
+								case '4':
+									error=true;
+									mensaje='Operacion Fallida - Laboratorio ya existente';	
+									break;
+								case '5':
+									error=true;
+									mensaje='Operacion Fallida - Complete todos los campos correctamente';	
+									break;
+								default:
+									error=true;
+									alert(result);
+									mensaje='Operacion Fallida - Error en Base de datos';	
+								}
+							}							
+						}
+					}
+				}
+			}
+		}	
+	}
+	if (!error){
+		cargarpagina('tablas/controller.'+tabla+'.php', 'error='+mensaje,'content','mostrarTabla();desapar();');	
+	}else{
+		aparDesapar();
+		return false;
+	}
+}
+/*RESULTADOS*/
