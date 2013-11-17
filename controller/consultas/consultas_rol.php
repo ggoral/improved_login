@@ -13,11 +13,11 @@ if (isset($_POST['action'])){
 	$descripcion = $_POST['descripcion'];
 	
 	if ($_POST['action'] == 'editar'){
-		$id_rol = $_POST['id_rol'];
 		if((!isset($_POST['id_rol']))or(!test_input($_POST['id_rol']))){
 			die('5'); //NO PASA VALIDACION DEL LADO DEL SERVIDOR
 		}else{
 			//HACE EL UPDATE
+			$id_rol = $_POST['id_rol'];
 			$rol = new Rol ();
 			$rol->setId_rol($id_rol);
 			$rol->setDescripcion($descripcion);

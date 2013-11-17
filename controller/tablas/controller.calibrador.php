@@ -1,6 +1,8 @@
 <?php
 //DRY don't repeat yourself
+$tipo_usuario = array('Adm');
 
+require_once '../validarSesion.php';
 require_once '../../model/calibrador_interface.php';
 
 $parametro_template = 'abm/calibrador.html';
