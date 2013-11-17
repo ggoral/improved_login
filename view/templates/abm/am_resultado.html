@@ -24,9 +24,9 @@
 		<span>
 		<label> Laboratorio:</label>
 		<select name="laboratorio" id="laboratorio" size="1" required>
-			{% for data in laboratorio %}	
-				<option value="{{data['id_lab']}}" {% if data['activo'] %} selected="{{data['activo']}}"{% endif %}> {{data['cod_lab']}} </option>
-			{% endfor %}
+
+				<option value="{{laboratorio['id_lab']}}"> {{laboratorio['cod_lab']}} </option>
+
 		</select>
 		</span><br>
 		<span>

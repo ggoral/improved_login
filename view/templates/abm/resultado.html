@@ -1,10 +1,11 @@
 {% block content %}
 <!--CONTENT-->
 <h3 class="titulo"> RESULTADO </h3>
-
+{% if perfil != 'Administrador' %}
 <div align="center" class="btn" id="alta" name="alta" onclick="clonarDiv('content');cargarpagina('abm/am_resultado.php?action=alta','','content','')">
 	<p class="titulofrm">añadir</p>
 </div>
+{% endif %}
 
 <div id="loginError" style="display: {{displayerror}}; background-color: {{messagecolor}}"> {{error}} </div>
 <!--TABLA-->

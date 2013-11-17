@@ -6,8 +6,7 @@ require_once '../../model/test_input.php';
 
 if (isset($_POST['action'])){
 	//RECOBRAR LOS DATOS POR EL POST
-	if ((!isset($_POST['id_lab']))or(!test_input($_POST['id_lab']))
-		or (!isset($_POST['id_metodo']))or(!test_input($_POST['id_metodo']))
+	if ((!isset($_POST['id_metodo']))or(!test_input($_POST['id_metodo']))
 		or (!isset($_POST['id_reactivo']))or(!test_input($_POST['id_reactivo']))
 		or (!isset($_POST['id_analito']))or(!test_input($_POST['id_analito']))
 		or (!isset($_POST['id_calibrador']))or(!test_input($_POST['id_calibrador']))

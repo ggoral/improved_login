@@ -56,9 +56,11 @@
 		<label> {{resultado['descvalor_corte']}}</label>
 	</span> <br>		
 </div>
+{% if perfil != 'Administrador' %}
 	<div align="left" class="btn" id="editar" name="editar" onclick="editarForm('{{resultado['id_resultado']}}','resultado')">
 		<p class="titulofrm">editar</p>
 	</div>
+{% endif %}
 	
 </form>
 </div>
