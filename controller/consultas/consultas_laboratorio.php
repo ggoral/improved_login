@@ -2,6 +2,7 @@
 //REALIZA LAS ALTAS Y MODIFICACIONES
 
 require_once '../../model/laboratorio_interface.php';
+require_once '../../model/rol_interface.php';
 require_once '../../model/test_input.php';
 
 if (isset($_POST['action'])){
@@ -16,13 +17,13 @@ if (isset($_POST['action'])){
 		or (!isset($_POST['ciudad']))or(!test_input($_POST['ciudad']))){
 			die ('5'); //NO PASA VALIDACION DEL LADO DEL SERVIDOR DATOS INVALIDOS
 	}
-	if (isset($_POST['tel']))
+	if ((isset($_POST['tel']))and(test_input($_POST['tel'])))
 		if (!is_numeric($_POST['tel']))
 			die('5');
-	if ((isset($_POST['coord_x']))and(!test_input($_POST['ciudad'])))
+	if ((isset($_POST['coord_x']))and(test_input($_POST['coord_x'])))
 		if (!is_numeric($_POST['coord_x']))
 			die('5');	
-	if ((isset($_POST['coord_y']))and(!test_input($_POST['ciudad'])))
+	if ((isset($_POST['coord_y']))and(test_input($_POST['coord_x'])))
 		if (!is_numeric($_POST['coord_y']))
 			die('5');
 			
@@ -79,6 +80,11 @@ if (isset($_POST['action'])){
 		$result = ORM_laboratorio::agregar_laboratorio($cod_lab, $institucion, $sector, $responsable, $domicilio, $domicilio_corresp, $mail, $tel, $coord_x, $coord_y, $estado, $tipo_lab, $id_ciudad);
 		if ($result == 0)
 			die('4');
+		$descripcion = 'Laboratorio_';
+		$descripcion .= ORM_laboratorio::buscar_por_clave($cod_lab);
+		$result = ORM_rol::agregar_rol($descripcion);
+		if ($result == 0)
+			die('2');
 		die('1');
 	}
 
