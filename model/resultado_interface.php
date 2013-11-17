@@ -39,7 +39,7 @@ public static function agregar_resultado($comentario, $fecha_recepcion, $fecha_a
     $conexion = new Conexion();
     $sql_insert = "INSERT INTO resultado (comentario, fecha_recepcion, fecha_analisis, fecha_ingreso, id_lab, id_metodo, id_reactivo, id_calibrador, id_analito, id_papel_filtro, id_valor) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
     $campos = array($comentario, $fecha_recepcion, $fecha_analisis, $fecha_ingreso, $id_lab, $id_metodo, $id_reactivo, $id_calibrador, $id_analito, $id_papel_filtro, $id_valor);
-    $query = $conexion->consulta_row($sql_insert,$campos);
+ 	$query = $conexion->consulta_row($sql_insert,$campos);
     return $query;
   }
 
@@ -162,6 +162,20 @@ public static function buscar_resultado_Twig_Tabla()
 									FROM resultado 
 									INNER JOIN laboratorio ON resultado.id_lab = laboratorio.id_lab 
 									INNER JOIN analito ON resultado.id_analito = analito.id_analito" );
+    return $resultado;
+  }
+  
+  public static function buscar_resultado_Twig_Tabla_para_lab($codlab)
+  {
+    $conexion = new Conexion();
+    $resultado = $conexion->consulta("SELECT id_resultado, 
+										  comentario, 
+										  fecha_analisis, 
+										  laboratorio.cod_lab, 
+										  analito.descripcion AS desc_analito
+									FROM resultado 
+									INNER JOIN laboratorio ON resultado.id_lab = laboratorio.id_lab 
+									INNER JOIN analito ON resultado.id_analito = analito.id_analito WHERE cod_lab = ?",array($codlab) );
     return $resultado;
   }
   

@@ -408,17 +408,13 @@ function submitearFormResultado(action, tabla){
 								case '1':
 									mensaje='1';
 									break;
-								case '2':
-									error=true;
-									mensaje='Operacion Fallida - Error de creacion de Rol';	
-									break;	
 								case '3':
 									error=true;
 									mensaje='Operacion Fallida - Error de Actualización';	
 									break;
 								case '4':
 									error=true;
-									mensaje='Operacion Fallida - Laboratorio ya existente';	
+									mensaje='Operacion Fallida - Resultado ya existente';	
 									break;
 								case '5':
 									error=true;
