@@ -1,6 +1,8 @@
 <?php
 //DRY don't repeat yourself
+$tipo_usuario = array('Adm','FBA','Lab');
 
+require_once '../validarSesion.php';
 require_once '../../model/tipo_lab_interface.php';
 
 $tipo_lab = array();

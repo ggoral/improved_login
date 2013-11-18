@@ -1,6 +1,8 @@
 <?php
 //REALIZA LAS ALTAS Y MODIFICACIONES
+$tipo_usuario = array('Adm','FBA','Lab');
 
+require_once '../validarSesion.php';
 require_once '../../model/encuesta_interface.php';
 require_once '../../model/test_input.php';
 

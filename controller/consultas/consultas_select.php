@@ -1,6 +1,7 @@
 <?php
+$tipo_usuario = array('Adm','FBA','Lab');
 
-
+require_once '../validarSesion.php';
 require_once '../../model/metodo_interface.php';
 require_once '../../model/reactivo_interface.php';
 require_once '../../model/calibrador_interface.php';

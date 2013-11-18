@@ -1,21 +1,13 @@
 <?php
 //DRY don't repeat yourself
-function normalize_date($date){   
-	if(!empty($date)){ 
-		$var = explode('/',str_replace('-','/',$date)); 
-		return "$var[2]/$var[1]/$var[0]";		
-	}   
-}
+$tipo_usuario = array('Adm','FBA','Lab');
 
+require_once '../validarSesion.php';
 require_once '../../model/encuesta_interface.php';
 require_once '../../model/resultado_interface.php';
 
 $encuesta = array();
 $id_resultado = ORM_resultado::obtener_todos_resultado();
-
-$fecha_inicio = 1/1/1;
-$fecha_cierre = 2/2/2;
-
 
 if ($_GET['action'] == 'editar'){
 
@@ -27,8 +19,6 @@ if ($_GET['action'] == 'editar'){
 $parametro_display = array(
   'action' => $_GET['action'],
   'encuesta' => $encuesta,
-  'fecha_inicio' => $fecha_inicio,
-  'fecha_cierre' => $fecha_cierre,
   'id_resultado' => $id_resultado
 );
 

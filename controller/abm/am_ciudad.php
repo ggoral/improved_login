@@ -1,6 +1,8 @@
 <?php
 //DRY don't repeat yourself
+$tipo_usuario = array('Adm','FBA','Lab');
 
+require_once '../validarSesion.php';
 require_once '../../model/ciudad_interface.php';
 require_once '../../model/pais_interface.php';
 
