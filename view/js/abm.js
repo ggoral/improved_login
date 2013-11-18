@@ -214,15 +214,15 @@ function submitearFormMuestra(action, tabla){
 						break;
 					case '4':
 						error=true;
-						mensaje='Operacion Fallida - Muestra ya existente';	
+						mensaje='Operacion Fallida - Ya poseee 2 muestras para el resultado';	
 						break;
 					case '5':
 						error=true;
 						mensaje='Operacion Fallida - Complete todos los campos correctamente';	
 						break;
 					default:
-						alert(result);
 						error=true;
+						alert(result);
 						mensaje='Operacion Fallida - Error en Base de datos';	
 	
 					}

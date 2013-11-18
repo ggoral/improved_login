@@ -13,7 +13,7 @@
 	<input type="date" value="{{encuesta['fecha_cierre']}}" size="50" id="fecha_cierre" name="fecha_cierre" required pattern="^[a-zA-Z0-9][a-zA-Z0-9-_\. /!$#@%*()}{';:,<>?=+]+$"/>
 	</span><br>	
 		<span>
-		<label> resultado:</label>
+		<label> Resultado:</label>
 		<select name="resultado" id="resultado" size="1" required>
 			{% for data in id_resultado %}	
 				<option value="{{data['id_resultado']}}" {% if data['activo'] %} selected="{{data['activo']}}"{% endif %}> {{data['id_resultado']}} </option>

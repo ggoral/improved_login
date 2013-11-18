@@ -13,7 +13,7 @@ $parametro_datos = ORM_muestra::buscar_muestra_Twig_Tabla();
 $perfil = $_SESSION['usuarioLogeado']['rol'];
 if ($perfil != 'FBA'){
 	$perfil = str_replace('Laboratorio_','',$perfil);
-  $parametro_datos = ORM_muestra::buscar_muestra_resultado_laboratorio_Twig($perfil);//todas las muestras que corresponden q corresponden al id_lab
+	$parametro_datos = ORM_muestra::buscar_muestra_resultado_laboratorio_Twig($perfil);//todas las muestras que corresponden q corresponden al id_lab
 }
 
 if (isset($_POST['error'])){
