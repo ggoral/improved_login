@@ -165,7 +165,7 @@ CREATE TABLE `calibrador` (
 
 /*Data for the table `calibrador` */
 
-insert  into `calibrador`(`id_calibrador`,`descripcion`) values (1,'Papel de filtro. Preparación propia'),(2,'Papel de filtro. Comerciales'),(3,'Líquidos. Preparación propia'),(4,'Líquidos. Comerciales');
+insert  into `calibrador`(`id_calibrador`,`descripcion`) values (1,'Papel de filtro. Preparacion propia'),(2,'Papel de filtro. Comerciales'),(3,'Liquidos. Preparacion propia'),(4,'Liquidos. Comerciales');
 
 /*Table structure for table `ciudad` */
 
@@ -183,7 +183,7 @@ CREATE TABLE `ciudad` (
 
 /*Data for the table `ciudad` */
 
-insert  into `ciudad`(`id_ciudad`,`descripcion`,`cod_postal`,`id_pais`) values (1,'Avellaneda','1872',1),(2,'Bahia Blanca','8000',1),(3,'Cafayate','4427',1),(4,'Corrientes','3400',1),(5,'Formosa','3600',1),(6,'La Plata','1900',1),(7,'La Rioja','5300',1),(8,'Mendoza','5500',1),(9,'Neuquén','8300',1),(10,'Posadas','3300',1),(11,'Río Gallegos','9400',1),(12,'Rosario','2000',1),(13,'San Juan','5400',1),(14,'San Miguel de Tucumán','4000',1),(15,'San Salvador de Jujuy','4600',1),(16,'Santa Fe','3000',1),(17,'Santa Rosa','6300',1),(18,'Santiago del Estero','4200',1),(19,'Usuahia','9410',1),(20,'Viedma','8500',1);
+insert  into `ciudad`(`id_ciudad`,`descripcion`,`cod_postal`,`id_pais`) values (1,'Avellaneda','1872',1),(2,'Bahia Blanca','8000',1),(3,'Cafayate','4427',1),(4,'Corrientes','3400',1),(5,'Formosa','3600',1),(6,'La Plata','1900',1),(7,'La Rioja','5300',1),(8,'Mendoza','5500',1),(9,'Neuquén','8300',1),(10,'Posadas','3300',1),(11,'Rio Gallegos','9400',1),(12,'Rosario','2000',1),(13,'San Juan','5400',1),(14,'San Miguel de Tucuman','4000',1),(15,'San Salvador de Jujuy','4600',1),(16,'Santa Fe','3000',1),(17,'Santa Rosa','6300',1),(18,'Santiago del Estero','4200',1),(19,'Usuahia','9410',1),(20,'Viedma','8500',1);
 
 /*Table structure for table `decision` */
 
@@ -312,7 +312,7 @@ CREATE TABLE `metodo` (
 
 /*Data for the table `metodo` */
 
-insert  into `metodo`(`id_metodo`,`descripcion`) values (1,'IRMA - RIA'),(2,'ELISA'),(3,'DELFIA'),(4,'AUTODELFIA'),(5,'LUMINEX'),(6,'Enzimático Colorimétrico'),(7,'Enzimático Fluorométrico'),(8,'Inhibición Bacteriana (BIA)'),(9,'HPLC'),(10,'MS/MS'),(11,'Cromatografía en capa fina (TLC)'),(12,'Electrofresis Capilar'),(13,'FEIA'),(14,'MEIA'),(15,'CLIA (Quimioluminiscencia)'),(16,'ECLIA (Electroquimioluminiscencia)'),(17,'GSP');
+insert  into `metodo`(`id_metodo`,`descripcion`) values (1,'IRMA - RIA'),(2,'ELISA'),(3,'DELFIA'),(4,'AUTODELFIA'),(5,'LUMINEX'),(6,'Enzimatico Colorimetrico'),(7,'Enzimatico Fluorometrico'),(8,'Inhibicion Bacteriana (BIA)'),(9,'HPLC'),(10,'MS/MS'),(11,'Cromatografia en capa fina (TLC)'),(12,'Electrofresis Capilar'),(13,'FEIA'),(14,'MEIA'),(15,'CLIA (Quimioluminiscencia)'),(16,'ECLIA (Electroquimioluminiscencia)'),(17,'GSP');
 
 /*Table structure for table `muestra` */
 
@@ -346,7 +346,7 @@ CREATE TABLE `pais` (
 
 /*Data for the table `pais` */
 
-insert  into `pais`(`id_pais`,`descripcion`) values (1,'Argentina'),(2,'Bolivia'),(3,'Chile'),(4,'Colombia'),(5,'Costa Rica'),(6,'Cuba'),(7,'Ecuador'),(8,'El Salvador'),(9,'Guatemala'),(10,'Honduras'),(11,'México'),(12,'Nicaragua'),(13,'Panamá'),(14,'Paraguay'),(15,'Perú'),(16,'Puerto Rico'),(17,'República Dominicana'),(18,'Uruguay'),(19,'Venezuela');
+insert  into `pais`(`id_pais`,`descripcion`) values (1,'Argentina'),(2,'Bolivia'),(3,'Chile'),(4,'Colombia'),(5,'Costa Rica'),(6,'Cuba'),(7,'Ecuador'),(8,'El Salvador'),(9,'Guatemala'),(10,'Honduras'),(11,'Mexico'),(12,'Nicaragua'),(13,'Panama'),(14,'Paraguay'),(15,'Peru'),(16,'Puerto Rico'),(17,'Republica Dominicana'),(18,'Uruguay'),(19,'Venezuela');
 
 /*Table structure for table `papel_filtro` */
 
@@ -360,7 +360,7 @@ CREATE TABLE `papel_filtro` (
 
 /*Data for the table `papel_filtro` */
 
-insert  into `papel_filtro`(`id_papel_filtro`,`descripcion`) values (1,'Whatman #903'),(2,'Macherey Nagel'),(3,'Ahiström/PerkinElmer Grade 226'),(4,'Munktell Grade TFN');
+insert  into `papel_filtro`(`id_papel_filtro`,`descripcion`) values (1,'Whatman #903'),(2,'Macherey Nagel'),(3,'Ahistrom/PerkinElmer Grade 226'),(4,'Munktell Grade TFN');
 
 /*Table structure for table `reactivo` */
 
@@ -374,7 +374,7 @@ CREATE TABLE `reactivo` (
 
 /*Data for the table `reactivo` */
 
-insert  into `reactivo`(`id_reactivo`,`descripcion`) values (1,'Preparación propia'),(2,'MP'),(3,'BIORAD'),(4,'PERKIN ELMER'),(5,'CIS BIO'),(6,'BIOCLONE'),(7,'INTERCIENTIFICA'),(8,'ANILABSYSTEMS'),(9,'SUMA'),(10,'NEOGENESIS'),(11,'ASTORIA PACIFIC'),(12,'ZENTECH'),(13,'DIFCO'),(14,'SIGMA'),(15,'NEOMETRICS'),(16,'DIFCO-SIGMA'),(17,'CHROMSYSTEMS'),(18,'MBIOLOG DIAGNOSTICOS'),(19,'DPC'),(20,'ABBOTT'),(21,'PASTEUR'),(22,'ROCHE'),(23,'BAYER'),(24,'DIASORIN'),(25,'ACCUBIND');
+insert  into `reactivo`(`id_reactivo`,`descripcion`) values (1,'Preparacion propia'),(2,'MP'),(3,'BIORAD'),(4,'PERKIN ELMER'),(5,'CIS BIO'),(6,'BIOCLONE'),(7,'INTERCIENTIFICA'),(8,'ANILABSYSTEMS'),(9,'SUMA'),(10,'NEOGENESIS'),(11,'ASTORIA PACIFIC'),(12,'ZENTECH'),(13,'DIFCO'),(14,'SIGMA'),(15,'NEOMETRICS'),(16,'DIFCO-SIGMA'),(17,'CHROMSYSTEMS'),(18,'MBIOLOG DIAGNOSTICOS'),(19,'DPC'),(20,'ABBOTT'),(21,'PASTEUR'),(22,'ROCHE'),(23,'BAYER'),(24,'DIASORIN'),(25,'ACCUBIND');
 
 /*Table structure for table `resultado` */
 
@@ -426,7 +426,7 @@ CREATE TABLE `tipo_lab` (
 
 /*Data for the table `tipo_lab` */
 
-insert  into `tipo_lab`(`id_tipo`,`descripcion`) values (1,'Metrológico'),(2,'Clínico'),(3,'Patológico'),(4,'Infectológico'),(5,'Inmunológico'),(6,'Epidemiológico'),(7,'Microbiológico'),(8,'Hematológico'),(9,'Químico'),(10,'Bio-Químico'),(11,'Biológico');
+insert  into `tipo_lab`(`id_tipo`,`descripcion`) values (1,'Metrologico'),(2,'Clinico'),(3,'Patologico'),(4,'Infectologico'),(5,'Inmunologico'),(6,'Epidemiologico'),(7,'Microbiologico'),(8,'Hematologico'),(9,'Quimico'),(10,'Bio-Quimico'),(11,'Biologico');
 
 /*Table structure for table `usuario` */
 
@@ -461,7 +461,7 @@ CREATE TABLE `valor_corte` (
 
 /*Data for the table `valor_corte` */
 
-insert  into `valor_corte`(`id_valor`,`descripcion`) values (1,'35 mIU/L'),(2,'45 mg/dl'),(3,'54 U/g Hb'),(4,'ng/ml');
+insert  into `valor_corte`(`id_valor`,`descripcion`) values (1,'35 mIU/L'),(2,'45 mg/dl'),(3,'54 U/g Hb'),(4,'56 ng/ml');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
