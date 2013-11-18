@@ -139,5 +139,31 @@ public static function buscar_encuesta_Twig2($id_encuesta)
     return $encuesta;
   }
 
+  
+ public static function buscar_encuesta_Twig_Tabla_para_lab($codlab)
+  {
+    $conexion = new Conexion();
+    $encuesta = $conexion->consulta("SELECT id_encuesta, 
+      fecha_inicio, 
+      fecha_cierre,  
+      resultado.id_resultado, 
+      resultado.comentario, 
+      resultado.fecha_recepcion, 
+      resultado.fecha_analisis, 
+      resultado.fecha_ingreso, 
+      laboratorio.id_lab,
+      metodo.descripcion AS descmetodo,
+      reactivo.descripcion AS descreactivo,
+      calibrador.descripcion AS desccalibrador,
+      analito.descripcion AS descanalito,
+      papel_filtro.descripcion AS descpapel_filtro,
+      valor_corte.descripcion AS descvalor_corte
+                  FROM encuesta 
+                  INNER JOIN resultado ON encuesta.id_resultado = resultado.id_resultado INNER JOIN laboratorio ON resultado.id_lab = laboratorio.id_lab INNER JOIN metodo ON resultado.id_metodo = metodo.id_metodo INNER JOIN reactivo ON resultado.id_reactivo = reactivo.id_reactivo INNER JOIN calibrador ON calibrador.id_calibrador = resultado.id_calibrador INNER JOIN analito ON resultado.id_analito = analito.id_analito INNER JOIN papel_filtro ON resultado.id_papel_filtro = papel_filtro.id_papel_filtro INNER JOIN valor_corte ON resultado.id_valor = valor_corte.id_valor
+    WHERE id_encuesta = ? AND laboratorio.cod_lab = $cod_lab", array($id_encuesta));
+                 
+    return $encuesta;
+  }
+
 }
 ?>

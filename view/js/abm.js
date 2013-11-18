@@ -139,7 +139,7 @@ function submitearFormEncuesta(action, tabla){
 						break;
 					case '2':
 						error=true;
-						mensaje='Operacion Fallida - Error de creacion de Rol';	
+						mensaje='Operacion Fallida - Error de creacion';	
 						break;	
 					case '3':
 						error=true;
@@ -147,7 +147,7 @@ function submitearFormEncuesta(action, tabla){
 						break;
 					case '4':
 						error=true;
-						mensaje='Operacion Fallida - Laboratorio ya existente';	
+						mensaje='Operacion Fallida - Encuesta ya existente';	
 						break;
 					case '5':
 						error=true;
@@ -170,7 +170,73 @@ function submitearFormEncuesta(action, tabla){
 	}
 }
 /*ENCUESTA*/
+/*Muestra*/
+function submitearFormMuestra(action, tabla){
+	resultado_control = (document.getElementById('resultado_control').value);
+	interpretacion = (document.getElementById('interpretacion').value);
+	decision = (document.getElementById('decision').value);
+	id_resultado = ($('#resultado').val());
+	id_elemento = (document.getElementById('id_'+tabla).value);
 
+	error=false;
+
+	if (interpretacion == null){ 
+		mensaje='Seleccione Interpretacion';
+		error=true;
+	}
+	else{
+		if (decision == null){ 
+			mensaje='Seleccione Decision';
+			error=true;
+		}
+		else{
+			if (id_resultado== null){ 
+				mensaje='Seleccione Resultado';
+				error=true;
+			}
+			else{
+					parametros = 'action='+action+'&id_'+tabla+'='+id_elemento+'&resultado_control='+resultado_control+'&interpretacion='+interpretacion+'&decision='+decision+'&id_resultado='+id_resultado;
+					
+					var result = cargarpaginasinc('consultas/consultas_'+tabla+'.php',parametros);
+
+					switch(result)
+					{
+					case '1':
+						mensaje='1';
+						break;
+					case '2':
+						error=true;
+						mensaje='Operacion Fallida - Error de creacion';	
+						break;	
+					case '3':
+						error=true;
+						mensaje='Operacion Fallida - Error de Actualización';	
+						break;
+					case '4':
+						error=true;
+						mensaje='Operacion Fallida - Muestra ya existente';	
+						break;
+					case '5':
+						error=true;
+						mensaje='Operacion Fallida - Complete todos los campos correctamente';	
+						break;
+					default:
+						error=true;
+						mensaje='Operacion Fallida - Error en Base de datos';	
+	
+					}
+				}
+			}
+		}	
+
+	if (!error){
+		cargarpagina('tablas/controller.'+tabla+'.php', 'error='+mensaje,'content','mostrarTabla();desapar();');	
+	}else{
+		aparDesapar();
+		return false;
+	}
+}
+/*Muestra*/
 
 
 
