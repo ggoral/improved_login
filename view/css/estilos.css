@@ -7,7 +7,7 @@
 }
 
 body{
-	background-image: url(../img/lblue028.jpg);
+	background-image: url(../img/fondoQuimica2.jpg);
 	margin: 0;
 	padding: 0;
 }
@@ -222,10 +222,9 @@ textarea{
 #loginError{
 	background-color: red;
 	text-align: center;
-	font-size: 12px;
+	font-size: 15px;
 	font-weight: bolder;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding: 10px 1px 10px 1px;
 	display:none;
 }
 
@@ -243,15 +242,81 @@ textarea{
 }
 
 .logoVacio {
+	margin-left: 28em;
 	width:100%;
 	height:100%;
 }
 
 .logoVacio ../img {
+
 	opacity:0.8;
 	padding: 70px 0px 0px 340px;
 }
 
 #menu{
 	z-index:1;	/*ver porque pisa el contenedor*/
+}
+
+.titulo, h3{
+	color: blue;
+	font-size: 25px;
+	margin-top: 5em;
+}
+
+.btn {
+	margin-left: 25em;
+
+	-moz-box-shadow:inset 0px 1px 0px 0px #706f94;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #706f94;
+	box-shadow:inset 0px 1px 0px 0px #706f94;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #a191fa), color-stop(1, #203575) );
+	background:-moz-linear-gradient( center top, #a191fa 5%, #203575 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#a191fa', endColorstr='#203575');
+	background-color:#a191fa;
+	-webkit-border-top-left-radius:6px;
+	-moz-border-radius-topleft:6px;
+	border-top-left-radius:6px;
+	-webkit-border-top-right-radius:6px;
+	-moz-border-radius-topright:6px;
+	border-top-right-radius:6px;
+	-webkit-border-bottom-right-radius:6px;
+	-moz-border-radius-bottomright:6px;
+	border-bottom-right-radius:6px;
+	-webkit-border-bottom-left-radius:6px;
+	-moz-border-radius-bottomleft:6px;
+	border-bottom-left-radius:6px;
+	text-indent:0;
+	border:1px solid #6c66bd;
+	display:inline-block;
+	color:#040e1a;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+	height:50px;
+	line-height:50px;
+	width:100px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #ffffff;
+}
+.btn:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #203575), color-stop(1, #a191fa) );
+	background:-moz-linear-gradient( center top, #203575 5%, #a191fa 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#203575', endColorstr='#a191fa');
+	background-color:#203575;
+}
+.btn:active {
+	position:relative;
+	top:1px;
+}
+
+h3{
+	margin-bottom: 1em;
+}
+
+label {
+	font-size: 15px;
+	font-weight: bold;
+	color: blue;
 }
