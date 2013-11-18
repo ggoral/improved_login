@@ -221,6 +221,7 @@ function submitearFormMuestra(action, tabla){
 						mensaje='Operacion Fallida - Complete todos los campos correctamente';	
 						break;
 					default:
+						alert(result);
 						error=true;
 						mensaje='Operacion Fallida - Error en Base de datos';	
 	

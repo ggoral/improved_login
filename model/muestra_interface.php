@@ -72,11 +72,22 @@ public static function buscar_por_clave($id_interpretacion, $id_decision, $id_re
     $id_muestra = $query['id_muestra'];
     return (int)$id_muestra;
   }
+
+  public static function buscar_cant_por_clave($id_interpretacion, $id_decision, $id_resultado)
+  {
+    $conexion = new Conexion();
+    $campos = array($id_interpretacion, $id_decision, $id_resultado);
+    $query = $conexion->consulta_fetch("SELECT COUNT(id_muestra) AS cant_id_muestra FROM muestra WHERE id_interpretacion=? and id_decision=? and id_resultado=?",$campos);
+    $cant_id_muestra = $query['cant_id_muestra'];
+    return (int)$cant_id_muestra;
+  }
   
 public static function agregar_muestra($resultado_control, $id_interpretacion, $id_decision, $id_resultado)
   {
-    $existe = ORM_muestra::buscar_por_clave($id_interpretacion, $id_decision, $id_resultado);
-    if (!$existe){
+    //$existe = ORM_muestra::buscar_por_clave($id_interpretacion, $id_decision, $id_resultado);
+    $cant = ORM_muestra::buscar_cant_por_clave($id_interpretacion, $id_decision, $id_resultado);
+    
+    if ($cant < 2){
       $row_affected = ORM_muestra::agregar_muestra_campos($resultado_control, $id_interpretacion, $id_decision, $id_resultado);
       return $row_affected;
     }
