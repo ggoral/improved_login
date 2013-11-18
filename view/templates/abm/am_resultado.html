@@ -21,14 +21,17 @@
 	<label> Fecha de Ingreso:</label>
 	<input type="date" value="{{resultado['fecha_ingreso']}}" size="50" id="fecha_ingreso" name="fecha_ingreso" required pattern="^[a-zA-Z0-9][a-zA-Z0-9-_\. /!$#@%*()}{';:,<>?=+]+$"/>
 	</span><br>	
-		<span>
+		<!--<span>
 		<label> Laboratorio:</label>
 		<select name="laboratorio" id="laboratorio" size="1" required>
 
 				<option value="{{laboratorio['id_lab']}}"> {{laboratorio['cod_lab']}} </option>
 
 		</select>
-		</span><br>
+	
+		
+		</span><br>-->	
+		<input type="hidden" value="{{laboratorio['id_lab']}}" id="laboratorio" name="laboratorio"/>
 		<span>
 		<label> Analito:</label>
 		<select name="analito" id="analito" size="1" required onload="changeSelectAnalito()" onchange="changeSelectAnalito()">
