@@ -318,7 +318,6 @@ function submitearFormLaboratorio(action, tabla){
 														break;
 													default:
 														error=true;
-														alert(result);
 														mensaje='Operacion Fallida - Error en Base de datos';	
 													}
 												}
@@ -427,7 +426,6 @@ function submitearFormResultado(action, tabla){
 									break;
 								default:
 									error=true;
-									alert(result);
 									mensaje='Operacion Fallida - Error en Base de datos';	
 								}
 							}							
@@ -488,7 +486,6 @@ function submitearInscripcion(action, tabla){
 			break;
 		default:
 			error=true;
-			alert(result);
 			mensaje='Operacion Fallida - Error en Base de datos';	
 		}	
 	}
