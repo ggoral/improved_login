@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mapas de los Laboratorios</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body, #map-canvas {
+        height: 500px;
+        width: 500px;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    
+    <script src="../../view/js/maps2.js"></script>
+  </head>
+  <body>
+    
+    {% for lab in laboratorios %}
+      <input type="hidden" value="{{lab['cod_lab']}}" name="{{lab['coord_x']}}" id="{{lab['coord_y']}}">
+    {% endfor %}
+    <div id="map-canvas"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script>google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </body>
+</html>

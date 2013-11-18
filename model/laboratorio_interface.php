@@ -78,6 +78,15 @@ public static function actualizar_laboratorio($laboratorio)
     return $query;
   }
 
+
+  public static function mostrar_coordenadas()
+  {
+    $conexion = new Conexion();
+    $query = $conexion->consulta("SELECT cod_lab,coord_x,coord_y FROM laboratorio");
+    return $query;
+  }
+
+
   public static function mostrar_laboratorio()
   {
     $conexion = new Conexion();
