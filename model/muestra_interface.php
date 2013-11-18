@@ -171,6 +171,13 @@ public static function buscar_muestra_resultado_Twig($id_muestra)
     $muestra = $conexion->consulta("SELECT *, IF(resultado.id_resultado IN (SELECT id_resultado FROM muestra WHERE id_muestra = ?), 'selected', '') AS activo FROM resultado",array($id_muestra));
     return $muestra;
   }
+ public static function buscar_muestra_resultado_laboratorio_Twig($id_lab)
+ {
+  $conexion = new Conexion();
+  $muestra = $conexion->consulta("SELECT id_muestra, resultado_control, id_interpretacion, id_decision, muestra.`id_resultado` FROM muestra INNER JOIN resultado ON muestra.`id_resultado` = resultado.`id_resultado` INNER JOIN laboratorio ON resultado.`id_lab` = laboratorio.`id_lab` WHERE laboratorio.`id_lab` = ?",array($id_lab));
+  return $muestra;
+ }
+
 
 }
 ?>

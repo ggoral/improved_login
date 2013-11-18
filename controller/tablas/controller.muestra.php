@@ -11,11 +11,9 @@ $parametro_columnas = Array('ID_MUESTRA','RESULTADO CONTROL','INTERPRETACION','D
 $parametro_datos = ORM_muestra::buscar_muestra_Twig_Tabla();
 
 $perfil = $_SESSION['usuarioLogeado']['rol'];
-if (($perfil != 'Administrador')and($perfil != 'FBA')){
+if ($perfil != 'FBA'){
 	$perfil = str_replace('Laboratorio_','',$perfil);
-	$laboratorio = ORM_laboratorio:: buscar_laboratorio_Twig($perfil);	//es la busqueda por id de  lab
-	$codlab = $laboratorio['cod_lab'];
-	$parametro_datos = ORM_muestra::buscar_muestra_Twig_Tabla_para_lab($codlab);	
+  $parametro_datos = ORM_muestra::buscar_muestra_resultado_laboratorio_Twig($perfil);//todas las muestras que corresponden q corresponden al id_lab
 }
 
 if (isset($_POST['error'])){

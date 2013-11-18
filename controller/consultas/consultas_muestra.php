@@ -19,7 +19,7 @@ if (isset($_POST['action'])){
 	$id_decision = $_POST['decision'];	
 	
 	if ($_POST['action'] == 'editar'){
-		var_dump($_POST);
+
 		if ((!isset($_POST['id_muestra']))or(!test_input($_POST['id_muestra']))){
 			die ('5');	//DATOS INVALIDOS
 		}
@@ -28,12 +28,11 @@ if (isset($_POST['action'])){
 			//HACE EL UPDATE
 			$muestra = new Muestra ();
 			$muestra->setId_muestra($id_muestra);
-			$muestra->setId_lab($id_lab);
-			$muestra->setId_resultado_control($id_resultado_control);
+			$muestra->setResultado_control($id_resultado_control);
 			$muestra->setId_interpretacion($id_interpretacion);
 			$muestra->setId_resultado($id_resultado);
 			$muestra->setId_decision($id_decision);
- 
+
  			$result = ORM_muestra::actualizar_muestra($muestra);
 			
 			if($result == 0)
