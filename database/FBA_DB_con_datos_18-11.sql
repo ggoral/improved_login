@@ -46,7 +46,7 @@ CREATE TABLE `analito_calibrador` (
 
 /*Data for the table `analito_calibrador` */
 
-insert  into `analito_calibrador`(`id_calibrador`,`id_analito`) values (1,1),(1,2),(1,3),(1,4),(2,1),(2,2),(2,3),(2,4),(3,1),(3,2),(3,3),(3,4),(4,1),(4,2),(4,3),(4,4);
+insert  into `analito_calibrador`(`id_calibrador`,`id_analito`) values (1,1),(1,3),(2,1),(2,2),(2,3),(2,4),(3,1),(3,2),(3,3),(3,4),(4,1),(4,2),(4,3),(4,4);
 
 /*Table structure for table `analito_decision` */
 
@@ -161,7 +161,7 @@ CREATE TABLE `calibrador` (
   `id_calibrador` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(50) NOT NULL,
   PRIMARY KEY (`id_calibrador`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Data for the table `calibrador` */
 
@@ -183,7 +183,7 @@ CREATE TABLE `ciudad` (
 
 /*Data for the table `ciudad` */
 
-insert  into `ciudad`(`id_ciudad`,`descripcion`,`cod_postal`,`id_pais`) values (1,'Avellaneda','1872',1),(2,'Bahia Blanca','8000',1),(3,'Cafayate','4427',1),(4,'Corrientes','3400',1),(5,'Formosa','3600',1),(6,'La Plata','1900',1),(7,'La Rioja','5300',1),(8,'Mendoza','5500',1),(9,'Neuquén','8300',1),(10,'Posadas','3300',1),(11,'Rio Gallegos','9400',1),(12,'Rosario','2000',1),(13,'San Juan','5400',1),(14,'San Miguel de Tucuman','4000',1),(15,'San Salvador de Jujuy','4600',1),(16,'Santa Fe','3000',1),(17,'Santa Rosa','6300',1),(18,'Santiago del Estero','4200',1),(19,'Usuahia','9410',1),(20,'Viedma','8500',1);
+insert  into `ciudad`(`id_ciudad`,`descripcion`,`cod_postal`,`id_pais`) values (1,'Avellaneda','1872',1),(2,'Bahia Blanca','8000',1),(3,'Cafayate','4427',1),(4,'Corrientes','3400',1),(5,'Formosa','3600',1),(6,'La Plata','1900',1),(7,'La Rioja','5300',1),(8,'Mendoza','5500',1),(9,'Neuquen','8300',1),(10,'Posadas','3300',1),(11,'Rio Gallegos','9400',1),(12,'Rosario','2000',1),(13,'San Juan','5400',1),(14,'San Miguel de Tucuman','4000',1),(15,'San Salvador de Jujuy','4600',1),(16,'Santa Fe','3000',1),(17,'Santa Rosa','6300',1),(18,'Santiago del Estero','4200',1),(19,'Usuahia','9410',1),(20,'Viedma','8500',1);
 
 /*Table structure for table `decision` */
 
