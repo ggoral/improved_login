@@ -10,7 +10,7 @@ class Conexion
           $db_host="127.0.0.1";
           $db_user="proyecto";
           $db_pass="proyecto";
-          $db_base="fba_db";
+          $db_base="grupo56";
           $this->conexion = new PDO("mysql:dbname=$db_base;host=$db_host",$db_user,$db_pass);
         }
       }
