@@ -108,7 +108,7 @@ public static function buscar_por_clave($username)
 	
 public static function agregar_usuario($username, $password, $email, $id_rol, $activo)
   {
-		$existe = ORM_usuario::buscar_por_clave($username);
+	$existe = ORM_usuario::buscar_por_clave($username);
     if (!$existe){
       $row_affected = ORM_usuario::agregar_usuario_campos($username, $password, $email, $id_rol, $activo);
   	  return $row_affected;

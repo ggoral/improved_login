@@ -49,7 +49,7 @@ if (isset($_POST['action'])){
 	}
 	elseif ($_POST['action'] == 'alta'){
 		//HACE EL INSERT
-		$result = ORM_usuario::agregar_usuario_campos($username, $password, $email, $rol, $activo);	
+		$result = ORM_usuario::agregar_usuario($username, $password, $email, $rol, $activo);	
 		if ($result == 0)
 			die('4');
 		die('1');
