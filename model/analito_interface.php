@@ -75,5 +75,16 @@ public static function actualizar_analito($analito)
     return $analito;
   }
 
+  public static function obtener_analito_laboratorio()
+  {
+    $conexion = new Conexion();
+    $analito = $conexion->consulta_fetch("SELECT DISTINCT analito.`descripcion` , laboratorio.cod_lab FROM laboratorio INNER JOIN inscripcion ON (laboratorio.id_lab=inscripcion.laboratorio_id_lab) 
+     INNER JOIN analito ON analito.`id_analito` = inscripcion.`id_analito`
+            WHERE laboratorio.id_lab IN 
+            (SELECT aux.laboratorio_id_lab FROM (SELECT inscripcion.laboratorio_id_lab, COUNT(inscripcion.id_analito) AS cantidad FROM inscripcion 
+            GROUP BY inscripcion.laboratorio_id_lab,id_analito HAVING cantidad>1) AS aux)");
+    return $analito;
+  }
+
 }
 ?>

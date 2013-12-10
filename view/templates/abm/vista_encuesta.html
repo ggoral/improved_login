@@ -41,11 +41,7 @@
 	<span>
 		<label> Fecha de Ingreso:</label>
 		<label> {{encuesta['fecha_ingreso']}}</label>
-	</span> <br>		
-	<span>
-		<label> Laboratorio:</label>
-		<label> {{encuesta['cod_lab']}}</label>
-	</span> <br>	
+	</span> <br>			
 	<span>
 		<label> Analito:</label>
 		<label> {{encuesta['descanalito']}}</label>
@@ -69,7 +65,16 @@
 	<span>
 		<label> Valor de Corte:</label>
 		<label> {{encuesta['descvalor_corte']}}</label>
-	</span> <br>		
+	</span> <br>	
+	<span>
+		<label> Laboratorio:</label>
+		<ul>
+		{% for lab in encuesta['cod_lab'] %}
+			<li>{{lab}}</li>
+		{% endfor %}
+		</ul>
+		 <!--{{encuesta['cod_lab']}}-->
+	</span> <br>	
 </div>
 	<div align="left" class="btn" id="editar" name="editar" onclick="editarForm('{{encuesta['id_encuesta']}}','encuesta')">
 		<p class="titulofrm">editar</p>
