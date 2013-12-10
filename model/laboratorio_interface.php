@@ -95,7 +95,7 @@ public static function actualizar_laboratorio($laboratorio)
 											ciudad.descripcion AS ciudad, 
 											tipo_lab.descripcion AS tipo_lab
 										FROM laboratorio 	INNER JOIN ciudad ON (laboratorio.id_ciudad = ciudad.id_ciudad) 
-															INNER JOIN tipo_lab ON (laboratorio.id_tipo = tipo_lab.id_tipo) <> 0");
+															INNER JOIN tipo_lab ON (laboratorio.id_tipo = tipo_lab.id_tipo) where id_lab <> 0");
     return $query;
   }
 	public static function mostrar_datos_laboratorio($id_lab)
