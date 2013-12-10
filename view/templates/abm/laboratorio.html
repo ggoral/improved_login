@@ -1,6 +1,6 @@
 {% block content %}
 <!--CONTENT-->
-<h3 class="titulo"> LABORATORIO </h3>
+<h3 class="titulo"> {{titulo}} </h3>
 {% if perfil == 'Administrador' %}
 	<div align="left" class="btn" id="alta" name="alta" onclick="clonarDiv('content');cargarpagina('abm/am_laboratorio.php?action=alta','','content','')">
 		<p class="titulofrm">añadir</p>

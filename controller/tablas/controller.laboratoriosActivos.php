@@ -6,15 +6,15 @@ require_once '../validarSesion.php';
 require_once '../../model/laboratorio_interface.php';
 
 $parametro_template = 'abm/laboratorio.html';
-$parametro_columnas = Array('ID_LABORATORIO','CODIGO','CIUDAD','TIPO LABORATORIO');
-$parametro_datos = ORM_laboratorio::mostrar_laboratorio();
+$parametro_columnas = Array('CODIGO','FECHA INGRESO','FECHA BAJA','TIPO','ESTADO');
+$parametro_datos = ORM_laboratorio::mostrar_laboratorios_activos();
 
 
 $perfil = $_SESSION['usuarioLogeado']['rol'];
 //if ($perfil != 'Administrador')
 	//$idLab = str_replace('Laboratorio_','',$perfil);
 
-$titulo = "LABORATORIOS";	
+$titulo = "LABORATORIOS ACTIVOS";
 
 if (isset($_POST['error'])){
   $error = $_POST['error'];
