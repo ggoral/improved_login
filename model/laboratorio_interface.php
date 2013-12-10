@@ -175,6 +175,14 @@ public static function actualizar_laboratorio($laboratorio)
     return $query;
     }
 
-  
+    public static function mostrar_laboratorios_reinscriptos()
+    {
+    $conexion = new Conexion();
+    $query = $conexion->consulta("SELECT DISTINCT laboratorio.cod_lab, laboratorio.`estado`, inscripcion.`fecha_baja`, inscripcion.`fecha_ingreso` FROM laboratorio INNER JOIN inscripcion ON (laboratorio.id_lab=inscripcion.laboratorio_id_lab)
+                                  WHERE laboratorio.id_lab IN 
+                                  (SELECT aux.laboratorio_id_lab FROM (SELECT inscripcion.laboratorio_id_lab, COUNT(inscripcion.laboratorio_id_lab) AS cantidad FROM inscripcion 
+                                  GROUP BY inscripcion.laboratorio_id_lab HAVING cantidad>1) AS aux)");
+    return $query;
+    }
 }
 ?>
