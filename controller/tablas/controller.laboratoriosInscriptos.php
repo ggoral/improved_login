@@ -6,8 +6,8 @@ require_once '../validarSesion.php';
 require_once '../../model/laboratorio_interface.php';
 
 $parametro_template = 'abm/laboratorio.html';
-$parametro_columnas = Array('ID_LABORATORIO','CODIGO','CIUDAD','TIPO LABORATORIO');
-$parametro_datos = ORM_laboratorio::laboratorios_inscriptos();
+$parametro_columnas = Array('CODIGO','FECHA INGRESO','FECHA BAJA','ANALITO','ENCUESTA','TIPO',);
+$parametro_datos = ORM_laboratorio::mostrar_laboratorios_inscriptos();
 
 
 $perfil = $_SESSION['usuarioLogeado']['rol'];

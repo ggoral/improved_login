@@ -8,9 +8,9 @@ class Conexion
       {
         if(!isset($this->conexion)){
           $db_host="127.0.0.1";
-          $db_user="proyecto";
-          $db_pass="proyecto";
-          $db_base="grupo56";
+          $db_user="root";
+          $db_pass="";
+          $db_base="fba_db";
           $this->conexion = new PDO("mysql:dbname=$db_base;host=$db_host",$db_user,$db_pass);
         }
       }

@@ -141,5 +141,40 @@ public static function actualizar_laboratorio($laboratorio)
 	WHERE id_lab = ?",array($id_laboratorio));
     return $laboratorio;
   }
+
+    public static function mostrar_laboratorios_inscriptos()
+    {
+    $conexion = new Conexion();
+    $query = $conexion->consulta("SELECT  laboratorio.`cod_lab` AS codigo_laboratorio,
+               inscripcion.fecha_ingreso AS fecha_ingreso,
+               inscripcion.fecha_baja AS fecha_baja,
+               analito.descripcion AS analito,
+               encuesta.id_encuesta AS encuesta, 
+               tipo_lab.descripcion AS tipo_lab
+                          FROM laboratorio  INNER JOIN inscripcion ON (laboratorio.id_lab = inscripcion.laboratorio_id_lab) 
+                                    INNER JOIN tipo_lab ON (laboratorio.id_tipo = tipo_lab.id_tipo)
+                                    INNER JOIN encuesta ON (inscripcion.id_encuesta = encuesta.id_encuesta)
+                                    INNER JOIN analito ON (inscripcion.id_analito = analito.id_analito)
+                          WHERE laboratorio.estado = 1");
+    return $query;
+    }
+  
+    public static function mostrar_laboratorios_activos()
+    {
+    $conexion = new Conexion();
+    $query = $conexion->consulta("SELECT  laboratorio.`cod_lab` AS codigo_laboratorio,
+               inscripcion.fecha_ingreso AS fecha_ingreso,
+               inscripcion.fecha_baja AS fecha_baja, 
+               tipo_lab.descripcion AS tipo_lab,
+               laboratorio.`estado` AS estado 
+                          FROM laboratorio  INNER JOIN inscripcion ON (laboratorio.id_lab = inscripcion.laboratorio_id_lab) 
+                                    INNER JOIN tipo_lab ON (laboratorio.id_tipo = tipo_lab.id_tipo)
+                                    INNER JOIN encuesta ON (inscripcion.id_encuesta = encuesta.id_encuesta)
+                                    INNER JOIN analito ON (inscripcion.id_analito = analito.id_analito)
+                          WHERE laboratorio.estado = 1");
+    return $query;
+    }
+
+  
 }
 ?>

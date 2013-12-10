@@ -1,9 +1,20 @@
 <ul class="menu">
-	<li><a href="#" onclick="clonarDiv('content');cargarpagina('tablas/controller.laboratorio.php','','content','mostrarTabla()')">LABORATORIOS</a></li>
+	<li><a href="#">LABORATORIOS</a>
+		<ul>
+			<li><a href="#" onclick="clonarDiv('content');cargarpagina('tablas/controller.laboratorio.php','','content','mostrarTabla()')">DATOS</a></li>
+			<li><a href="#"> ESTADISTICAS </a>
+				<ul>
+					<li><a href="#" onclick="clonarDiv('content');cargarpagina('tablas/controller.laboratoriosInscriptos.php','','content','mostrarTabla()')"> INSCRIPTOS </a></li>
+					<li><a href="#" onclick="clonarDiv('content');cargarpagina('tablas/controller.laboratorioEstadisticas.php','','content','mostrarTabla()')"> ACTIVOS </a></li>
+					<li><a href="#" onclick="clonarDiv('content');cargarpagina('tablas/controller.laboratorioEstadisticas.php','','content','mostrarTabla()')"> RE-INSCRIPTOS </a></li>
+				</ul>
+			</li>
+		</ul>
+	</li>
 	<li><a href="#">GESTIONES</a>
 		<ul>
 			<li><a href="#" onclick="clonarDiv('content');cargarpagina('tablas/controller.encuesta.php','','content','mostrarTabla()')"> ENCUESTAS </a></li>
-				<li><a href="#" onclick="clonarDiv('content');cargarpagina('tablas/controller.muestra.php','','content','mostrarTabla()')"> MUESTRAS </a></li>
+			<li><a href="#" onclick="clonarDiv('content');cargarpagina('tablas/controller.muestra.php','','content','mostrarTabla()')"> MUESTRAS </a></li>
 			<li><a href="#" onclick="clonarDiv('content');cargarpagina('tablas/controller.resultado.php','','content','mostrarTabla()')"> RESULTADOS </a></li>
 		</ul>
 	</li>
