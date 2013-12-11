@@ -78,13 +78,33 @@ public static function actualizar_analito($analito)
   public static function obtener_analito_laboratorio()
   {
     $conexion = new Conexion();
-    $analito = $conexion->consulta_fetch("SELECT DISTINCT analito.`descripcion` , laboratorio.cod_lab FROM laboratorio INNER JOIN inscripcion ON (laboratorio.id_lab=inscripcion.laboratorio_id_lab) 
+    $analito = $conexion->consulta("SELECT DISTINCT analito.`descripcion` , laboratorio.cod_lab,
+IF(laboratorio.id_lab IN 
+            (SELECT aux2.laboratorio_id_lab FROM (SELECT inscripcion.laboratorio_id_lab, COUNT(inscripcion.id_analito) AS cantidad FROM inscripcion 
+            GROUP BY inscripcion.laboratorio_id_lab,id_analito HAVING cantidad>1) AS aux2),(SELECT COUNT(inscripcion.id_analito) AS cantidad FROM inscripcion 
+            GROUP BY inscripcion.laboratorio_id_lab,id_analito HAVING cantidad>1),
+   IF(laboratorio.id_lab IN 
+            (SELECT aux1.laboratorio_id_lab FROM (SELECT inscripcion.laboratorio_id_lab, COUNT(inscripcion.id_analito) AS cantidad FROM inscripcion 
+            GROUP BY inscripcion.laboratorio_id_lab,id_analito HAVING cantidad=1) AS aux1),(SELECT COUNT(inscripcion.id_analito) AS cantidad FROM inscripcion 
+            GROUP BY inscripcion.laboratorio_id_lab,id_analito HAVING cantidad=1),'')) AS cuantos
+
+ FROM laboratorio INNER JOIN inscripcion ON (laboratorio.id_lab=inscripcion.laboratorio_id_lab) 
      INNER JOIN analito ON analito.`id_analito` = inscripcion.`id_analito`
             WHERE laboratorio.id_lab IN 
             (SELECT aux.laboratorio_id_lab FROM (SELECT inscripcion.laboratorio_id_lab, COUNT(inscripcion.id_analito) AS cantidad FROM inscripcion 
-            GROUP BY inscripcion.laboratorio_id_lab,id_analito HAVING cantidad>1) AS aux)");
+            GROUP BY inscripcion.laboratorio_id_lab,id_analito HAVING cantidad>1) AS aux)
+            OR 
+            laboratorio.id_lab IN 
+            (SELECT aux.laboratorio_id_lab FROM (SELECT inscripcion.laboratorio_id_lab, COUNT(inscripcion.id_analito) AS cantidad FROM inscripcion 
+            GROUP BY inscripcion.laboratorio_id_lab,id_analito HAVING cantidad>0) AS aux)
+            
+            ORDER BY cuantos");
     return $analito;
   }
-
+/*SELECT DISTINCT analito.`descripcion` , laboratorio.cod_lab FROM laboratorio INNER JOIN inscripcion ON (laboratorio.id_lab=inscripcion.laboratorio_id_lab) 
+     INNER JOIN analito ON analito.`id_analito` = inscripcion.`id_analito`
+            WHERE laboratorio.id_lab IN 
+            (SELECT aux.laboratorio_id_lab FROM (SELECT inscripcion.laboratorio_id_lab, COUNT(inscripcion.id_analito) AS cantidad FROM inscripcion 
+            GROUP BY inscripcion.laboratorio_id_lab,id_analito HAVING cantidad>1) AS aux)*/
 }
 ?>
