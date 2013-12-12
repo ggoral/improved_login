@@ -14,7 +14,7 @@ $perfil = $_SESSION['usuarioLogeado']['rol'];
 //if ($perfil != 'Administrador')
 	//$idLab = str_replace('Laboratorio_','',$perfil);
 
-	
+$titulo = "LABORATORIOS INSCRIPTOS";
 
 if (isset($_POST['error'])){
   $error = $_POST['error'];
@@ -33,6 +33,7 @@ if($error == "1"){
 }
 
 $parametro_display = array(
+    'titulo' => $titulo,
     'cabecera' => $parametro_columnas,
     'filas' => $parametro_datos,
 	'perfil' => $perfil,

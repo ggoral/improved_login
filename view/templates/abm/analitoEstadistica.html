@@ -1,12 +1,6 @@
 {% block content %}
 <!--CONTENT-->
-<h3 class="titulo"> {{titulo}} </h3>
-{% if perfil == 'Administrador' %}
-	<div align="left" class="btn" id="alta" name="alta" onclick="clonarDiv('content');cargarpagina('abm/am_laboratorio.php?action=alta','','content','')">
-		<p class="titulofrm">añadir</p>
-	</div>
-{% endif %}
-
+<h3 class="titulo"> ANALITO ESTADISTICA </h3>
 
 <!--TABLA-->
 <div id="divContenedor">
@@ -28,7 +22,7 @@
 			</thead>
 			<tbody>
 				{% for doc in filas %}	
-					<tr id={{doc['id_lab']}} onclick="showInfo(this.getAttribute('id'),'laboratorio')">
+					<tr id={{doc['descripcion']}} onclick="">
 						{% for field, value in doc %}	
 							<td id={{field~value}} name={{value}} >{{value}}</td>		
 						{% endfor %}
@@ -37,7 +31,6 @@
 			</tbody>
 		</table>	
 	</div>
-	<button onclick="window.open('tablas/controller.maps.php','_blank','width=500,height=500');">Ver Mapas!</button>
 </div>
 <!--FIN CONTENT-->
 {% endblock content %}
