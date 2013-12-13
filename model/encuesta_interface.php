@@ -174,5 +174,12 @@ public static function buscar_encuesta_Twig2($id_encuesta)
     return $encuesta;
   }
 
+  public static function obtener_estadisticas_encuestas()
+  {
+    $conexion = new Conexion();
+    $query = $conexion->consulta("SELECT id_encuesta, fecha_inicio, fecha_cierre FROM encuesta");
+    return $query;
+  }
+
 }
 ?>

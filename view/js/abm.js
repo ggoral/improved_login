@@ -239,5 +239,17 @@ function submitearFormMuestra(action, tabla){
 }
 /*Muestra*/
 
+function mostrar_participantes(id){
+	parametros = id;
+	cargarpagina('abm/vista_mostrar_participantes.php', parametros,'content');	
+}
+
+function mostrar_comparaciones(id){
+	parametros = id;
+	cargarpagina('abm/vista_mostrar_comparaciones.php', parametros,'content');	
+}
+
+
+
 
 
