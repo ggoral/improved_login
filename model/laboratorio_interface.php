@@ -16,10 +16,13 @@ public static function buscar_laboratorio($id_lab)
     return $laboratorio;
   }
 
-public static function obtener_todos_laboratorio()
+public static function obtener_todos_laboratorio($NOfba=false)
   {
     $conexion = new Conexion();
-    $query = $conexion->consulta("SELECT * FROM laboratorio");
+	$sql = "SELECT * FROM laboratorio";
+	if ($NOfba)
+		$sql .= " where id_lab <> 0";
+    $query = $conexion->consulta($sql);
     return $query;
   }
 

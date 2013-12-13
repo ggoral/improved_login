@@ -1,0 +1,19 @@
+{% block content %}
+<!--CONTENT-->
+<div id="divEtiquetas" name="divEtiquetas">
+<h3>ETIQUETAS PARA CORRESPONDENCIA</h3>
+
+<form name="etiqueta_lab" id="etiqueta_lab" method="POST" action="estadistica/etiqueta.php" onsubmit="unirValores()" target="_blank">
+	<h5> Seleccione Laboratorios:</h5>
+	<select name="laboratorio" id="laboratorio" size="7" multiple required>
+		{% for lab in laboratorio %}	
+			<option value="{{lab['id_lab']}}"> {{lab['institucion']}} </option>
+		{% endfor %}
+	</select>
+	<br>
+	<input type="hidden" id="vals" name="vals" value="">
+	<input class="btn" type="submit" value="Crear PDF" />
+</form>
+</div>
+<!--FIN CONTENT-->
+{% endblock content %}

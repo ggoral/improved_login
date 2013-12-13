@@ -343,3 +343,10 @@ div{
 	text-align: left;
 }
 
+#divEtiquetas h3,h5{
+	text-align: center;
+}
+#divEtiquetas select{
+	min-width: 150px;
+	margin-left: 350px;
+}
