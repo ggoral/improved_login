@@ -1,3 +1,7 @@
+function unirValores(){
+	document.getElementById('vals').value = ($('#laboratorio').val());
+}
+
 function showInfo(id, tabla){
 	parametros = 'id_'+tabla+'='+id;
 	cargarpagina('abm/vista_'+tabla+'.php?action=vista', parametros,'content');	
