@@ -4,7 +4,8 @@ $tipo_usuario = array('Adm','FBA');
 
 require_once '../validarSesion.php';
 require_once '../../model/laboratorio_interface.php';
-$parametro_template = 'stats.html';
+
+$parametro_template = 'graphs.html';
 $parametro_datos = ORM_laboratorio::mostrar_coordenadas();
 $parametro_columnas = Array();
 $parametro_display = array(

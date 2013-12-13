@@ -90,6 +90,13 @@ public static function actualizar_laboratorio($laboratorio)
   }
 
 
+public static function mostrar_laboratorio_graficos()
+  {
+    $conexion = new Conexion();
+    $query = $conexion->consulta("SELECT cod_lab,id_lab FROM laboratorio");
+    return $query;
+  }
+
   public static function mostrar_laboratorio()
   {
     $conexion = new Conexion();

@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Highcharts Example</title>
+
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script type="text/javascript">
+$(function () {
+        $('#container').highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Encuestas por Laboratorio'
+            },
+            subtitle: {
+                text: 'Fuente: fba.org.ar'
+            },
+            xAxis: {
+                categories: ['Encuesta 1', 'Encuesta 2', 'Encuesta 3', 'Encuesta 4', 'Encuesta 5'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Encuestas fuera de termino: 11',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            tooltip: {
+                valueSuffix: ' Dias'
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -40,
+                y: 100,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: '#FFFFFF',
+                shadow: true
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: 'Tiempo de Envio',
+                data: [107, 31, 635, 203, 2]
+            }, {
+                name: 'Tiempo de Analisis',
+                data: [133, 156, 947, 408, 6]
+            }, {
+                name: 'Tiempo de Ingreso',
+                data: [973, 914, 454, 732, 34]
+            }]
+        });
+    });
+    
+
+        </script>
+    </head>
+    <body>
+<script src="../../view/js/highcharts.js"></script>
+<script src="../../view/js/modules/exporting.js"></script>
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+    </body>
+</html>
