@@ -8,8 +8,10 @@ require_once '../../model/encuesta_interface.php';
 $parametro_template = 'abm/vista_mostrar_participantes.html';
 $parametro_datos = ORM_encuesta::participantes_encuestas($_POST['id_encuesta']);
 
+
 $parametro_display = array(
-    'encuesta' => $parametro_datos
+    'participantes' => $parametro_datos,
+    'encuesta' => $_POST['id_encuesta']
   );
 
 require '../controller.generico.php';

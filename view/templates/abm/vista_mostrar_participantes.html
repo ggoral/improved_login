@@ -1,0 +1,19 @@
+{% block content %}
+<!--CONTENT-->
+
+
+<h3>INFORMACION</h3>
+<br>
+<span>
+	<h4> Participantes de la encuesta: {{encuesta}}</h4>
+	<br>
+	<ol id="participantes">
+	<br>
+	{% for labs in participantes %}	
+		<li>{{labs["cod_lab"]}}</li>
+	{% endfor %}
+	</ol>
+</span> <br>	
+
+<!--FIN CONTENT-->
+{% endblock content %}
