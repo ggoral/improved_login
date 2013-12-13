@@ -181,10 +181,13 @@ public static function buscar_encuesta_Twig2($id_encuesta)
     return $query;
   }
 
-    public static function participantes_encuestas()
+    public static function participantes_encuestas($id_encuesta)
   {
     $conexion = new Conexion();
-    $query = $conexion->consulta("SELECT id_encuesta, fecha_inicio, fecha_cierre FROM encuesta");
+    $query = $conexion->consulta("SELECT cod_lab FROM laboratorio
+                                  INNER JOIN inscripcion ON laboratorio.id_lab = inscripcion.`laboratorio_id_lab`
+                                  INNER JOIN encuesta ON inscripcion.`id_encuesta` = encuesta.`id_encuesta`
+                                  WHERE encuesta.id_encuesta = $id_encuesta", array($id_encuesta));
     return $query;
   }
 
