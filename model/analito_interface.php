@@ -78,7 +78,7 @@ public static function actualizar_analito($analito)
   public static function obtener_analito_laboratorio()
   {
     $conexion = new Conexion();
-    $analito = $conexion->consulta("SELECT DISTINCT analito.`descripcion` , laboratorio.cod_lab,
+    $analito = $conexion->consulta("SELECT DISTINCT laboratorio.cod_lab,
 IF(laboratorio.id_lab IN 
             (SELECT aux2.laboratorio_id_lab FROM (SELECT inscripcion.laboratorio_id_lab, COUNT(inscripcion.id_analito) AS cantidad FROM inscripcion 
             GROUP BY inscripcion.laboratorio_id_lab,id_analito HAVING cantidad>1) AS aux2),(SELECT COUNT(inscripcion.id_analito) AS cantidad FROM inscripcion 
