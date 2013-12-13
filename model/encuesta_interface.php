@@ -181,5 +181,12 @@ public static function buscar_encuesta_Twig2($id_encuesta)
     return $query;
   }
 
+    public static function participantes_encuestas()
+  {
+    $conexion = new Conexion();
+    $query = $conexion->consulta("SELECT id_encuesta, fecha_inicio, fecha_cierre FROM encuesta");
+    return $query;
+  }
+
 }
 ?>
