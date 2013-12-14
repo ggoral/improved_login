@@ -160,13 +160,19 @@ public static function buscar_encuesta_Twig2($id_encuesta)
       return $query;
   }
 
-public static function encuestas_fuera_de_termino()
+public static function encuestas_fuera_de_termino(id_encuesta)
   {
     $conexion = new Conexion();
     $query = $conexion->consulta(
-      "SELECT COUNT( DISTINCT laboratorio_id_lab )
-       FROM inscripcion
-       WHERE laboratorio_id_lab <>0");
+      "SELECT (((
+        SELECT COUNT(DISTINCT id_lab) resultados 
+        FROM encuesta 
+        INNER JOIN resultado ON encuesta.id_resultado=resultado.id_resultado 
+        WHERE id_encuesta=?) - (
+        SELECT COUNT(DISTINCT id_lab) resultados 
+        FROM encuesta 
+        INNER JOIN resultado ON encuesta.id_resultado=resultado.id_resultado 
+        WHERE id_lab=0 AND id_encuesta=?)))", array($id_encuesta));
       return $query;
   }
 
