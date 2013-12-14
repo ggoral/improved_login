@@ -1,6 +1,6 @@
 {% block content %}
 <!--CONTENT-->
-<h3 class="titulo"> PARTICIPANTES ENCUESTA </h3>
+<h3 class="titulo"> COMPRACIONES ENCUESTA </h3>
 
 <!--TABLA-->
 <div id="divContenedor">
@@ -22,7 +22,7 @@
 			</thead>
 			<tbody>
 				{% for doc in filas %}	
-					<tr id={{doc['id_encuesta']}} onclick="mostrar_participantes(this.getAttribute('id'))">
+					<tr id={{doc['id_encuesta']}} name={{doc['id_lab']}} onclick="mostrar_comparaciones(this.getAttribute('id'), this.getAttribute('name'))">
 						{% for field, value in doc %}	
 							<td id={{field~value}} name={{value}}> {{value}}</td>		
 						{% endfor %}

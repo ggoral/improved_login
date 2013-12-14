@@ -177,7 +177,12 @@ public static function buscar_encuesta_Twig2($id_encuesta)
   public static function obtener_estadisticas_encuestas()
   {
     $conexion = new Conexion();
-    $query = $conexion->consulta("SELECT id_encuesta, fecha_inicio, fecha_cierre FROM encuesta");
+    $query = $conexion->consulta("SELECT encuesta.`id_encuesta`, encuesta.`fecha_inicio`, encuesta.`fecha_cierre`
+                                  FROM laboratorio INNER JOIN inscripcion
+                                  ON laboratorio.`id_lab` = inscripcion.`laboratorio_id_lab`
+                                  INNER JOIN encuesta ON  inscripcion.`id_encuesta` = encuesta.`id_encuesta`
+                                  WHERE laboratorio.`estado` = 1 
+                                  AND inscripcion.`fecha_baja` <= encuesta.`fecha_cierre` ");
     return $query;
   }
 
@@ -188,6 +193,18 @@ public static function buscar_encuesta_Twig2($id_encuesta)
                                   INNER JOIN inscripcion ON laboratorio.id_lab = inscripcion.`laboratorio_id_lab`
                                   INNER JOIN encuesta ON inscripcion.`id_encuesta` = encuesta.`id_encuesta`
                                   WHERE encuesta.id_encuesta = $id_encuesta", array($id_encuesta));
+    return $query;
+  }
+
+  public static function  obtener_compraciones_encuestas_validas()
+  {
+    $conexion = new Conexion();
+    $query = $conexion->consulta("SELECT laboratorio.`id_lab`, laboratorio.`cod_lab`, encuesta.`id_encuesta`, encuesta.`fecha_inicio`, encuesta.`fecha_cierre` FROM laboratorio
+                                  INNER JOIN inscripcion ON laboratorio.`id_lab` = inscripcion.`laboratorio_id_lab`
+                                  INNER JOIN encuesta ON  inscripcion.`id_encuesta` = encuesta.`id_encuesta`
+                                  WHERE encuesta.`fecha_cierre` < CURRENT_DATE()
+                                  AND laboratorio.`estado` = 1 AND inscripcion.`fecha_baja` <= encuesta.`fecha_cierre` 
+                                  AND EXISTS (SELECT * FROM laboratorio INNER JOIN resultado ON laboratorio.`id_lab` = resultado.`id_lab` WHERE laboratorio.`id_lab` = 0) ");
     return $query;
   }
 
