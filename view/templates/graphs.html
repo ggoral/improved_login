@@ -78,6 +78,8 @@ $(function () {
 <script src="../../view/js/modules/exporting.js"></script>
 
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-
+{% for enc in encuestas %}
+      <input type="hidden" value="{{enc['id_encuesta']}}">
+{% endfor %}
     </body>
 </html>

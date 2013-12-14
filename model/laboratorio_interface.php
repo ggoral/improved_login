@@ -90,14 +90,14 @@ public static function actualizar_laboratorio($laboratorio)
   }
 
 
-public static function mostrar_laboratorio_graficos()
-  {
-    $conexion = new Conexion();
-    $query = $conexion->consulta("SELECT id_lab,cod_lab FROM laboratorio");
-    return $query;
-  }
-
-public static function mostrar_laboratorio_encuestas($id_encuesta)
+  public static function mostrar_laboratorio_graficos()
+    {
+      $conexion = new Conexion();
+      $query = $conexion->consulta("SELECT id_lab,cod_lab FROM laboratorio");
+      return $query;
+    }
+/*
+ public static function mostrar_laboratorio_encuestas($id_encuesta)
   {
     $conexion = new Conexion();
     $query = $conexion->consulta(
@@ -109,7 +109,7 @@ public static function mostrar_laboratorio_encuestas($id_encuesta)
         WHERE e.id_encuesta = ?");
     return $query;
   }
-
+*/
 
 
   public static function mostrar_laboratorio()

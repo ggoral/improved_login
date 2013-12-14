@@ -148,7 +148,28 @@ public static function buscar_encuesta_Twig2($id_encuesta)
       return $encuesta;
   }
 
-  
+  public static function mostrar_encuestas_laboratorio($id_lab)
+  {
+    $conexion = new Conexion();
+    $query = $conexion->consulta(
+      "SELECT id_encuesta, fecha_inicio, fecha_cierre, fecha_recepcion, fecha_analisis, fecha_ingreso
+      FROM encuesta AS e
+      INNER JOIN resultado AS r ON r.id_resultado = e.id_resultado
+      INNER JOIN laboratorio AS l ON r.id_lab = l.id_lab
+      WHERE l.id_lab = ?", array($id_lab));
+      return $query;
+  }
+
+public static function encuestas_fuera_de_termino()
+  {
+    $conexion = new Conexion();
+    $query = $conexion->consulta(
+      "SELECT COUNT( DISTINCT laboratorio_id_lab )
+       FROM inscripcion
+       WHERE laboratorio_id_lab <>0");
+      return $query;
+  }
+
  public static function buscar_encuesta_Twig_Tabla_para_lab($codlab)
   {
     $conexion = new Conexion();

@@ -20,7 +20,7 @@
       </thead>
       <tbody>
         {% for doc in filas %}  
-          <tr id={{doc['id_lab']}} onclick="window.open('tablas/controller.estadisticaGraficos.php','_blank','width=1024,height=400');">
+          <tr id={{doc['id_lab']}} onclick="window.open('tablas/controller.estadisticaGraficos.php?id_lab={{doc['id_lab']}}','_blank','width=1024,height=400');">
             {% for field, value in doc %} 
               <td id={{field~value}} name={{value}} >{{value}}</td>   
             {% endfor %}
