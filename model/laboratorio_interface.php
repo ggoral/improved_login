@@ -90,15 +90,27 @@ public static function actualizar_laboratorio($laboratorio)
   }
 
 
-public static function mostrar_laboratorio_graficos($id_encuesta)
+public static function mostrar_laboratorio_graficos()
   {
     $conexion = new Conexion();
-    $query = $conexion->consulta("SELECT fecha_inicio, fecha_analisis, fecha_recepcion, fecha_ingreso
-                                  FROM encuesta AS e
-                                  INNER JOIN resultado as r on r.id_resultado = e.id_resultado
-                                  WHERE e.id_encuesta = ?");
+    $query = $conexion->consulta("SELECT id_lab,cod_lab FROM laboratorio");
     return $query;
   }
+
+public static function mostrar_laboratorio_encuestas($id_encuesta)
+  {
+    $conexion = new Conexion();
+    $query = $conexion->consulta(
+      "SELECT fecha_inicio,
+        fecha_analisis, 
+        fecha_recepcion, 
+        fecha_ingreso 
+        FROM encuesta AS e INNER JOIN resultado as r on r.id_resultado = e.id_resultado
+        WHERE e.id_encuesta = ?");
+    return $query;
+  }
+
+
 
   public static function mostrar_laboratorio()
   {
