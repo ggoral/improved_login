@@ -1,8 +1,16 @@
 <ul class="menu">
 	<li><a href="#" onclick="clonarDiv('content');cargarpagina('tablas/controller.inscripcion.php','','content','mostrarTabla()')">INSCRIPCION</a></li>
-	<li><a href="#" onclick="clonarDiv('content');cargarpagina('tablas/controller.muestra.php','','content','mostrarTabla()')">MUESTRAS</a></li>
+	<li><a href="#">CARGAR DATOS</a>
+		<ul>
+			<li><a href="#" onclick="clonarDiv('content');cargarpagina('tablas/controller.resultado.php','','content','mostrarTabla()')">RESULTADOS</a></li>
+			<li><a href="#" onclick="clonarDiv('content');cargarpagina('tablas/controller.muestra.php','','content','mostrarTabla()')">MUESTRAS</a></li>
+		</ul>
+	</li>
 	<li><a href="#" class="logo">&nbsp;</a></li>
-
-	<li><a href="#" onclick="clonarDiv('content');cargarpagina('tablas/controller.resultado.php','','content','mostrarTabla()')">RESULTADOS</a></li>
+	<li><a href="#">GESTIONES</a>
+		<ul>
+			<li><a href="#" onclick="clonarDiv('content');cargarpagina('estadistica/comparacionesEncuestas.php','','content','mostrarTabla()')">COMPARACIONES ENCUESTAS</a></li>
+		</ul>
+	</li>
 	<li><a class='logout' href="logOut.php">LOG OUT</a></li>
 </ul>

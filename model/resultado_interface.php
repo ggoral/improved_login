@@ -33,6 +33,13 @@ public static function obtener_todos_resultado()
     $query = $conexion->consulta("SELECT * FROM resultado");
     return $query;
   }
+  
+  public static function obtener_todos_resultado_para_muestra($idLab)
+  {
+    $conexion = new Conexion();
+    $query = $conexion->consulta("SELECT * FROM resultado where id_lab=?",array($idLab));
+    return $query;
+  }
 
 public static function agregar_resultado($comentario, $fecha_recepcion, $fecha_analisis, $fecha_ingreso, $id_lab, $id_metodo, $id_reactivo, $id_calibrador, $id_analito, $id_papel_filtro, $id_valor)
   {

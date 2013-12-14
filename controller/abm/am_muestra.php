@@ -11,7 +11,12 @@ require_once '../../model/resultado_interface.php';
 $muestra = array();
 $interpretacion = ORM_interpretacion::obtener_todos_interpretacion();
 $decision = ORM_decision::obtener_todos_decision();
-$resultado = ORM_resultado::obtener_todos_resultado();
+/*obtener el id de laboratorio y mandarlo para q solo pueda anotarse al resultado que le pertenezca */
+	if (substr($_SESSION['usuarioLogeado']['rol'],0,3) == 'FBA')
+		$idLab = 0;
+	else
+		$idLab = substr($_SESSION['usuarioLogeado']['rol'],-1);
+$resultado = ORM_resultado::obtener_todos_resultado_para_muestra($idLab);
 
 if ($_GET['action'] == 'editar'){
 

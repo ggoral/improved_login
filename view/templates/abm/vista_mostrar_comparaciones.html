@@ -1,0 +1,30 @@
+{% block content %}
+<!--CONTENT-->
+<h3 class="titulo"> COMPARACION DE MUESTRAS </h3>
+
+<h5>{{mensaje}}</h5>
+<!--TABLA-->
+<div id="divContenedor">
+	<table id="tblDatos" align="center">
+		<thead>
+			<tr>	
+				<th></th>
+				{% for cabecera in datos %}
+					<th>{{cabecera['laboratorio']}}</th>
+				{% endfor %}
+			</tr>
+		</thead>
+		<tbody>
+			{% for field,value in datos[0] %}
+				<tr id={{ field }}>	
+					<td class="tdMuestras" id={{ field }} name={{ field }} >{{field|upper}}</td>
+					{% for i in 0..2 %}
+						<td id={{ field ~ i }} name={{ field ~ i }} >{{datos[i][field]}}</td>							
+					{% endfor %}
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+<!--FIN CONTENT-->
+{% endblock content %}

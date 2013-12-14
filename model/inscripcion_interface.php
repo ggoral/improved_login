@@ -106,7 +106,7 @@ public static function agregar_inscripcion($fecha_ingreso, $laboratorio_id_lab, 
 public static function buscar_inscripcion_fechas($fecha_ingreso, $laboratorio_id_lab, $id_encuesta)
   {
     $conexion = new Conexion();
-    $query = $conexion->consulta_fetch("SELECT id_inscripcion FROM inscripcion WHERE fecha_ingreso = ? AND laboratorio_id_lab = ? AND id_encuesta = ?",array($fecha_ingreso,$laboratorio_id_lab, $id_encuesta));
+    $query = $conexion->consulta_fetch("SELECT id_inscripcion FROM inscripcion WHERE fecha_ingreso = ? AND laboratorio_id_lab = ? AND id_encuesta = ? AND fecha_baja <> '0000-00-00 00:00:00'",array($fecha_ingreso,$laboratorio_id_lab, $id_encuesta));
     $id_inscripcion = $query['id_inscripcion'];
     return (int)$id_inscripcion;
   }

@@ -12,7 +12,7 @@ $perfil = $_SESSION['usuarioLogeado']['rol'];
 $idlab = str_replace('Laboratorio_','',$perfil);
 
 $inscripcion = array('fecha_ingreso'=> date('Y-m-d'),'laboratorio_id_lab'=> $idlab,'fecha_baja'=> date('Y-m-d'));
-$datos_extra = ORM_encuesta::obtener_todos_encuesta();
+$datos_extra = ORM_encuesta::obtener_todos_encuesta_en_termino();
 
 
 
