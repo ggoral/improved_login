@@ -244,7 +244,7 @@ function mostrar_participantes(id){
 	cargarpagina('abm/vista_mostrar_participantes.php', parametros,'content');	
 }
 
-function mostrar_comparaciones(id){
+function mostrar_comparaciones(id_encuesta, id_laboratorio){
 	parametros = 'id_encuesta='+id;
 	cargarpagina('abm/vista_mostrar_comparaciones.php', parametros,'content');	
 }
