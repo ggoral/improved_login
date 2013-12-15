@@ -18,7 +18,11 @@ $(function () {
                 text: 'Fuente: fba.org.ar'
             },
             xAxis: {
-                categories: ['Encuesta 1', 'Encuesta 2', 'Encuesta 3', 'Encuesta 4', 'Encuesta 5'],
+                categories: [
+                {% for enc in encuestas %}
+                  'Encuesta {{enc['id_encuesta']}}',
+                {% endfor %} 
+                ],
                 title: {
                     text: null
                 }
@@ -59,13 +63,25 @@ $(function () {
             },
             series: [{
                 name: 'Tiempo de Envio',
-                data: [107, 31, 635, 203, 2]
+                data: [
+                  {% for enc in encuestas %}
+                    {{enc['tiempo_envio']}},
+                  {% endfor %}
+                  ]
             }, {
                 name: 'Tiempo de Analisis',
-                data: [133, 156, 947, 408, 6]
+                data: [
+                  {% for enc in encuestas %}
+                    {{enc['tiempo_analisis']}},
+                  {% endfor %}
+                ]
             }, {
                 name: 'Tiempo de Ingreso',
-                data: [973, 914, 454, 732, 34]
+                data: [
+                  {% for enc in encuestas %}
+                    {{enc['tiempo_ingreso']}},
+                  {% endfor %}
+                ]
             }]
         });
     });
@@ -78,8 +94,21 @@ $(function () {
 <script src="../../view/js/modules/exporting.js"></script>
 
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-{% for enc in encuestas %}
-      <input type="hidden" value="{{enc['id_encuesta']}}">
-{% endfor %}
+        <table>
+          <tr>
+            <th>id_encuesta</th>
+            <th>tiempo_envio</th>
+            <th>tiempo_analisis</th>
+            <th>tiempo_ingreso</th>
+          </tr>
+          {% for enc in encuestas %}
+            <tr>
+              <td>{{enc['id_encuesta']}}</td>
+              <td>{{enc['tiempo_envio']   }}</td>
+              <td>{{enc['tiempo_analisis']}}</td>
+              <td>{{enc['tiempo_ingreso'] }}</td>
+            </tr>
+        {% endfor %}
+        </table>
     </body>
 </html>
