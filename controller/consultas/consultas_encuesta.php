@@ -16,14 +16,17 @@ if (isset($_POST['action'])){
 	
 	if ((isset($_POST['fecha_inicio']))and(test_input($_POST['fecha_inicio'])))
 		if (preg_match('/^\d{4}\/\d{1,2}\/\d{1,2}$/', $_POST['fecha_inicio']))
-			die('6');
+			die('5');
 	if ((isset($_POST['fecha_cierre']))and(test_input($_POST['fecha_cierre'])))
 		if (preg_match('/^\d{4}\/\d{1,2}\/\d{1,2}$/', $_POST['fecha_cierre']))
-			die('6');	
+			die('5');	
 	
 	$fecha_inicio = $_POST['fecha_inicio'];	
 	$fecha_cierre = $_POST['fecha_cierre'];	
-	$id_resultado = $_POST['id_resultado'];			
+	$id_resultado = $_POST['id_resultado'];	
+	
+	if ($fecha_cierre <= $fecha_inicio)
+		die('6');
 	
 	if ($_POST['action'] == 'editar'){
 		if ((!isset($_POST['id_encuesta']))or(!test_input($_POST['id_encuesta']))){
