@@ -26,7 +26,7 @@ $encuestas_nuevas = array();
 
 $i = 0;
 foreach ($encuestas as $enc) {
-  $fecha_ingreso = new DateTime($enc['fecha_inicio']);
+  $fecha_inicio = new DateTime($enc['fecha_inicio']);
   $fecha_analisis = new DateTime($enc['fecha_analisis']);
   $fecha_cierre = new DateTime($enc['fecha_cierre']);
   $fecha_recepcion = new DateTime($enc['fecha_recepcion']);
@@ -34,13 +34,15 @@ foreach ($encuestas as $enc) {
   
   $encuestas_nuevas[$i]['id_encuesta'] = $enc['id_encuesta']; 
   
-  $encuestas_nuevas[$i]['tiempo_envio'] = ($fecha_recepcion->diff($fecha_inicio))['days']; 
-  $encuestas_nuevas[$i]['tiempo_analisis'] = $fecha_analisis->diff($fecha_recepcion); 
-  $encuestas_nuevas[$i]['tiempo_ingreso'] = $fecha_ingreso->diff($fecha_analisis); 
+  $encuestas_nuevas[$i]['tiempo_envio'] = $fecha_recepcion->diff($fecha_inicio)->days; 
+  $encuestas_nuevas[$i]['tiempo_analisis'] = $fecha_analisis->diff($fecha_recepcion)->days; 
+  $encuestas_nuevas[$i]['tiempo_ingreso'] = $fecha_ingreso->diff($fecha_analisis)->days; 
   
+  
+
   $i++;
 }
 
 print_r($encuestas_nuevas)
-
+#var_dump($encuestas_nuevas['tiempo_envio']->format('%d'));
 ?>
