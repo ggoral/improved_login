@@ -38,6 +38,14 @@ public static function obtener_todos_encuesta()
     $query = $conexion->consulta("SELECT * FROM encuesta");
     return $query;
   }
+
+public static function obtener_todos_encuesta_en_termino()
+  {
+    $conexion = new Conexion();
+    $query = $conexion->consulta("SELECT * FROM encuesta WHERE encuesta.`fecha_cierre` > CURRENT_DATE ");
+    return $query;
+  }
+
 /*
 public static function agregar_encuesta($encuesta)
   {
@@ -112,7 +120,10 @@ public static function buscar_encuesta_Twig($id_encuesta)
 public static function buscar_encuesta_resultado_Twig($id_encuesta)
   {
     $conexion = new Conexion();
-    $encuesta = $conexion->consulta("SELECT *, IF(resultado.id_resultado IN (SELECT id_resultado FROM encuesta WHERE id_encuesta = ?), 'selected', '') AS activo FROM resultado",array($id_encuesta));
+    $encuesta = $conexion->consulta("SELECT *, IF(resultado.id_resultado IN
+                                    (SELECT id_resultado FROM encuesta
+                                     WHERE id_encuesta = ?), 'selected', '') AS activo
+                                     FROM resultado",array($id_encuesta));
     return $encuesta;
   }
 
@@ -160,22 +171,6 @@ public static function buscar_encuesta_Twig2($id_encuesta)
       return $query;
   }
 
-public static function encuestas_fuera_de_termino(id_encuesta)
-  {
-    $conexion = new Conexion();
-    $query = $conexion->consulta(
-      "SELECT (((
-        SELECT COUNT(DISTINCT id_lab) resultados 
-        FROM encuesta 
-        INNER JOIN resultado ON encuesta.id_resultado=resultado.id_resultado 
-        WHERE id_encuesta=?) - (
-        SELECT COUNT(DISTINCT id_lab) resultados 
-        FROM encuesta 
-        INNER JOIN resultado ON encuesta.id_resultado=resultado.id_resultado 
-        WHERE id_lab=0 AND id_encuesta=?)))", array($id_encuesta));
-      return $query;
-  }
-
  public static function buscar_encuesta_Twig_Tabla_para_lab($codlab)
   {
     $conexion = new Conexion();
@@ -219,19 +214,72 @@ public static function encuestas_fuera_de_termino(id_encuesta)
     $query = $conexion->consulta("SELECT cod_lab FROM laboratorio
                                   INNER JOIN inscripcion ON laboratorio.id_lab = inscripcion.`laboratorio_id_lab`
                                   INNER JOIN encuesta ON inscripcion.`id_encuesta` = encuesta.`id_encuesta`
-                                  WHERE encuesta.id_encuesta = $id_encuesta", array($id_encuesta));
+                                  WHERE encuesta.id_encuesta = ?", array($id_encuesta));
     return $query;
   }
 
-  public static function  obtener_compraciones_encuestas_validas()
+  public static function  obtener_compraciones_encuestas_validas($idLab = null)
   {
     $conexion = new Conexion();
-    $query = $conexion->consulta("SELECT laboratorio.`id_lab`, laboratorio.`cod_lab`, encuesta.`id_encuesta`, encuesta.`fecha_inicio`, encuesta.`fecha_cierre` FROM laboratorio
+	$sql = "SELECT laboratorio.`id_lab`, laboratorio.`cod_lab`, encuesta.`id_encuesta`, encuesta.`fecha_inicio`, encuesta.`fecha_cierre` FROM laboratorio
                                   INNER JOIN inscripcion ON laboratorio.`id_lab` = inscripcion.`laboratorio_id_lab`
                                   INNER JOIN encuesta ON  inscripcion.`id_encuesta` = encuesta.`id_encuesta`
                                   WHERE encuesta.`fecha_cierre` < CURRENT_DATE()
                                   AND laboratorio.`estado` = 1 AND inscripcion.`fecha_baja` <= encuesta.`fecha_cierre` 
-                                  AND EXISTS (SELECT * FROM laboratorio INNER JOIN resultado ON laboratorio.`id_lab` = resultado.`id_lab` WHERE laboratorio.`id_lab` = 0) ");
+                                  AND EXISTS (SELECT * FROM laboratorio INNER JOIN resultado ON laboratorio.`id_lab` = resultado.`id_lab` WHERE laboratorio.`id_lab` = 0)
+								  AND laboratorio.id_lab <> 0";
+	if ($idLab != null){
+		$sql .= ' AND laboratorio.`id_lab`=?';
+		$parametros = array($idLab);
+	}
+	else{
+		$parametros = array();
+	}
+	
+    $query = $conexion->consulta($sql,$parametros);
+    return $query;
+  }
+
+  public static function obtener_resultados_muestra($id_encuesta, $id_lab=0)
+  {
+    $conexion = new Conexion();
+    $query = $conexion->consulta("SELECT * FROM resultado INNER JOIN muestra ON (resultado.id_resultado=muestra.id_resultado)
+                                  INNER JOIN encuesta ON resultado.id_resultado=encuesta.id_resultado WHERE id_encuesta= ?
+                                  AND id_lab= ?", array($id_encuesta, $id_lab));
+    return $query;
+  }
+  
+    public static function obtener_resultados_muestra_desc($id_encuesta, $id_lab=0)
+  {
+    $conexion = new Conexion();
+	$sql = "SELECT 
+			resultado.id_resultado,
+			resultado.comentario,
+			analito.descripcion AS analito,
+			metodo.descripcion AS metodo,
+			reactivo.descripcion AS reactivo,
+			papel_filtro.descripcion AS papel_filtro,
+			valor_corte.descripcion AS valor_de_corte,
+			calibrador.descripcion AS calibrador,
+			decision.descripcion AS decision,
+			interpretacion.descripcion AS interpretacion,
+			muestra.id_muestra AS nro_muestra,
+			muestra.resultado_control
+
+			FROM resultado INNER JOIN muestra ON (resultado.id_resultado=muestra.id_resultado)
+						   INNER JOIN encuesta ON (resultado.id_resultado=encuesta.id_resultado) 
+						   INNER JOIN analito ON (resultado.id_analito=analito.id_analito)
+						   INNER JOIN metodo ON (resultado.id_metodo=metodo.id_metodo)
+						   INNER JOIN calibrador ON (resultado.id_calibrador=calibrador.id_calibrador)
+						   INNER JOIN reactivo ON (resultado.id_reactivo=reactivo.id_reactivo)
+						   INNER JOIN papel_filtro ON (resultado.id_papel_filtro=papel_filtro.id_papel_filtro)
+						   INNER JOIN valor_corte ON (resultado.id_valor=valor_corte.id_valor)
+						   INNER JOIN interpretacion ON (muestra.id_interpretacion=interpretacion.id_interpretacion)
+						   INNER JOIN decision ON (muestra.id_decision=decision.id_decision)
+
+			WHERE id_encuesta = ? AND id_lab = ?";
+    $parametros =  array($id_encuesta, $id_lab);
+	$query = $conexion->consulta($sql,$parametros);
     return $query;
   }
 

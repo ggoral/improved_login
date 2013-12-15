@@ -43,7 +43,10 @@ if (isset($_POST['action'])){
 	}
 	elseif ($_POST['action'] == 'alta'){
 		//HACE EL INSERT
-		$result = ORM_muestra::agregar_muestra($id_resultado_control, $id_interpretacion, $id_decision, $id_resultado);
+		if (substr($_SESSION['usuarioLogeado']['rol'],0,3) == 'Lab')
+			$result = ORM_muestra::agregar_muestra_lab($id_resultado_control, $id_interpretacion, $id_decision, $id_resultado);
+		else
+			$result = ORM_muestra::agregar_muestra($id_resultado_control, $id_interpretacion, $id_decision, $id_resultado);
 		if ($result == 0)
 			die('4');
 		

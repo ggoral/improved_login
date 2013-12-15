@@ -87,13 +87,25 @@ public static function agregar_muestra($resultado_control, $id_interpretacion, $
     //$existe = ORM_muestra::buscar_por_clave($id_interpretacion, $id_decision, $id_resultado);
     $cant = ORM_muestra::buscar_cant_por_clave($id_resultado);
    
-    if ($cant < 2){ 
+    if ($cant < 1){ 
       $row_affected = ORM_muestra::agregar_muestra_campos($resultado_control, $id_interpretacion, $id_decision, $id_resultado);
       return $row_affected;
     }
     return 0;
   }
 
+  public static function agregar_muestra_lab($resultado_control, $id_interpretacion, $id_decision, $id_resultado)
+  {
+    //$existe = ORM_muestra::buscar_por_clave($id_interpretacion, $id_decision, $id_resultado);
+    $cant = ORM_muestra::buscar_cant_por_clave($id_resultado);
+   
+    if ($cant < 2){ 
+      $row_affected = ORM_muestra::agregar_muestra_campos($resultado_control, $id_interpretacion, $id_decision, $id_resultado);
+      return $row_affected;
+    }
+    return 0;
+  }
+  
 public static function buscar_muestra_Twig_Tabla()
   {
     $conexion = new Conexion();
