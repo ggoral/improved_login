@@ -32,8 +32,6 @@ foreach ($encuestas as $enc) {
   $i++;
 }
 
-
-
 $parametro_template = 'graphs.html';
 $parametro_datos = $encuestas_nuevas;
 $parametro_columnas = Array();
