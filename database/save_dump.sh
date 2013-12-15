@@ -7,7 +7,7 @@
 
 MYSQL_HOSTNAME="172.16.207.133"
 MYSQL_USERNAME="proyecto" 
-MYSQL_DATABASE="fba_db"
+MYSQL_DATABASE="grupo56"
 
 #uncomment next line
 echo "Mysql "
