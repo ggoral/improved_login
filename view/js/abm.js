@@ -153,6 +153,10 @@ function submitearFormEncuesta(action, tabla){
 						error=true;
 						mensaje='Operacion Fallida - Complete todos los campos correctamente';	
 						break;
+					case '6':
+						error=true;
+						mensaje='Operacion Fallida - La fecha de cierre debe ser mayor que la de inicio';	
+						break;
 					default:
 						error=true;
 						mensaje='Operacion Fallida - Error en Base de datos';	
