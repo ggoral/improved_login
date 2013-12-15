@@ -4,6 +4,8 @@
 
 <h5>{{mensaje}}</h5>
 <!--TABLA-->
+{% if indice > 0 %}
+
 <div id="divContenedor">
 	<table id="tblDatos" align="center">
 		<thead>
@@ -26,7 +28,7 @@
 		</tbody>
 	</table>
 </div>
-
+{% endif %}
 <h3>Conclusiones</h3>
 
 {% for valor in porcentual %}
