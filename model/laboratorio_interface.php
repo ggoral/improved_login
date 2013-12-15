@@ -93,7 +93,7 @@ public static function actualizar_laboratorio($laboratorio)
   public static function mostrar_laboratorio_graficos()
     {
       $conexion = new Conexion();
-      $query = $conexion->consulta("SELECT id_lab,cod_lab FROM laboratorio");
+      $query = $conexion->consulta("SELECT id_lab,cod_lab FROM laboratorio where id_lab<>0");
       return $query;
     }
 /*
