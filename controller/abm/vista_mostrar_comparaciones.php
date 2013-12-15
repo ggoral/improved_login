@@ -17,13 +17,14 @@ $resultadoEncuestaDesc[0]['laboratorio'] = 'Muestra FBA';
 $parametro_datos = array();
 $parametro_datos[] = $resultadoEncuestaDesc[0];
 
+$dif = array();
 if (empty($resultadoLaboratorio))
 {
 	$mensaje = 'No se registran resultados para esta encuesta';
+	$dif[]['porcentual']= 'No puede calcularse el error ya que no se registran resultados.';
 }
 else{
-	$i = 0;
-	$dif = array();
+	$i = 0;	
 	foreach ($resultadoLaboratorio as $resLab){
 		$i++;
 		$resultadoLaboratorioDesc[$i-1]['laboratorio'] = 'Muestra '.$i;
@@ -36,15 +37,17 @@ else{
 			($resLab['id_valor'] != ($resultadoEncuesta[0]['id_valor'])) OR 
 			($resLab['id_interpretacion'] != $resultadoEncuesta[0]['id_interpretacion']) OR 
 			($resLab['id_decision'] != $resultadoEncuesta[0]['id_decision'])) {
-				$dif[] = 1;
+				$dif[$i-1]['cant'] = 1;
+				$dif[$i-1]['porcentual']= 'Muestra nro '.$i.' calculada erroneamente, error del 100%';
 		}
 		else{
-			$dif[] = 0;
+			$dif[$i-1]['cant'] = 0;
+			$dif[$i-1]['porcentual']= 'Error en muestra nro '.$i.' del'.(($resultadoEncuesta[0]['resultado_control']*100)/$resLab['resultado_control']).'%'; /*calula porcentaje de error*/
 		}
 	}
 	$muestrasDistintas = 0;
 	foreach ($dif as $d)
-		$muestrasDistintas += $d;
+		$muestrasDistintas += $d['cant'];
 	if ($muestrasDistintas > 0)
 		$mensaje = 'Se han usado diferentas herramientas para comparar '.$muestrasDistintas.' de '.$i.'  de las muestras';
 	else
@@ -54,7 +57,8 @@ else{
 $parametro_display = array(
 	'mensaje' => $mensaje,
     'datos' => $parametro_datos,
-	'indice' => count($resultadoEncuesta[0])
+	'indice' => count($resultadoEncuesta[0]),
+	'porcentual' => $dif
   );
 
 require '../controller.generico.php';
