@@ -20,10 +20,12 @@ $parametro_datos[] = $resultadoEncuestaDesc[0];
 $dif = array();
 if (empty($resultadoLaboratorio))
 {
+	$cantidad = 0;
 	$mensaje = 'No se registran resultados para esta encuesta';
 	$dif[]['porcentual']= 'No puede calcularse el error ya que no se registran resultados.';
 }
 else{
+	$cantidad = count($resultadoEncuesta[0]);
 	$i = 0;	
 	foreach ($resultadoLaboratorio as $resLab){
 		$i++;
@@ -57,7 +59,7 @@ else{
 $parametro_display = array(
 	'mensaje' => $mensaje,
     'datos' => $parametro_datos,
-	'indice' => count($resultadoEncuesta[0]),
+	'indice' => $cantidad,
 	'porcentual' => $dif
   );
 
