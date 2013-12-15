@@ -94,21 +94,5 @@ $(function () {
 <script src="../../view/js/modules/exporting.js"></script>
 
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-        <table>
-          <tr>
-            <th>id_encuesta</th>
-            <th>tiempo_envio</th>
-            <th>tiempo_analisis</th>
-            <th>tiempo_ingreso</th>
-          </tr>
-          {% for enc in encuestas %}
-            <tr>
-              <td>{{enc['id_encuesta']}}</td>
-              <td>{{enc['tiempo_envio']   }}</td>
-              <td>{{enc['tiempo_analisis']}}</td>
-              <td>{{enc['tiempo_ingreso'] }}</td>
-            </tr>
-        {% endfor %}
-        </table>
     </body>
 </html>
