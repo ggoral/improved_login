@@ -42,7 +42,7 @@ else{
 		}
 		else{
 			$dif[$i-1]['cant'] = 0;
-			$dif[$i-1]['porcentual']= 'Error en muestra nro '.$i.' del'.((-1*(($resLab['resultado_control']*100)/$resultadoEncuesta[0]['resultado_control']))-100).'%'; /*calula porcentaje de error*/
+			$dif[$i-1]['porcentual']= 'Error en muestra nro '.$i.' del: '.((1*(($resLab['resultado_control']*100)/$resultadoEncuesta[0]['resultado_control']))-100).'%'; /*calula porcentaje de error*/
 		}
 	}
 	$muestrasDistintas = 0;
